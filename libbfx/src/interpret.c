@@ -17,9 +17,12 @@ static void op_getchar(bfx_t*);
 static void op_putchar(bfx_t*);
 
 /* pbrain */
-static void call_procedure(bfx_t*);
-static void ret_procedure(bfx_t*);
-static void populate_procedure(bfx_t*);
+static void op_pbrain_call(bfx_t*);
+static void op_pbrain_ret(bfx_t*);
+static void pbrain_populate_procedure(bfx_t*);
+
+/* weave */
+static void op_weave_toggle(bfx_t*);
 
 void        bfx_interpret(bfx_t* bf, bfx_file_index_t* index) {
     size_t i;
@@ -53,17 +56,17 @@ void        bfx_interpret(bfx_t* bf, bfx_file_index_t* index) {
         break;
     case '(':
         if (bf->flags & BFX_FLAG_PBRAIN) {
-            populate_procedure(bf);
+            pbrain_populate_procedure(bf);
         }
         break;
     case ')':
         if (bf->flags & BFX_FLAG_PBRAIN) {
-            ret_procedure(bf);
+            op_pbrain_ret(bf);
         }
         break;
     case ':':
         if (bf->flags & BFX_FLAG_PBRAIN) {
-            call_procedure(bf);
+            op_pbrain_call(bf);
         }
         break;
     case '#':
@@ -194,7 +197,7 @@ static void op_getchar(bfx_t* bf) {
 
 static void op_putchar(bfx_t* bf) { putchar(bf->tape[bf->tp]); }
 
-static void call_procedure(bfx_t* bf) {
+static void op_pbrain_call(bfx_t* bf) {
     size_t i;
     for (i = 0; i < bf->procedures_len; i++) {
         if (bf->procedure_identifiers[i] == bf->tape[bf->tp]) {
@@ -206,14 +209,14 @@ static void call_procedure(bfx_t* bf) {
     }
 }
 
-static void ret_procedure(bfx_t* bf) {
+static void op_pbrain_ret(bfx_t* bf) {
     if (bf->procedure_stack_top > 0) {
         bf->ip = bf->procedure_stack[bf->procedure_stack_top];
         bf->procedure_stack_top--;
     }
 }
 
-static void populate_procedure(bfx_t* bf) {
+static void pbrain_populate_procedure(bfx_t* bf) {
     size_t i;
 
     bf->procedures[bf->procedures_len].start.idx = bf->ip + 1;

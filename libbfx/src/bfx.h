@@ -117,6 +117,7 @@ typedef struct {
     size_t       input_ptr;
     size_t       input_len;
     uint8_t*     tape;
+    uint8_t*     public_tape;
     size_t       tape_size;
     int          ip;
     int          tp;
