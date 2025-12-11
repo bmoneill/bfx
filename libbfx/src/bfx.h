@@ -52,10 +52,15 @@
 #define BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS 4
 #define BFX_FLAG_ONLY_GENERATE_C_SOURCE       8
 #define BFX_FLAG_GRAPHICS                     16
-#define BFX_FLAG_BRAINFORK                    32
-#define BFX_FLAG_PBRAIN                       64
-#define BFX_FLAG_GRIN                         128
-#define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE    256
+#define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE    32
+
+#define BFX_LANG_BRAINFUCK                    1
+#define BFX_LANG_BRAINFORK                    2
+#define BFX_LANG_PBRAIN                       3
+#define BFX_LANG_GRIN                         4
+#define BFX_LANG_WEAVE                        5
+
+#define BFX_DEFAULT_LANG BFX_LANG_BRAINFUCK
 
 #define BFX_DEFAULT_EOF_BEHAVIOR BFX_EOF_BEHAVIOR_ZERO
 
@@ -91,33 +96,34 @@ typedef struct {
     bfx_file_index_t start;
     bfx_file_index_t end;
 } bfx_block_t;
+
 /**
- * @brief Structure to represent a brainfuck interpreter.
- * @param flags Flags for the interpreter.
- * @param receiving If the interpreter is receiving input.
- * @param prog Pointer to the brainfuck program string.
- * @param prog_len Length of the brainfuck program string.
- * @param prog_size Size of the brainfuck program string.
+ * @brief Structure to store generic data for a brainfuck-like esolang interpreter.
+ * @param flags Flags to control compilation and execution behavior.
+ * @param receiving Indicates whether the interpreter is receiving input.
+ * @param program Pointer to the program string.
+ * @param program_len Length of the program string (not including the input buffer).
+ * @param program_size Size of the program string.
+ * @param input_start Start index of the input buffer in the program string.
+ * @param input_ptr Current index of the input buffer in the program string.
+ * @param input_len Length of the input buffer in the program string.
  * @param tape Pointer to the tape array.
  * @param tape_size Size of the tape array.
- * @param ip Instruction pointer.
- * @param tp Data pointer.
- * @param tp_max The highest data pointer value that has occurred during execution.
- * @param loops Pointer to the loop array.
- * @param loops_len Length of the loop array.
- * @param loops_size Size of the loop array.
+ * @param input_max User input buffer size.
+ * @param eof_behavior Behavior when encountering EOF.
+ * @param lang Language identifier for the brainfuck-like esolang.
+ * @param lang_data Pointer to language-specific data structure.
  */
 typedef struct {
-    int          flags;
+    uint16_t     flags;
     bool         receiving;
-    char*        prog;
-    size_t       prog_len;
-    size_t       prog_size;
+    char*        program;
+    size_t       program_len;
+    size_t       program_size;
     size_t       input_start;
     size_t       input_ptr;
     size_t       input_len;
     uint8_t*     tape;
-    uint8_t*     public_tape;
     size_t       tape_size;
     int          ip;
     int          tp;
@@ -125,34 +131,14 @@ typedef struct {
     bfx_block_t* loops;
     size_t       loops_len;
     size_t       loops_size;
-    bfx_block_t* procedures;
-    uint8_t*     procedure_identifiers;
-    size_t       procedures_len;
-    size_t       procedures_size;
-    int*         procedure_stack;
-    int          procedure_stack_top;
+    size_t       input_max;
     int          eof_behavior;
+    int          lang;
+    void*        lang_data;
 } bfx_t;
 
-/**
- * @brief Structure to hold parameters for Brainfuck compilation and execution.
- * @param flags Flags to control compilation and execution behavior.
- * @param tape_size Size of the tape.
- * @param input_max User input buffer size.
- * @param graphics_start Start cell for graphical display.
- * @param graphics_end End cell for graphical display.
- */
-typedef struct {
-    uint16_t flags;
-    size_t   tape_size;
-    size_t   input_max;
-    int      graphics_start;
-    int      graphics_end;
-    int      eof_behavior;
-} bfx_parameters_t;
-
 void bfx_reset(bfx_t*);
-void bfx_run_file(const char*, bfx_parameters_t);
-void bfx_run_repl(bfx_parameters_t);
+void bfx_run_file(const char*, bfx_t*);
+void bfx_run_repl(bfx_t*);
 
 #endif

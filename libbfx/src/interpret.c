@@ -1,20 +1,12 @@
 #include "interpret.h"
 #include "bfx.h"
 
+#include <pthread.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
 
 static void diagnose(bfx_t*, bfx_file_index_t*);
-
-static void op_inc_tp(bfx_t*, bfx_file_index_t*);
-static void op_dec_tp(bfx_t*, bfx_file_index_t*);
-static void op_inc_t(bfx_t*);
-static void op_dec_t(bfx_t*);
-static void op_loop_start(bfx_t*, bfx_file_index_t*);
-static void op_loop_end(bfx_t*, bfx_file_index_t*);
-static void op_getchar(bfx_t*);
-static void op_putchar(bfx_t*);
 
 /* pbrain */
 static void op_pbrain_call(bfx_t*);

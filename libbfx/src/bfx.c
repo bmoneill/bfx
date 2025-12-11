@@ -36,26 +36,47 @@ static void reset_loops(bfx_t*);
  */
 void bfx_reset(bfx_t* bf) {
     reset_loops(bf);
-    memset(bf->prog, 0, bf->prog_len * sizeof(char));
+    memset(bf->program, 0, bf->program_len * sizeof(char));
     memset(bf->tape, 0, bf->tape_size * sizeof(uint8_t));
-    bf->prog_len = 0;
+    bf->program_len = 0;
     bf->ip       = 0;
     bf->tp       = 0;
     bf->tp_max   = 0;
 }
 
+void bfx_init(bfx_t* bf, int flags) {
+    bf->flags = flags;
+    bf->receiving = false;
+    bf->program = NULL;
+    bf->program_len = 0;
+    bf->program_size = 0;
+    bf->input_start = 0;
+    bf->input_ptr = 0;
+    bf->input_len = 0;
+    bf->tape = calloc(BFX_DEFAULT_TAPE_SIZE, sizeof(uint8_t));
+    bf->tape_size = BFX_DEFAULT_TAPE_SIZE;
+    bf->ip = -1;
+    bf->tp = 0;
+    bf->tp_max = 0;
+    bf->loops = NULL;
+    bf->loops_len = 0;
+    bf->loops_size = 0;
+    bf->input_max = 0;
+    bf->eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
+    bf->lang = BFX_DEFAULT_LANG;
+    bf->lang_data = NULL;
+}
+
 /**
- * @brief Runs the brainfuck program loaded from a file.
+ * @brief Runs the program loaded from a file.
  *
  * This function builds the loop structure for the brainfuck program,
  * then iterates through the program instructions, interpreting each one
  * until the end of the program is reached.
  */
-void bfx_run_file(const char* path, bfx_parameters_t params) {
-    bfx_t            bf;
+void bfx_run_file(const char* path, bfx_t* bf) {
     bfx_file_index_t idx;
 
-    init_bf(&bf, params);
     load_file(&bf, path);
     idx.line     = 1;
     idx.line_idx = 0;
@@ -79,8 +100,6 @@ void bfx_run_repl(bfx_parameters_t params) {
     bfx_file_index_t index;
     char*            input;
     size_t           prog_len_old;
-
-    init_bf(&bf, params);
 
     bf.prog_size = params.input_max;
 
@@ -129,7 +148,7 @@ void bfx_run_repl(bfx_parameters_t params) {
  * @note This function does not return a value. If an error occurs (such as exceeding MAX_LOOPS),
  *       it prints an error message and terminates the program using exit(EXIT_FAILURE).
  */
-static void build_loops(bfx_t* bf) {
+void bfx_build_loops(bfx_t* bf) {
     bfx_file_index_t* stack;
     bfx_file_index_t  start;
     int               stack_top;
