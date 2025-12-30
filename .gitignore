@@ -11,6 +11,7 @@ DartConfiguration.tcl
 Makefile
 Testing
 *_tests
+install_manifest.txt
 
 # etc
 .clangd
