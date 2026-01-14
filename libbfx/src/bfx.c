@@ -20,13 +20,33 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void build_loops(bfx_t*);
 static void free_bf(bfx_t*);
-static void init_bf(bfx_t*, bfx_parameters_t);
 static void init_tokens(void);
 static int  load_file(bfx_t*, const char*);
 static void reset(bfx_t*);
 static void reset_loops(bfx_t*);
+
+/**
+ * @brief Diagnoses the brainfuck program.
+ *
+ * This function prints the current state of the brainfuck program, including the line number,
+ * tape pointer, instruction pointer, and memory map.
+ */
+void bfx_diagnose(bfx_t* bf, bfx_file_index_t* idx) {
+    int i;
+
+    fprintf(stderr,
+            "Line: %d,%d\nTape pointer: %d\nInstruction pointer: %d\n",
+            idx->line,
+            idx->line_idx,
+            bf->tp,
+            bf->ip);
+
+    fprintf(stderr, "Memory map:\n");
+    for (i = 0; i < bf->tp_max; i++) {
+        fprintf(stderr, "%d: %d\n", i, bf->tape[i]);
+    }
+}
 
 /**
  * @brief Resets the brainfuck program state.
@@ -39,32 +59,32 @@ void bfx_reset(bfx_t* bf) {
     memset(bf->program, 0, bf->program_len * sizeof(char));
     memset(bf->tape, 0, bf->tape_size * sizeof(uint8_t));
     bf->program_len = 0;
-    bf->ip       = 0;
-    bf->tp       = 0;
-    bf->tp_max   = 0;
+    bf->ip          = 0;
+    bf->tp          = 0;
+    bf->tp_max      = 0;
 }
 
 void bfx_init(bfx_t* bf, int flags) {
-    bf->flags = flags;
-    bf->receiving = false;
-    bf->program = NULL;
-    bf->program_len = 0;
+    bf->flags        = flags;
+    bf->receiving    = false;
+    bf->program      = NULL;
+    bf->program_len  = 0;
     bf->program_size = 0;
-    bf->input_start = 0;
-    bf->input_ptr = 0;
-    bf->input_len = 0;
-    bf->tape = calloc(BFX_DEFAULT_TAPE_SIZE, sizeof(uint8_t));
-    bf->tape_size = BFX_DEFAULT_TAPE_SIZE;
-    bf->ip = -1;
-    bf->tp = 0;
-    bf->tp_max = 0;
-    bf->loops = NULL;
-    bf->loops_len = 0;
-    bf->loops_size = 0;
-    bf->input_max = 0;
+    bf->input_start  = 0;
+    bf->input_ptr    = 0;
+    bf->input_len    = 0;
+    bf->tape         = calloc(BFX_DEFAULT_TAPE_SIZE, sizeof(uint8_t));
+    bf->tape_size    = BFX_DEFAULT_TAPE_SIZE;
+    bf->ip           = -1;
+    bf->tp           = 0;
+    bf->tp_max       = 0;
+    bf->loops        = NULL;
+    bf->loops_len    = 0;
+    bf->loops_size   = 0;
+    bf->input_max    = 0;
     bf->eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
-    bf->lang = BFX_DEFAULT_LANG;
-    bf->lang_data = NULL;
+    bf->lang         = BFX_DEFAULT_LANG;
+    bf->lang_data    = NULL;
 }
 
 /**
@@ -77,15 +97,14 @@ void bfx_init(bfx_t* bf, int flags) {
 void bfx_run_file(const char* path, bfx_t* bf) {
     bfx_file_index_t idx;
 
-    load_file(&bf, path);
+    load_file(bf, path);
     idx.line     = 1;
     idx.line_idx = 0;
-    build_loops(&bf);
 
-    for (bf.ip = 0; (size_t) bf.ip < bf.prog_len; bf.ip++) {
-        bfx_interpret(&bf, &idx);
+    for (bf->ip = 0; (size_t) bf->ip < bf->program_len; bf->ip++) {
+        bfx_interpret(bf, &idx);
     }
-    free(bf.prog);
+    free(bf->program);
 }
 
 /**
@@ -95,40 +114,40 @@ void bfx_run_file(const char* path, bfx_t* bf) {
  * and interprets the brainfuck instructions until the user terminates the program.
  * This allows for interactive execution of brainfuck code.
  */
-void bfx_run_repl(bfx_parameters_t params) {
+void bfx_run_repl(int input_max) {
     bfx_t            bf;
     bfx_file_index_t index;
     char*            input;
     size_t           prog_len_old;
 
-    bf.prog_size = params.input_max;
+    bf.program_size = input_max;
 
-    if (!(bf.prog = (char*) malloc(bf.prog_size + 1))
-        || !(input = (char*) malloc(bf.prog_size + 1))) {
+    if (!(bf.program = (char*) malloc(bf.program_size + 1))
+        || !(input = (char*) malloc(bf.program_size + 1))) {
         BFX_ERROR("Cannot allocate memory for program storage.");
     }
 
     while (1) {
         printf("> ");
-        if (!fgets(input, params.input_max, stdin)) {
+        if (!fgets(input, input_max, stdin)) {
             break;
         }
 
-        prog_len_old = bf.prog_len;
-        bf.prog_len += strlen(input);
-        if (bf.prog_len > bf.prog_size) {
-            bf.prog_size *= 2;
-            if (!(bf.prog = realloc(bf.prog, bf.prog_size))) {
+        prog_len_old = bf.program_len;
+        bf.program_len += strlen(input);
+        if (bf.program_len > bf.program_size) {
+            bf.program_size *= 2;
+            if (!(bf.program = realloc(bf.program, bf.program_size))) {
                 BFX_ERROR("Cannot reallocate memory for program storage.");
             }
         }
 
-        snprintf(bf.prog + prog_len_old, bf.prog_size - prog_len_old, "%s", input);
+        snprintf(bf.program + prog_len_old, bf.program_size - prog_len_old, "%s", input);
         reset_loops(&bf);
-        build_loops(&bf);
+        /*build_loops(&bf);*/
         index.line     = 1;
         index.line_idx = 0;
-        for (; (size_t) bf.ip < bf.prog_len; bf.ip++) {
+        for (; (size_t) bf.ip < bf.program_len; bf.ip++) {
             bfx_interpret(&bf, &index);
         }
     }
@@ -166,9 +185,9 @@ void bfx_build_loops(bfx_t* bf) {
     bf->loops_size = BFX_INITIAL_LOOP_SIZE;
     bf->loops      = malloc(sizeof(bfx_block_t) * BFX_INITIAL_LOOP_SIZE);
 
-    for (i = 0; i < bf->prog_len; i++) {
+    for (i = 0; i < bf->program_len; i++) {
         line_idx++;
-        if (bf->prog[i] == '[') {
+        if (bf->program[i] == '[') {
             if (stack_top >= stack_size) {
                 stack_size *= 2;
                 stack = realloc(stack, sizeof(bfx_file_index_t) * stack_size);
@@ -177,7 +196,7 @@ void bfx_build_loops(bfx_t* bf) {
             stack[stack_top].line     = line;
             stack[stack_top].line_idx = line_idx;
             stack_top++;
-        } else if (bf->prog[i] == ']') {
+        } else if (bf->program[i] == ']') {
             if (stack_top <= 0) {
                 fprintf(stderr,
                         "libbfx: Error (%d,%d): Unmatched closing bracket ']'.\n",
@@ -192,7 +211,7 @@ void bfx_build_loops(bfx_t* bf) {
             bf->loops[bf->loops_len].end.line     = line;
             bf->loops[bf->loops_len].end.line_idx = line_idx;
             bf->loops_len++;
-        } else if (bf->prog[i] == '\n') {
+        } else if (bf->program[i] == '\n') {
             line++;
             line_idx = 0;
         }
@@ -213,8 +232,8 @@ void bfx_build_loops(bfx_t* bf) {
  */
 static void free_bf(bfx_t* bf) {
     if (bf) {
-        if (bf->prog) {
-            free(bf->prog);
+        if (bf->program) {
+            free(bf->program);
         }
         if (bf->tape) {
             free(bf->tape);
@@ -228,22 +247,17 @@ static void free_bf(bfx_t* bf) {
 /**
  * @brief Initializes a bf_t.
  * @param bf Pointer to the bf_t
- * @param params Parameters for the bf_t.
+ * @param flags Flags for the bf_t.
+ * @param tape_size Size of the tape.
+ * @param eof_behavior Behavior when reaching EOF.
  */
-static void init_bf(bfx_t* bf, bfx_parameters_t params) {
+static void init_bf(bfx_t* bf, int flags, int tape_size, int eof_behavior) {
     memset(bf, 0, sizeof(bfx_t));
-    bf->flags        = params.flags;
-    bf->tape_size    = params.tape_size;
-    bf->tape         = calloc(params.tape_size, sizeof(uint8_t));
+    bf->flags        = flags;
+    bf->tape_size    = tape_size;
+    bf->tape         = calloc(tape_size, sizeof(uint8_t));
     bf->receiving    = true;
-    bf->eof_behavior = params.eof_behavior;
-
-    if (bf->flags & BFX_FLAG_PBRAIN) {
-        bf->procedures = calloc(BFX_PROCEDURE_SIZE, sizeof(bfx_block_t));
-        bf->procedure_identifiers = calloc(BFX_PROCEDURE_SIZE, sizeof(uint8_t));
-        bf->procedures_size = BFX_PROCEDURE_SIZE;
-        bf->procedures_len = 0;
-    }
+    bf->eof_behavior = eof_behavior;
 }
 
 /**
@@ -267,13 +281,13 @@ static int load_file(bfx_t* bf, const char* path) {
 
     if ((f = fopen(path, "r"))) {
         fseek(f, 0, SEEK_END);
-        bf->prog_len = ftell(f);
+        bf->program_len = ftell(f);
         fseek(f, 0, SEEK_SET);
 
-        if ((bf->prog = (char*) malloc(bf->prog_len))) {
-            if (fread(bf->prog, 1, bf->prog_len, f) != (unsigned long) bf->prog_len) {
+        if ((bf->program = (char*) malloc(bf->program_len))) {
+            if (fread(bf->program, 1, bf->program_len, f) != (unsigned long) bf->program_len) {
                 fprintf(stderr, "Error: Cannot read file %s.\n", path);
-                free(bf->prog);
+                free(bf->program);
                 fclose(f);
                 return 1;
             }
@@ -289,13 +303,13 @@ static int load_file(bfx_t* bf, const char* path) {
     }
 
     if (bf->flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
-        for (i = 0; i < bf->prog_len; i++) {
-            if (bf->prog[i] == '!') {
+        for (i = 0; i < bf->program_len; i++) {
+            if (bf->program[i] == '!') {
                 bf->input_start = i + 1;
                 bf->input_ptr   = bf->input_start;
-                bf->input_len   = bf->prog_len;
-                bf->prog[i]     = '\0';
-                bf->prog_len    = i;
+                bf->input_len   = bf->program_len;
+                bf->program[i]  = '\0';
+                bf->program_len = i;
             }
         }
     }

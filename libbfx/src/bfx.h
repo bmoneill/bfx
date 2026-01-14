@@ -54,11 +54,11 @@
 #define BFX_FLAG_GRAPHICS                     16
 #define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE    32
 
-#define BFX_LANG_BRAINFUCK                    1
-#define BFX_LANG_BRAINFORK                    2
-#define BFX_LANG_PBRAIN                       3
-#define BFX_LANG_GRIN                         4
-#define BFX_LANG_WEAVE                        5
+#define BFX_LANG_BRAINFUCK 1
+#define BFX_LANG_BRAINFORK 2
+#define BFX_LANG_PBRAIN    3
+#define BFX_LANG_GRIN      4
+#define BFX_LANG_WEAVE     5
 
 #define BFX_DEFAULT_LANG BFX_LANG_BRAINFUCK
 
@@ -137,8 +137,9 @@ typedef struct {
     void*        lang_data;
 } bfx_t;
 
+void bfx_build_loops(bfx_t*);
 void bfx_reset(bfx_t*);
 void bfx_run_file(const char*, bfx_t*);
-void bfx_run_repl(bfx_t*);
+void bfx_run_repl(int);
 
 #endif

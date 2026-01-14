@@ -30,16 +30,16 @@ static void print_version(const char*);
  * @brief Entry point.
  */
 int main(int argc, char* argv[]) {
-    int              opt;
-    bfx_parameters_t params;
-    char*            path        = NULL;
-    char*            output_path = NULL;
-    bool             compile     = false;
+    int   opt;
+    bfx_t bfx;
+    char* path        = NULL;
+    char* output_path = NULL;
+    bool  compile     = false;
 
-    params.flags                 = 0;
-    params.input_max             = BFX_DEFAULT_INPUT_MAX;
-    params.tape_size             = BFX_DEFAULT_TAPE_SIZE;
-    params.eof_behavior          = BFX_DEFAULT_EOF_BEHAVIOR;
+    bfx.flags         = 0;
+    bfx.input_max     = BFX_DEFAULT_INPUT_MAX;
+    bfx.tape_size     = BFX_DEFAULT_TAPE_SIZE;
+    bfx.eof_behavior  = BFX_DEFAULT_EOF_BEHAVIOR;
 
     while ((opt = getopt(argc, argv, "cCde:g:Gio:Prst:vY")) != -1) {
         switch (opt) {
@@ -48,13 +48,13 @@ int main(int argc, char* argv[]) {
             break;
         case 'C':
             compile = true;
-            params.flags |= BFX_FLAG_ONLY_GENERATE_C_SOURCE;
+            bfx.flags |= BFX_FLAG_ONLY_GENERATE_C_SOURCE;
             break;
         case 'd':
-            params.flags |= BFX_FLAG_DEBUG;
+            bfx.flags |= BFX_FLAG_DEBUG;
             break;
         case 'e':
-            if ((params.eof_behavior = get_eof_behavior(optarg)) == -1) {
+            if ((bfx.eof_behavior = get_eof_behavior(optarg)) == -1) {
                 print_usage(argv[0]);
                 return EXIT_FAILURE;
             }
@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
             printf("-%c Unimplemented.\n", opt);
             break;
         case 'i':
-            params.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
+            bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
             break;
         case 'o':
             output_path = optarg;
@@ -75,13 +75,13 @@ int main(int argc, char* argv[]) {
             printf("-%c Unimplemented.\n", opt);
             break;
         case 'r':
-            params.flags |= BFX_FLAG_REPL;
+            bfx.flags |= BFX_FLAG_REPL;
             break;
         case 's':
-            params.flags |= BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS;
+            bfx.flags |= BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS;
             break;
         case 't':
-            params.tape_size = atoi(optarg);
+            bfx.tape_size = atoi(optarg);
             break;
         case 'v':
             print_version(argv[0]);
@@ -100,14 +100,14 @@ int main(int argc, char* argv[]) {
     }
 
     if (compile) {
-        bfx_compile(path, output_path, params);
+        bfx_compile(path, output_path, &bfx);
         return EXIT_SUCCESS;
     }
 
-    if (!(params.flags & BFX_FLAG_REPL) && path) {
-        bfx_run_file(path, params);
-    } else if ((params.flags & BFX_FLAG_REPL) && !path) {
-        bfx_run_repl(params);
+    if (!(bfx.flags & BFX_FLAG_REPL) && path) {
+        bfx_run_file(path, &bfx);
+    } else if ((bfx.flags & BFX_FLAG_REPL) && !path) {
+        bfx_run_repl(bfx.flags);
     } else {
         print_usage(argv[0]);
         return EXIT_FAILURE;

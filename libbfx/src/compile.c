@@ -22,10 +22,10 @@ static const char* tokens[']' + 1];
  * @param output_path Path to the output binary or C file.
  * @param params Compilation parameters
  */
-void bfx_compile(const char* input_path, const char* output_path, bfx_parameters_t params) {
+void bfx_compile(const char* input_path, const char* output_path, bfx_t* bfx) {
     FILE* input;
     FILE* output;
-    bool  binary_output = !(params.flags & BFX_FLAG_ONLY_GENERATE_C_SOURCE);
+    bool  binary_output = !(bfx->flags & BFX_FLAG_ONLY_GENERATE_C_SOURCE);
     int   c;
     int   depth;
     int   sys_ret;
@@ -50,7 +50,7 @@ void bfx_compile(const char* input_path, const char* output_path, bfx_parameters
     /*** Actual compilation ***/
     init_tokens();
     depth = 0;
-    fprintf(output, BFX_COMPILE_HEAD, params.tape_size);
+    fprintf(output, BFX_COMPILE_HEAD, bfx->tape_size);
     while ((c = fgetc(input)) != EOF) {
         if (tokens[c]) {
             fprintf(output, "%s", tokens[c]);

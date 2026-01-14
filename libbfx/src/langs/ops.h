@@ -3,6 +3,7 @@
 
 #include "../bfx.h"
 
+/* brainfuck */
 void bfx_op_inc_tp(bfx_t*, bfx_file_index_t*);
 void bfx_op_dec_tp(bfx_t*, bfx_file_index_t*);
 void bfx_op_inc_t(bfx_t*, bfx_file_index_t*);
@@ -11,5 +12,9 @@ void bfx_op_loop_start(bfx_t*, bfx_file_index_t*);
 void bfx_op_loop_end(bfx_t*, bfx_file_index_t*);
 void bfx_op_getchar(bfx_t*, bfx_file_index_t*);
 void bfx_op_putchar(bfx_t*, bfx_file_index_t*);
+
+/* pbrain */
+void bfx_op_call(bfx_t*, bfx_file_index_t*);
+void bfx_op_ret(bfx_t*, bfx_file_index_t*);
 
 #endif
