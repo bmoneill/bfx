@@ -1,5 +1,4 @@
 #include "../bfx.h"
-#include "common.h"
 #include "ops.h"
 
 #include <stdio.h>
