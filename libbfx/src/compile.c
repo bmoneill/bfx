@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void        init_tokens(void);
+static void        bfx_init_tokens(void);
 
 static const char* tokens[']' + 1];
 
@@ -48,7 +48,7 @@ void bfx_compile(const char* input_path, const char* output_path, bfx_t* bfx) {
     }
 
     /*** Actual compilation ***/
-    init_tokens();
+    bfx_init_tokens();
     depth = 0;
     fprintf(output, BFX_COMPILE_HEAD, bfx->tape_size);
     while ((c = fgetc(input)) != EOF) {
@@ -85,7 +85,7 @@ void bfx_compile(const char* input_path, const char* output_path, bfx_t* bfx) {
 /**
  * @brief Initializes compiler tokens
  */
-static void init_tokens(void) {
+static void bfx_init_tokens(void) {
     memset(tokens, 0, (']' + 1) * sizeof(char*));
     tokens['>'] = "p++;";
     tokens['<'] = "p--;";

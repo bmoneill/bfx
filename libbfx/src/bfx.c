@@ -20,11 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void free_bf(bfx_t*);
-static void init_tokens(void);
-static int  load_file(bfx_t*, const char*);
-static void reset(bfx_t*);
-static void reset_loops(bfx_t*);
+static void bfx_init_tokens(void);
+static int  bfx_load_file(bfx_t*, const char*);
+static void bfx_reset_loops(bfx_t*);
 
 /**
  * @brief Diagnoses the brainfuck program.
@@ -55,7 +53,7 @@ void bfx_diagnose(bfx_t* bf, bfx_file_index_t* idx) {
  * tape, and loop structure, and resetting the instruction pointer and tape pointer.
  */
 void bfx_reset(bfx_t* bf) {
-    reset_loops(bf);
+    bfx_reset_loops(bf);
     memset(bf->program, 0, bf->program_len * sizeof(char));
     memset(bf->tape, 0, bf->tape_size * sizeof(uint8_t));
     bf->program_len = 0;
@@ -95,13 +93,8 @@ void bfx_init(bfx_t* bf, int flags) {
  * until the end of the program is reached.
  */
 void bfx_run_file(const char* path, bfx_t* bf) {
-    load_file(bf, path);
-
-    // TODO only run this for relevant langs
-    bfx_build_loops(bf);
-
+    bfx_load_file(bf, path);
     bfx_interpret(bf);
-    free(bf->program);
 }
 
 /**
@@ -138,7 +131,7 @@ void bfx_run_repl(bfx_t* bf) {
         }
 
         snprintf(bf->program + prog_len_old, bf->program_size - prog_len_old, "%s", input);
-        reset_loops(bf);
+        bfx_reset_loops(bf);
 
         for (; (size_t) bf->ip < bf->program_len; bf->ip++) {
             bfx_interpret(bf);
@@ -146,7 +139,7 @@ void bfx_run_repl(bfx_t* bf) {
     }
 
     free(input);
-    free_bf(bf);
+    bfx_free(bf);
 }
 
 /**
@@ -223,7 +216,7 @@ void bfx_build_loops(bfx_t* bf) {
  * @brief Frees the memory allocated for the brainfuck program.
  * @param bf Pointer to the brainfuck program.
  */
-static void free_bf(bfx_t* bf) {
+void bfx_free(bfx_t* bf) {
     if (bf) {
         if (bf->program) {
             free(bf->program);
@@ -268,7 +261,7 @@ static void init_bf(bfx_t* bf, int flags, int tape_size, int eof_behavior) {
  *        The function allocates memory for the program and reads the entire file into this buffer.
  *        The caller is responsible for freeing the allocated memory.
  */
-static int load_file(bfx_t* bf, const char* path) {
+static int bfx_load_file(bfx_t* bf, const char* path) {
     FILE*  f;
     size_t i;
 
@@ -315,7 +308,7 @@ static int load_file(bfx_t* bf, const char* path) {
  *
  * This function resets the loop structure by clearing the loop buffer.
  */
-static void reset_loops(bfx_t* bf) {
+static void bfx_reset_loops(bfx_t* bf) {
     memset(bf->loops, 0, bf->loops_len);
     bf->loops_len = 0;
 }

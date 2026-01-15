@@ -116,6 +116,8 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
+    bfx_free(&bfx);
+
     return EXIT_SUCCESS;
 }
 
