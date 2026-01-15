@@ -95,15 +95,12 @@ void bfx_init(bfx_t* bf, int flags) {
  * until the end of the program is reached.
  */
 void bfx_run_file(const char* path, bfx_t* bf) {
-    bfx_file_index_t idx;
-
     load_file(bf, path);
-    idx.line     = 1;
-    idx.line_idx = 0;
 
-    for (bf->ip = 0; (size_t) bf->ip < bf->program_len; bf->ip++) {
-        bfx_interpret(bf, &idx);
-    }
+    // TODO only run this for relevant langs
+    bfx_build_loops(bf);
+
+    bfx_interpret(bf);
     free(bf->program);
 }
 
@@ -114,46 +111,42 @@ void bfx_run_file(const char* path, bfx_t* bf) {
  * and interprets the brainfuck instructions until the user terminates the program.
  * This allows for interactive execution of brainfuck code.
  */
-void bfx_run_repl(int input_max) {
-    bfx_t            bf;
-    bfx_file_index_t index;
-    char*            input;
-    size_t           prog_len_old;
+void bfx_run_repl(bfx_t* bf) {
+    char*  input;
+    size_t prog_len_old;
 
-    bf.program_size = input_max;
+    bf->program_size = bf->input_max;
 
-    if (!(bf.program = (char*) malloc(bf.program_size + 1))
-        || !(input = (char*) malloc(bf.program_size + 1))) {
+    if (!(bf->program = (char*) malloc(bf->program_size + 1))
+        || !(input = (char*) malloc(bf->program_size + 1))) {
         BFX_ERROR("Cannot allocate memory for program storage.");
     }
 
     while (1) {
         printf("> ");
-        if (!fgets(input, input_max, stdin)) {
+        if (!fgets(input, bf->input_max, stdin)) {
             break;
         }
 
-        prog_len_old = bf.program_len;
-        bf.program_len += strlen(input);
-        if (bf.program_len > bf.program_size) {
-            bf.program_size *= 2;
-            if (!(bf.program = realloc(bf.program, bf.program_size))) {
+        prog_len_old = bf->program_len;
+        bf->program_len += strlen(input);
+        if (bf->program_len > bf->program_size) {
+            bf->program_size *= 2;
+            if (!(bf->program = realloc(bf->program, bf->program_size))) {
                 BFX_ERROR("Cannot reallocate memory for program storage.");
             }
         }
 
-        snprintf(bf.program + prog_len_old, bf.program_size - prog_len_old, "%s", input);
-        reset_loops(&bf);
-        /*build_loops(&bf);*/
-        index.line     = 1;
-        index.line_idx = 0;
-        for (; (size_t) bf.ip < bf.program_len; bf.ip++) {
-            bfx_interpret(&bf, &index);
+        snprintf(bf->program + prog_len_old, bf->program_size - prog_len_old, "%s", input);
+        reset_loops(bf);
+
+        for (; (size_t) bf->ip < bf->program_len; bf->ip++) {
+            bfx_interpret(bf);
         }
     }
 
     free(input);
-    free_bf(&bf);
+    free_bf(bf);
 }
 
 /**

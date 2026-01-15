@@ -36,10 +36,12 @@ int main(int argc, char* argv[]) {
     char* output_path = NULL;
     bool  compile     = false;
 
-    bfx.flags         = 0;
-    bfx.input_max     = BFX_DEFAULT_INPUT_MAX;
-    bfx.tape_size     = BFX_DEFAULT_TAPE_SIZE;
-    bfx.eof_behavior  = BFX_DEFAULT_EOF_BEHAVIOR;
+    memset(&bfx, 0, sizeof(bfx));
+    bfx.flags        = 0;
+    bfx.input_max    = BFX_DEFAULT_INPUT_MAX;
+    bfx.tape_size    = BFX_DEFAULT_TAPE_SIZE;
+    bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
+    bfx.lang         = BFX_LANG_BRAINFUCK;
 
     while ((opt = getopt(argc, argv, "cCde:g:Gio:Prst:vY")) != -1) {
         switch (opt) {
@@ -104,10 +106,11 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
     }
 
+    bfx.tape = calloc(bfx.tape_size, sizeof(uint8_t));
     if (!(bfx.flags & BFX_FLAG_REPL) && path) {
         bfx_run_file(path, &bfx);
     } else if ((bfx.flags & BFX_FLAG_REPL) && !path) {
-        bfx_run_repl(bfx.flags);
+        bfx_run_repl(&bfx);
     } else {
         print_usage(argv[0]);
         return EXIT_FAILURE;

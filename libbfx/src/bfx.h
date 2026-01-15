@@ -140,6 +140,6 @@ typedef struct {
 void bfx_build_loops(bfx_t*);
 void bfx_reset(bfx_t*);
 void bfx_run_file(const char*, bfx_t*);
-void bfx_run_repl(int);
+void bfx_run_repl(bfx_t*);
 
 #endif
