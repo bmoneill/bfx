@@ -12,7 +12,7 @@ typedef struct {
 typedef struct {
     pbrain_procedure_t* procedures;
     size_t              procedures_len;
-    size_t* stack;
+    size_t*             stack;
     size_t              stack_top;
 
 } pbrain_data_t;
