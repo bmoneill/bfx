@@ -11,8 +11,8 @@ programming language brainfuck, written in C89.
 ### Linux
 
 ```shell
-cmake .
-cmake --build .
+cmake . -B build
+cmake --build build
 ```
 
 ## Usage
