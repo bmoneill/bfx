@@ -1,25 +1,6 @@
 # Targets
-bfx-bin
-*.so
-*.a
-
-# Cmake
-CMakeFiles/
-*.cmake
-CMakeCache.txt
-DartConfiguration.tcl
-Makefile
-Testing
-*_tests
-install_manifest.txt
+build/
 
 # etc
 .clangd
 .zed
-a.out*
-vgcore*
-*.o
-*.so
-*.a
-*_runner.c
-*.tar.gz
