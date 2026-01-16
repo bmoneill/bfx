@@ -29,6 +29,7 @@ set(LIBRARY_PUBLIC_SRC
 )
 set(LIBRARY_PUBLIC_SRC ${LIBRARY_PUBLIC_SRC}
 "${LIBRARY_BASE_PATH}/langs/bf.c"
+"${LIBRARY_BASE_PATH}/langs/pbrain.c"
 "${LIBRARY_BASE_PATH}/langs/ops.c"
 )
 

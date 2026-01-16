@@ -61,9 +61,6 @@ int main(int argc, char* argv[]) {
                 return EXIT_FAILURE;
             }
             break;
-        case 'g':
-            printf("-%c Unimplemented.\n", opt);
-            break;
         case 'G':
             printf("-%c Unimplemented.\n", opt);
             break;

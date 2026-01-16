@@ -123,7 +123,7 @@ void bfx_op_putchar(bfx_t* bf, bfx_file_index_t* index) { putchar(bf->tape[bf->t
  */
 void bfx_op_call(bfx_t* bf, bfx_file_index_t* index) {
     size_t         i;
-    pbrain_data_t* data = (pbrain_data_t*) bf->lang_data;
+    bfx_pbrain_data_t* data = (bfx_pbrain_data_t*) bf->lang_data;
     for (i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bf->tape[bf->tp]) {
             data->stack_top++;
@@ -138,7 +138,7 @@ void bfx_op_call(bfx_t* bf, bfx_file_index_t* index) {
  * @brief Return from a procedure (pbrain).
  */
 void bfx_op_ret(bfx_t* bf, bfx_file_index_t* index) {
-    pbrain_data_t* data = (pbrain_data_t*) bf->lang_data;
+    bfx_pbrain_data_t* data = (bfx_pbrain_data_t*) bf->lang_data;
     if (data->stack_top > 0) {
         bf->ip = data->stack[data->stack_top];
         data->stack_top--;
