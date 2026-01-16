@@ -54,11 +54,13 @@
 #define BFX_FLAG_GRAPHICS                     16
 #define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE    32
 
-#define BFX_LANG_BRAINFUCK 1
-#define BFX_LANG_BRAINFORK 2
-#define BFX_LANG_PBRAIN    3
-#define BFX_LANG_GRIN      4
-#define BFX_LANG_WEAVE     5
+typedef enum {
+    BFX_LANG_BRAINFUCK,
+    BFX_LANG_BRAINFORK,
+    BFX_LANG_PBRAIN,
+    BFX_LANG_GRIN,
+    BFX_LANG_WEAVE
+} BFX_Language;
 
 #define BFX_DEFAULT_LANG BFX_LANG_BRAINFUCK
 
@@ -99,26 +101,26 @@ typedef struct {
  * @brief Structure to store generic data for a brainfuck-like esolang interpreter.
  */
 typedef struct {
-    uint16_t   flags; //!< Flags to control compilation and execution behavior.
-    bool       receiving; //!< Indicates whether the interpreter is receiving input.
-    char*      program; //!< Pointer to the program string.
-    size_t     program_len; //!< Length of the program string (not including the input buffer).
-    size_t     program_size; //!< Size of the program string.
-    size_t     input_start; //!< Start index of the input buffer in the program string.
-    size_t     input_ptr; //!< Current index of the input buffer in the program string.
-    size_t     input_len; //!< Length of the input buffer in the program string.
-    uint8_t*   tape; //!< Pointer to the tape array.
-    size_t     tape_size; //!< Size of the tape array.
-    int        ip; //!< Instruction pointer.
-    int        tp; //!< Tape pointer.
-    int        tp_max; //!< Maximum tape pointer value since execution started.
-    BFX_Block* loops; //!< Pointer to the loop block array.
-    size_t     loops_len; //!< Length of the loop array.
-    size_t     loops_size; //!< Size of the loop array.
-    size_t     input_max; //!< Maximum size of the input buffer.
-    int        eof_behavior; //!< Behavior when encountering EOF.
-    int        lang; //!< Language identifier for the brainfuck-like esolang.
-    void*      lang_data; //!< Pointer to language-specific data structure.
+    uint16_t     flags; //!< Flags to control compilation and execution behavior.
+    bool         receiving; //!< Indicates whether the interpreter is receiving input.
+    char*        program; //!< Pointer to the program string.
+    size_t       program_len; //!< Length of the program string (not including the input buffer).
+    size_t       program_size; //!< Size of the program string.
+    size_t       input_start; //!< Start index of the input buffer in the program string.
+    size_t       input_ptr; //!< Current index of the input buffer in the program string.
+    size_t       input_len; //!< Length of the input buffer in the program string.
+    uint8_t*     tape; //!< Pointer to the tape array.
+    size_t       tape_size; //!< Size of the tape array.
+    int          ip; //!< Instruction pointer.
+    int          tp; //!< Tape pointer.
+    int          tp_max; //!< Maximum tape pointer value since execution started.
+    BFX_Block*   loops; //!< Pointer to the loop block array.
+    size_t       loops_len; //!< Length of the loop array.
+    size_t       loops_size; //!< Size of the loop array.
+    size_t       input_max; //!< Maximum size of the input buffer.
+    int          eof_behavior; //!< Behavior when encountering EOF.
+    BFX_Language lang; //!< Language identifier for the brainfuck-like esolang.
+    void*        lang_data; //!< Pointer to language-specific data structure.
 } BFX;
 
 void bfx_build_loops(BFX*);

@@ -13,5 +13,11 @@ void bfx_interpret(BFX* bfx) {
         bfx_pbrain_init(bfx);
         bfx_pbrain_run(bfx);
         break;
+    case BFX_LANG_BRAINFORK:
+        break; // TODO implement
+    case BFX_LANG_WEAVE:
+        break; // TODO implement
+    case BFX_LANG_GRIN:
+        break; // TODO implement
     }
 }
