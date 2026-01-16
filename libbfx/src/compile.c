@@ -1,3 +1,9 @@
+/**
+ * @file compile.c
+ *
+ * This file contains the implementation of the Brainfuck-like language compiler.
+ */
+
 #include "compile.h"
 
 #include <stdbool.h>

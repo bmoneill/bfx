@@ -1,10 +1,24 @@
+/**
+ * @file langs/bf.c
+ *
+ * This file contains the implementation of the Brainfuck interpreter.
+ */
+
 #include "../bfx.h"
 #include "ops.h"
 
 #include <stdio.h>
 
+/**
+ * @brief Initialize the Brainfuck interpreter
+ * @param bfx Pointer to the already-allocated interpreter struct
+ */
 void bfx_bf_init(BFX* bfx) { bfx_build_loops(bfx); }
 
+/**
+ * @brief Run the Brainfuck interpreter
+ * @param bfx Pointer to the interpreter struct
+ */
 void bfx_bf_run(BFX* bfx) {
     BFX_FileIndex idx;
     idx.idx                                = 0;

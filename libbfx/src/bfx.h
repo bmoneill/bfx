@@ -1,13 +1,7 @@
 /**
- * @file bfx.h
- * @brief brainfuck interpreter header
- * @author Ben O'Neill <ben@oneill.sh>
- *
- * @copyright Copyright (c) 2022-2025 Ben O'Neill <ben@oneill.sh>.
- * This work is released under the terms of the MIT License. See
- * LICENSE.
- */
-
+  * @file bfx.c
+  * @brief Public definitions for main logic for the brainfuck-like language interpreter/compiler.
+  */
 #ifndef BFX_H
 #define BFX_H
 
@@ -16,62 +10,112 @@
 #include <stdint.h>
 
 #ifndef BFX_DEFAULT_COMPILER
+/**
+ * @brief Default compiler to use when compiling generated C code.
+ */
 #define BFX_DEFAULT_COMPILER "gcc"
 #endif
 
 #ifndef BFX_DEFAULT_COMPILE_FLAGS
+/**
+ * @brief Default compile flags to use when compiling generated C code.
+ */
 #define BFX_DEFAULT_COMPILE_FLAGS "-O3 -s -ffast-math"
 #endif
 
 #ifndef BFX_DEFAULT_INPUT_MAX
+/**
+ * @brief Default maximum input size for the interpreter.
+ */
 #define BFX_DEFAULT_INPUT_MAX 1024
 #endif
 
 #ifndef BFX_DEFAULT_TAPE_SIZE
+/**
+ * @brief Default tape size for the interpreter.
+ */
 #define BFX_DEFAULT_TAPE_SIZE 30000
 #endif
 
 #ifndef BFX_INITIAL_LOOP_SIZE
+/**
+ * @brief Default maximum loop count for the interpreter (scaled anyways if higher)
+ */
 #define BFX_INITIAL_LOOP_SIZE 2048
 #endif
 
 #ifndef BFX_PROCEDURE_SIZE
-#define BFX_PROCEDURE_SIZE 1024
+/**
+ * @brief Default maximum procedure count for interpreter
+ */
+#define BFX_PROCEDURE_SIZE 128
 #endif
 
 #ifndef BFX_VERSION
+/**
+ * @brief Version of the libbfx library
+ */
 #define BFX_VERSION "unknown"
 #endif
 
-#define BFX_EOF_BEHAVIOR_ZERO      0
-#define BFX_EOF_BEHAVIOR_DECREMENT 1
-#define BFX_EOF_BEHAVIOR_UNCHANGED 2
-
-#define BFX_FLAG_DEBUG                        1
-#define BFX_FLAG_REPL                         2
-#define BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS 4
-#define BFX_FLAG_ONLY_GENERATE_C_SOURCE       8
-#define BFX_FLAG_GRAPHICS                     16
-#define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE    32
-
+/**
+ * @brief Behaviors for the interpreter when an EOF is encountered in input
+ */
 typedef enum {
-    BFX_LANG_BRAINFUCK,
-    BFX_LANG_BRAINFORK,
-    BFX_LANG_PBRAIN,
-    BFX_LANG_GRIN,
-    BFX_LANG_WEAVE
+    BFX_EOF_BEHAVIOR_ZERO, //!< Set the current cell to zero
+    BFX_EOF_BEHAVIOR_DECREMENT, //!< Decrement the current cell by 1
+    BFX_EOF_BEHAVIOR_UNCHANGED //!< Leave the current cell unchanged
+} BFX_EOFBehavior;
+
+#define BFX_FLAG_DEBUG                        1 //!< Interpreter: Debug mode
+#define BFX_FLAG_REPL                         2 //!< Interpreter: REPL mode
+#define BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS 4 //!< Interpreter: Disable special instructions
+#define BFX_FLAG_ONLY_GENERATE_C_SOURCE       8 //!< Compiler: Only generate C source code
+#define BFX_FLAG_GRAPHICS                     16 //!< Interpreter: Enable graphics mode
+#define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE                                                         \
+    32 //!< Interpreter: Use input in source file separated by '!'
+
+/**
+ * @brief Language options for the interpreter/compiler
+ */
+typedef enum {
+    BFX_LANG_BRAINFUCK, //!< brainfuck language
+    BFX_LANG_BRAINFORK, //!< brainfork language
+    BFX_LANG_PBRAIN, //!< pbrain language
+    BFX_LANG_GRIN, //!< Grin language
+    BFX_LANG_WEAVE //!< Weave language
 } BFX_Language;
 
+/**
+ * @brief Default language for the interpreter/compiler
+ */
 #define BFX_DEFAULT_LANG BFX_LANG_BRAINFUCK
 
+/**
+ * @brief Default EOF behavior for the interpreter
+ */
 #define BFX_DEFAULT_EOF_BEHAVIOR BFX_EOF_BEHAVIOR_ZERO
 
+/**
+ * @brief Error handling macro for the interpreter
+ */
 #define BFX_ERROR(s)                                                                               \
     fprintf(stderr, "libbfx: Error: %s\n", s);                                                     \
     exit(EXIT_FAILURE);
 
-#define BFX_IN_DEBUG_MODE(b)                ((b).flags & BFX_FLAG_DEBUG)
-#define BFX_IN_REPL_MODE(b)                 ((b).flags & BFX_FLAG_REPL)
+/**
+ * @brief Check if the interpreter is in debug mode (arg is of type BFX)
+ */
+#define BFX_IN_DEBUG_MODE(b) ((b).flags & BFX_FLAG_DEBUG)
+
+/**
+ * @brief Check if the interpreter is in REPL mode (arg is of type BFX)
+ */
+#define BFX_IN_REPL_MODE(b) ((b).flags & BFX_FLAG_REPL)
+
+/**
+ * @brief Check if the interpreter has special instructions enabled (arg is of type BFX)
+ */
 #define BFX_SPECIAL_INSTRUCTIONS_ENABLED(b) (!((b).flags & BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS))
 
 /**

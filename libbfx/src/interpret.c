@@ -1,3 +1,9 @@
+/**
+ * @file interpret.c
+ *
+ * This file contains the implementation of the Brainfuck-like language interpreter.
+ */
+
 #include "interpret.h"
 #include "bfx.h"
 #include "langs/bf.h"

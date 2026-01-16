@@ -1,12 +1,23 @@
+/**
+ * @file langs/pbrain.c
+ *
+ * This file contains the implementation of the P-Brain interpreter.
+ */
+
 #include "pbrain.h"
 #include "bfx.h"
 #include "ops.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 static void bfx_pbrain_populate_procedure(BFX*, BFX_FileIndex*);
 
-void        bfx_pbrain_init(BFX* bfx) {
+/**
+ * @brief Initialize the P-Brain interpreter
+ * @param bfx Pointer to the already-allocated interpreter struct
+ */
+void bfx_pbrain_init(BFX* bfx) {
     bfx->lang_data       = malloc(sizeof(BFX_pbrainData));
     BFX_pbrainData* data = (BFX_pbrainData*) bfx->lang_data;
     data->procedures_len = 0;
@@ -14,6 +25,10 @@ void        bfx_pbrain_init(BFX* bfx) {
     bfx_build_loops(bfx);
 }
 
+/**
+ * @brief Run the P-Brain interpreter
+ * @param bfx Pointer to the interpreter struct
+ */
 void bfx_pbrain_run(BFX* bfx) {
     BFX_FileIndex idx;
     idx.idx                                = 0;
@@ -57,4 +72,5 @@ static void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
             return;
         }
     }
+    BFX_ERROR("Expected ')'");
 }

@@ -1,14 +1,6 @@
 /**
  * @file bfx.c
- * @brief brainfuck interpreter
- * @author Ben O'Neill <ben@oneill.sh>
- *
- * This is a simple brainfuck interpreter with support for file
- * execution and REPL mode.
- *
- * @copyright Copyright (c) 2022-2025 Ben O'Neill <ben@oneill.sh>.
- * This work is released under the terms of the MIT License. See
- * LICENSE.
+ * @brief Main logic for the brainfuck-like language interpreter/compiler.
  */
 
 #include "bfx.h"

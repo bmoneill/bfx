@@ -1,3 +1,9 @@
+/**
+ * @file langs/pbrain.h
+ *
+ * This file contains public definitions for the implementation of the P-Brain interpreter.
+ */
+
 #ifndef BFX_PBRAIN_H
 #define BFX_PBRAIN_H
 
