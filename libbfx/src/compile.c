@@ -22,7 +22,7 @@ static const char* tokens[']' + 1];
  * @param output_path Path to the output binary or C file.
  * @param params Compilation parameters
  */
-void bfx_compile(const char* input_path, const char* output_path, bfx_t* bfx) {
+void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
     FILE* input;
     FILE* output;
     bool  binary_output = !(bfx->flags & BFX_FLAG_ONLY_GENERATE_C_SOURCE);

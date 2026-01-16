@@ -11,6 +11,6 @@
 #define BFX_TMP_FILE_PATH "/tmp/bfx.c"
 #endif
 
-void bfx_compile(const char*, const char*, bfx_t*);
+void bfx_compile(const char*, const char*, BFX*);
 
 #endif

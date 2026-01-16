@@ -31,7 +31,7 @@ static void print_version(const char*);
  */
 int main(int argc, char* argv[]) {
     int   opt;
-    bfx_t bfx;
+    BFX   bfx;
     char* path        = NULL;
     char* output_path = NULL;
     bool  compile     = false;

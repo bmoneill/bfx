@@ -4,7 +4,7 @@
 
 #include "../bfx.h"
 
-void bfx_bf_init(bfx_t*);
-void bfx_bf_run(bfx_t*);
+void bfx_bf_init(BFX*);
+void bfx_bf_run(BFX*);
 
 #endif

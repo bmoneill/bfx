@@ -74,15 +74,12 @@
 
 /**
  * @brief Structure to represent an index in a file (or user input).
- * @param idx Index within the file or user input.
- * @param line Line number in the file or user input.
- * @param line_idx Index within the line.
  */
 typedef struct {
-    int idx; /* only used for build_loops() */
-    int line;
-    int line_idx;
-} bfx_file_index_t;
+    int idx; //!< Index within the file or user input
+    int line; //!< Line number in the file or user input.
+    int line_idx; //!< Index within the line.
+} BFX_FileIndex;
 
 /**
  *  @brief Structure to represent a loop in the brainfuck program.
@@ -93,54 +90,41 @@ typedef struct {
  *         and the `end` field represents the index of the closing bracket ']'.
  */
 typedef struct {
-    bfx_file_index_t start;
-    bfx_file_index_t end;
-} bfx_block_t;
+    BFX_FileIndex start; //!< Start index of block
+    BFX_FileIndex end; //!< End index of block
+} BFX_Block;
 
 /**
+ * @struct bfx_t
  * @brief Structure to store generic data for a brainfuck-like esolang interpreter.
- * @param flags Flags to control compilation and execution behavior.
- * @param receiving Indicates whether the interpreter is receiving input.
- * @param program Pointer to the program string.
- * @param program_len Length of the program string (not including the input buffer).
- * @param program_size Size of the program string.
- * @param input_start Start index of the input buffer in the program string.
- * @param input_ptr Current index of the input buffer in the program string.
- * @param input_len Length of the input buffer in the program string.
- * @param tape Pointer to the tape array.
- * @param tape_size Size of the tape array.
- * @param input_max User input buffer size.
- * @param eof_behavior Behavior when encountering EOF.
- * @param lang Language identifier for the brainfuck-like esolang.
- * @param lang_data Pointer to language-specific data structure.
  */
 typedef struct {
-    uint16_t     flags;
-    bool         receiving;
-    char*        program;
-    size_t       program_len;
-    size_t       program_size;
-    size_t       input_start;
-    size_t       input_ptr;
-    size_t       input_len;
-    uint8_t*     tape;
-    size_t       tape_size;
-    int          ip;
-    int          tp;
-    int          tp_max;
-    bfx_block_t* loops;
-    size_t       loops_len;
-    size_t       loops_size;
-    size_t       input_max;
-    int          eof_behavior;
-    int          lang;
-    void*        lang_data;
-} bfx_t;
+    uint16_t   flags; //!< Flags to control compilation and execution behavior.
+    bool       receiving; //!< Indicates whether the interpreter is receiving input.
+    char*      program; //!< Pointer to the program string.
+    size_t     program_len; //!< Length of the program string (not including the input buffer).
+    size_t     program_size; //!< Size of the program string.
+    size_t     input_start; //!< Start index of the input buffer in the program string.
+    size_t     input_ptr; //!< Current index of the input buffer in the program string.
+    size_t     input_len; //!< Length of the input buffer in the program string.
+    uint8_t*   tape; //!< Pointer to the tape array.
+    size_t     tape_size; //!< Size of the tape array.
+    int        ip; //!< Instruction pointer.
+    int        tp; //!< Tape pointer.
+    int        tp_max; //!< Maximum tape pointer value since execution started.
+    BFX_Block* loops; //!< Pointer to the loop block array.
+    size_t     loops_len; //!< Length of the loop array.
+    size_t     loops_size; //!< Size of the loop array.
+    size_t     input_max; //!< Maximum size of the input buffer.
+    int        eof_behavior; //!< Behavior when encountering EOF.
+    int        lang; //!< Language identifier for the brainfuck-like esolang.
+    void*      lang_data; //!< Pointer to language-specific data structure.
+} BFX;
 
-void bfx_build_loops(bfx_t*);
-void bfx_free(bfx_t*);
-void bfx_reset(bfx_t*);
-void bfx_run_file(const char*, bfx_t*);
-void bfx_run_repl(bfx_t*);
+void bfx_build_loops(BFX*);
+void bfx_free(BFX*);
+void bfx_reset(BFX*);
+void bfx_run_file(const char*, BFX*);
+void bfx_run_repl(BFX*);
 
 #endif

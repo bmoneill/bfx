@@ -21,8 +21,8 @@
 #include <string.h>
 
 static void bfx_init_tokens(void);
-static int  bfx_load_file(bfx_t*, const char*);
-static void bfx_reset_loops(bfx_t*);
+static int  bfx_load_file(BFX*, const char*);
+static void bfx_reset_loops(BFX*);
 
 /**
  * @brief Diagnoses the brainfuck program.
@@ -30,7 +30,7 @@ static void bfx_reset_loops(bfx_t*);
  * This function prints the current state of the brainfuck program, including the line number,
  * tape pointer, instruction pointer, and memory map.
  */
-void bfx_diagnose(bfx_t* bf, bfx_file_index_t* idx) {
+void bfx_diagnose(BFX* bf, BFX_FileIndex* idx) {
     fprintf(stderr,
             "Line: %d,%d\nTape pointer: %d\nInstruction pointer: %d\n",
             idx->line,
@@ -50,7 +50,7 @@ void bfx_diagnose(bfx_t* bf, bfx_file_index_t* idx) {
  * This function resets the program state by clearing the program buffer,
  * tape, and loop structure, and resetting the instruction pointer and tape pointer.
  */
-void bfx_reset(bfx_t* bf) {
+void bfx_reset(BFX* bf) {
     bfx_reset_loops(bf);
     memset(bf->program, 0, bf->program_len * sizeof(char));
     memset(bf->tape, 0, bf->tape_size * sizeof(uint8_t));
@@ -60,7 +60,7 @@ void bfx_reset(bfx_t* bf) {
     bf->tp_max      = 0;
 }
 
-void bfx_init(bfx_t* bf, int flags) {
+void bfx_init(BFX* bf, int flags) {
     bf->flags        = flags;
     bf->receiving    = false;
     bf->program      = NULL;
@@ -90,7 +90,7 @@ void bfx_init(bfx_t* bf, int flags) {
  * then iterates through the program instructions, interpreting each one
  * until the end of the program is reached.
  */
-void bfx_run_file(const char* path, bfx_t* bf) {
+void bfx_run_file(const char* path, BFX* bf) {
     bfx_load_file(bf, path);
     bfx_interpret(bf);
 }
@@ -102,7 +102,7 @@ void bfx_run_file(const char* path, bfx_t* bf) {
  * and interprets the brainfuck instructions until the user terminates the program.
  * This allows for interactive execution of brainfuck code.
  */
-void bfx_run_repl(bfx_t* bf) {
+void bfx_run_repl(BFX* bf) {
     char* input;
     bf->program_size = bf->input_max;
 
@@ -149,22 +149,22 @@ void bfx_run_repl(bfx_t* bf) {
  * @note This function does not return a value. If an error occurs (such as exceeding MAX_LOOPS),
  *       it prints an error message and terminates the program using exit(EXIT_FAILURE).
  */
-void bfx_build_loops(bfx_t* bf) {
-    bfx_file_index_t* stack      = malloc(sizeof(bfx_file_index_t) * BFX_INITIAL_LOOP_SIZE);
-    int               stack_top  = 0;
-    int               stack_size = BFX_INITIAL_LOOP_SIZE;
-    int               line       = 1;
-    int               line_idx   = 0;
-    bf->loops_len                = 0;
-    bf->loops_size               = BFX_INITIAL_LOOP_SIZE;
-    bf->loops                    = malloc(sizeof(bfx_block_t) * BFX_INITIAL_LOOP_SIZE);
+void bfx_build_loops(BFX* bf) {
+    BFX_FileIndex* stack      = malloc(sizeof(BFX_FileIndex) * BFX_INITIAL_LOOP_SIZE);
+    int            stack_top  = 0;
+    int            stack_size = BFX_INITIAL_LOOP_SIZE;
+    int            line       = 1;
+    int            line_idx   = 0;
+    bf->loops_len             = 0;
+    bf->loops_size            = BFX_INITIAL_LOOP_SIZE;
+    bf->loops                 = malloc(sizeof(BFX_Block) * BFX_INITIAL_LOOP_SIZE);
 
     for (size_t i = 0; i < bf->program_len; i++) {
         line_idx++;
         if (bf->program[i] == '[') {
             if (stack_top >= stack_size) {
                 stack_size *= 2;
-                stack = realloc(stack, sizeof(bfx_file_index_t) * stack_size);
+                stack = realloc(stack, sizeof(BFX_FileIndex) * stack_size);
             }
             stack[stack_top].idx      = i;
             stack[stack_top].line     = line;
@@ -179,7 +179,7 @@ void bfx_build_loops(bfx_t* bf) {
                 free(stack);
                 exit(EXIT_FAILURE);
             }
-            bfx_file_index_t start                = stack[--stack_top];
+            BFX_FileIndex start                   = stack[--stack_top];
             bf->loops[bf->loops_len].start        = start;
             bf->loops[bf->loops_len].end.idx      = i;
             bf->loops[bf->loops_len].end.line     = line;
@@ -204,7 +204,7 @@ void bfx_build_loops(bfx_t* bf) {
  * @brief Frees the memory allocated for the brainfuck program.
  * @param bf Pointer to the brainfuck program.
  */
-void bfx_free(bfx_t* bf) {
+void bfx_free(BFX* bf) {
     if (bf) {
         if (bf->program) {
             free(bf->program);
@@ -225,8 +225,8 @@ void bfx_free(bfx_t* bf) {
  * @param tape_size Size of the tape.
  * @param eof_behavior Behavior when reaching EOF.
  */
-static void init_bf(bfx_t* bf, int flags, int tape_size, int eof_behavior) {
-    memset(bf, 0, sizeof(bfx_t));
+static void init_bf(BFX* bf, int flags, int tape_size, int eof_behavior) {
+    memset(bf, 0, sizeof(BFX));
     bf->flags        = flags;
     bf->tape_size    = tape_size;
     bf->tape         = calloc(tape_size, sizeof(uint8_t));
@@ -249,7 +249,7 @@ static void init_bf(bfx_t* bf, int flags, int tape_size, int eof_behavior) {
  *        The function allocates memory for the program and reads the entire file into this buffer.
  *        The caller is responsible for freeing the allocated memory.
  */
-static int bfx_load_file(bfx_t* bf, const char* path) {
+static int bfx_load_file(BFX* bf, const char* path) {
     FILE* f;
     if ((f = fopen(path, "r"))) {
         fseek(f, 0, SEEK_END);
@@ -294,7 +294,7 @@ static int bfx_load_file(bfx_t* bf, const char* path) {
  *
  * This function resets the loop structure by clearing the loop buffer.
  */
-static void bfx_reset_loops(bfx_t* bf) {
+static void bfx_reset_loops(BFX* bf) {
     memset(bf->loops, 0, bf->loops_len);
     bf->loops_len = 0;
 }

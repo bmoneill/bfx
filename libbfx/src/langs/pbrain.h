@@ -3,21 +3,28 @@
 
 #include "../bfx.h"
 
+/**
+ * @brief Structure to represent a procedure in the pbrain language.
+ */
 typedef struct {
-    char   identifier;
-    size_t start_idx;
-    size_t end_idx;
-} bfx_pbrain_procedure_t;
+    char   identifier; //!< Identifier of the procedure
+    size_t start_idx; //!< Start index of the procedure
+    size_t end_idx; //!< End index of the procedure
+} BFX_pbrainProcedure;
 
+/**
+ * @brief Structure to represent data for the pbrain language.
+ *
+ * This populates the lang_data field in a BFX instance.
+ */
 typedef struct {
-    bfx_pbrain_procedure_t* procedures;
-    size_t              procedures_len;
-    size_t*             stack;
-    size_t              stack_top;
+    BFX_pbrainProcedure* procedures; //!< Array of procedures
+    size_t               procedures_len; //!< Length of the procedures array
+    size_t*              stack; //!< Array of stack elements
+    size_t               stack_top; //!< Top index of the stack
+} BFX_pbrainData;
 
-} bfx_pbrain_data_t;
-
-void bfx_pbrain_init(bfx_t* bfx);
-void bfx_pbrain_run(bfx_t* bf);
+void bfx_pbrain_init(BFX* bfx);
+void bfx_pbrain_run(BFX* bf);
 
 #endif

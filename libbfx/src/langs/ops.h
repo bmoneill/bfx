@@ -4,17 +4,17 @@
 #include "../bfx.h"
 
 /* brainfuck */
-void bfx_op_inc_tp(bfx_t*, bfx_file_index_t*);
-void bfx_op_dec_tp(bfx_t*, bfx_file_index_t*);
-void bfx_op_inc_t(bfx_t*, bfx_file_index_t*);
-void bfx_op_dec_t(bfx_t*, bfx_file_index_t*);
-void bfx_op_loop_start(bfx_t*, bfx_file_index_t*);
-void bfx_op_loop_end(bfx_t*, bfx_file_index_t*);
-void bfx_op_getchar(bfx_t*, bfx_file_index_t*);
-void bfx_op_putchar(bfx_t*, bfx_file_index_t*);
+void bfx_op_inc_tp(BFX*, BFX_FileIndex*);
+void bfx_op_dec_tp(BFX*, BFX_FileIndex*);
+void bfx_op_inc_t(BFX*, BFX_FileIndex*);
+void bfx_op_dec_t(BFX*, BFX_FileIndex*);
+void bfx_op_loop_start(BFX*, BFX_FileIndex*);
+void bfx_op_loop_end(BFX*, BFX_FileIndex*);
+void bfx_op_getchar(BFX*, BFX_FileIndex*);
+void bfx_op_putchar(BFX*, BFX_FileIndex*);
 
 /* pbrain */
-void bfx_op_call(bfx_t*, bfx_file_index_t*);
-void bfx_op_ret(bfx_t*, bfx_file_index_t*);
+void bfx_op_call(BFX*, BFX_FileIndex*);
+void bfx_op_ret(BFX*, BFX_FileIndex*);
 
 #endif

@@ -8,7 +8,7 @@
 /**
  * @brief Increment tape pointer (brainfuck).
  */
-void bfx_op_inc_tp(bfx_t* bf, bfx_file_index_t* index) {
+void bfx_op_inc_tp(BFX* bf, BFX_FileIndex* index) {
     bf->tp++;
     if ((size_t) bf->tp > bf->tape_size) {
         fprintf(stderr,
@@ -24,7 +24,7 @@ void bfx_op_inc_tp(bfx_t* bf, bfx_file_index_t* index) {
 /**
  * @brief Decrement tape pointer (brainfuck).
  */
-void bfx_op_dec_tp(bfx_t* bf, bfx_file_index_t* index) {
+void bfx_op_dec_tp(BFX* bf, BFX_FileIndex* index) {
     bf->tp--;
     if (bf->tp < 0) {
         fprintf(stderr,
@@ -38,17 +38,17 @@ void bfx_op_dec_tp(bfx_t* bf, bfx_file_index_t* index) {
 /**
  * @brief Increment tape value (brainfuck).
  */
-void bfx_op_inc_t(bfx_t* bf, bfx_file_index_t* index) { bf->tape[bf->tp]++; }
+void bfx_op_inc_t(BFX* bf, BFX_FileIndex* index) { bf->tape[bf->tp]++; }
 
 /**
  * @brief Decrement tape value (brainfuck).
  */
-void bfx_op_dec_t(bfx_t* bf, bfx_file_index_t* index) { bf->tape[bf->tp]--; }
+void bfx_op_dec_t(BFX* bf, BFX_FileIndex* index) { bf->tape[bf->tp]--; }
 
 /**
  * @brief Start of loop (brainfuck).
  */
-void bfx_op_loop_start(bfx_t* bf, bfx_file_index_t* index) {
+void bfx_op_loop_start(BFX* bf, BFX_FileIndex* index) {
     if (!bf->tape[bf->tp]) {
         for (size_t i = 0; i < bf->loops_len; i++) {
             if (bf->loops[i].start.idx == bf->ip) {
@@ -63,7 +63,7 @@ void bfx_op_loop_start(bfx_t* bf, bfx_file_index_t* index) {
 /**
  * @brief End of loop (brainfuck).
  */
-void bfx_op_loop_end(bfx_t* bf, bfx_file_index_t* index) {
+void bfx_op_loop_end(BFX* bf, BFX_FileIndex* index) {
     if (bf->tape[bf->tp]) {
         for (size_t i = 0; i < bf->loops_len; i++) {
             if (bf->loops[i].end.idx == bf->ip) {
@@ -78,7 +78,7 @@ void bfx_op_loop_end(bfx_t* bf, bfx_file_index_t* index) {
 /**
  * @brief Get character from input or stdin (brainfuck).
  */
-void bfx_op_getchar(bfx_t* bf, bfx_file_index_t* index) {
+void bfx_op_getchar(BFX* bf, BFX_FileIndex* index) {
     char c;
     if (bf->flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
         if (bf->input_ptr < bf->input_len) {
@@ -114,13 +114,13 @@ void bfx_op_getchar(bfx_t* bf, bfx_file_index_t* index) {
 /**
  * @brief Output the current cell value as a character (brainfuck).
  */
-void bfx_op_putchar(bfx_t* bf, bfx_file_index_t* index) { putchar(bf->tape[bf->tp]); }
+void bfx_op_putchar(BFX* bf, BFX_FileIndex* index) { putchar(bf->tape[bf->tp]); }
 
 /**
  * @brief Call a procedure by its identifier (pbrain).
  */
-void bfx_op_call(bfx_t* bf, bfx_file_index_t* index) {
-    bfx_pbrain_data_t* data = (bfx_pbrain_data_t*) bf->lang_data;
+void bfx_op_call(BFX* bf, BFX_FileIndex* index) {
+    BFX_pbrainData* data = (BFX_pbrainData*) bf->lang_data;
     for (size_t i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bf->tape[bf->tp]) {
             data->stack_top++;
@@ -134,8 +134,8 @@ void bfx_op_call(bfx_t* bf, bfx_file_index_t* index) {
 /**
  * @brief Return from a procedure (pbrain).
  */
-void bfx_op_ret(bfx_t* bf, bfx_file_index_t* index) {
-    bfx_pbrain_data_t* data = (bfx_pbrain_data_t*) bf->lang_data;
+void bfx_op_ret(BFX* bf, BFX_FileIndex* index) {
+    BFX_pbrainData* data = (BFX_pbrainData*) bf->lang_data;
     if (data->stack_top > 0) {
         bf->ip = data->stack[data->stack_top];
         data->stack_top--;

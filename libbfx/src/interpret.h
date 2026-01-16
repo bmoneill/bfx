@@ -3,6 +3,6 @@
 
 #include "bfx.h"
 
-void bfx_interpret(bfx_t*);
+void bfx_interpret(BFX*);
 
 #endif

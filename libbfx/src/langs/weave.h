@@ -3,6 +3,6 @@
 
 #include "../bfx.h"
 
-void bfx_op_weave_toggle(bfx_t*, bfx_file_index_t*);
+void bfx_op_weave_toggle(BFX*, BFX_FileIndex*);
 
 #endif
