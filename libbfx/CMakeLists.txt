@@ -38,8 +38,8 @@ set(LIBRARY_PUBLIC_HEADERS
  "${LIBRARY_BASE_PATH}/compile.h"
  "${LIBRARY_BASE_PATH}/interpret.h"
  "${LIBRARY_BASE_PATH}/langs/bf.h"
-# "${LIBRARY_BASE_PATH}/langs/common.h"
-# "${LIBRARY_BASE_PATH}/langs/ops.h"
+ "${LIBRARY_BASE_PATH}/langs/ops.h"
+ "${LIBRARY_BASE_PATH}/langs/pbrain.h"
 )
 
 add_library (
