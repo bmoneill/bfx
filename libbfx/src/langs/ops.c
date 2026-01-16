@@ -49,9 +49,8 @@ void bfx_op_dec_t(bfx_t* bf, bfx_file_index_t* index) { bf->tape[bf->tp]--; }
  * @brief Start of loop (brainfuck).
  */
 void bfx_op_loop_start(bfx_t* bf, bfx_file_index_t* index) {
-    size_t i;
     if (!bf->tape[bf->tp]) {
-        for (i = 0; i < bf->loops_len; i++) {
+        for (size_t i = 0; i < bf->loops_len; i++) {
             if (bf->loops[i].start.idx == bf->ip) {
                 bf->ip          = bf->loops[i].end.idx;
                 index->line     = bf->loops[i].end.line;
@@ -65,9 +64,8 @@ void bfx_op_loop_start(bfx_t* bf, bfx_file_index_t* index) {
  * @brief End of loop (brainfuck).
  */
 void bfx_op_loop_end(bfx_t* bf, bfx_file_index_t* index) {
-    size_t i;
     if (bf->tape[bf->tp]) {
-        for (i = 0; i < bf->loops_len; i++) {
+        for (size_t i = 0; i < bf->loops_len; i++) {
             if (bf->loops[i].end.idx == bf->ip) {
                 bf->ip          = bf->loops[i].start.idx;
                 index->line     = bf->loops[i].start.line;
@@ -122,9 +120,8 @@ void bfx_op_putchar(bfx_t* bf, bfx_file_index_t* index) { putchar(bf->tape[bf->t
  * @brief Call a procedure by its identifier (pbrain).
  */
 void bfx_op_call(bfx_t* bf, bfx_file_index_t* index) {
-    size_t         i;
     bfx_pbrain_data_t* data = (bfx_pbrain_data_t*) bf->lang_data;
-    for (i = 0; i < data->procedures_len; i++) {
+    for (size_t i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bf->tape[bf->tp]) {
             data->stack_top++;
             data->stack[data->stack_top] = bf->ip;

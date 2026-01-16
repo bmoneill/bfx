@@ -7,10 +7,10 @@
 static void bfx_pbrain_populate_procedure(bfx_t*, bfx_file_index_t*);
 
 void        bfx_pbrain_init(bfx_t* bfx) {
-    bfx->lang_data       = malloc(sizeof(bfx_pbrain_data_t));
-    bfx_pbrain_data_t* data  = (bfx_pbrain_data_t*) bfx->lang_data;
-    data->procedures_len = 0;
-    data->procedures     = NULL;
+    bfx->lang_data          = malloc(sizeof(bfx_pbrain_data_t));
+    bfx_pbrain_data_t* data = (bfx_pbrain_data_t*) bfx->lang_data;
+    data->procedures_len    = 0;
+    data->procedures        = NULL;
     bfx_build_loops(bfx);
 }
 
@@ -44,8 +44,8 @@ void bfx_pbrain_run(bfx_t* bfx) {
 }
 
 static void bfx_pbrain_populate_procedure(bfx_t* bf, bfx_file_index_t* idx) {
-    size_t         i;
-    bfx_pbrain_data_t* data                               = (bfx_pbrain_data_t*) bf->lang_data;
+    size_t             i;
+    bfx_pbrain_data_t* data                           = (bfx_pbrain_data_t*) bf->lang_data;
 
     data->procedures[data->procedures_len].start_idx  = bf->ip + 1;
     data->procedures[data->procedures_len].identifier = bf->tape[bf->tp];

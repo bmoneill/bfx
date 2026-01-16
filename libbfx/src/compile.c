@@ -26,9 +26,6 @@ void bfx_compile(const char* input_path, const char* output_path, bfx_t* bfx) {
     FILE* input;
     FILE* output;
     bool  binary_output = !(bfx->flags & BFX_FLAG_ONLY_GENERATE_C_SOURCE);
-    int   c;
-    int   depth;
-    int   sys_ret;
 
     /**** Set up files ****/
     if (!input_path) {
@@ -49,8 +46,9 @@ void bfx_compile(const char* input_path, const char* output_path, bfx_t* bfx) {
 
     /*** Actual compilation ***/
     bfx_init_tokens();
-    depth = 0;
+    int depth = 0;
     fprintf(output, BFX_COMPILE_HEAD, bfx->tape_size);
+    int c;
     while ((c = fgetc(input)) != EOF) {
         if (tokens[c]) {
             fprintf(output, "%s", tokens[c]);
@@ -74,7 +72,7 @@ void bfx_compile(const char* input_path, const char* output_path, bfx_t* bfx) {
                 BFX_DEFAULT_COMPILE_FLAGS,
                 output_path,
                 BFX_TMP_FILE_PATH);
-        sys_ret = system(cmd);
+        int sys_ret = system(cmd);
         remove(BFX_TMP_FILE_PATH);
         if (sys_ret != 0) {
             BFX_ERROR("Failed to compile program");
