@@ -3,7 +3,7 @@
  * @brief brainfuck interpreter entry point
  * @author Ben O'Neill <ben@oneill.sh>
  *
- * @copyright Copyright (c) 2022-2025 Ben O'Neill <ben@oneill.sh>.
+ * @copyright Copyright (c) 2022-2026 Ben O'Neill <ben@oneill.sh>.
  * This work is released under the terms of the MIT License. See
  * LICENSE.
  */
