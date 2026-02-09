@@ -37,7 +37,7 @@ void bfx_grin_init(BFX* bfx) {
  *
  * @param bfx Pointer to the interpreter struct
  */
-void bfx_pbrain_run(BFX* bfx) {
+void bfx_grin_run(BFX* bfx) {
     void (*ops[128])(BFX*, BFX_FileIndex*) = { ['<']  = bfx_op_dec_tp,
                                                ['>']  = bfx_op_inc_tp,
                                                ['.']  = bfx_op_putchar_ascii,
@@ -91,6 +91,5 @@ void bfx_pbrain_run(BFX* bfx) {
 
     // Free language-specific data
     BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
-    free(data->tape);
     free(data);
 }

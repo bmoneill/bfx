@@ -7,6 +7,7 @@
 #include "interpret.h"
 #include "bfx.h"
 #include "langs/bf.h"
+#include "langs/grin.h"
 #include "langs/pbrain.h"
 #include "langs/weave.h"
 
@@ -27,6 +28,8 @@ void bfx_interpret(BFX* bfx) {
         bfx_weave_run(bfx);
         break;
     case BFX_LANG_GRIN:
+        bfx_grin_init(bfx);
+        bfx_grin_run(bfx);
         break; // TODO implement
     }
 }

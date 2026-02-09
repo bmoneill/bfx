@@ -29,6 +29,7 @@ set(LIBRARY_PUBLIC_SRC
 )
 set(LIBRARY_PUBLIC_SRC ${LIBRARY_PUBLIC_SRC}
 "${LIBRARY_BASE_PATH}/langs/bf.c"
+"${LIBRARY_BASE_PATH}/langs/grin.c"
 "${LIBRARY_BASE_PATH}/langs/pbrain.c"
 "${LIBRARY_BASE_PATH}/langs/ops.c"
 "${LIBRARY_BASE_PATH}/langs/util.c"
@@ -40,6 +41,7 @@ set(LIBRARY_PUBLIC_HEADERS
  "${LIBRARY_BASE_PATH}/compile.h"
  "${LIBRARY_BASE_PATH}/interpret.h"
  "${LIBRARY_BASE_PATH}/langs/bf.h"
+ "${LIBRARY_BASE_PATH}/langs/grin.h"
  "${LIBRARY_BASE_PATH}/langs/ops.h"
  "${LIBRARY_BASE_PATH}/langs/pbrain.h"
  "${LIBRARY_BASE_PATH}/langs/util.h"
