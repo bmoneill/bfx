@@ -19,8 +19,14 @@
 [<]< return to cell 1
 )
 
-+( move to cell 10 and start new procedure
++( start new procedure
 >>>>>>>.<<.>>>.<<<<.>>>>>. print WORLD
+[<]< return to cell 1
+)
+
++( start new procedure
+>>[>] move to next empty cell
+++++++++++. print newline
 [<]< return to cell 1
 )
 
@@ -28,3 +34,4 @@
 +: print HELLO
 +: print space
 +: print WORLD
++: print newline
