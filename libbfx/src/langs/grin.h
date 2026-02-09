@@ -26,6 +26,13 @@ typedef struct {
     double       tape[BFX_DEFAULT_TAPE_SIZE]; //!< Tape memory.
 } BFX_GrinData;
 
+#ifndef BFX_GRIN_DEFAULT_PRECISION
+/**
+ * @brief Default number of decimal places to print.
+ */
+#define BFX_GRIN_DEFAULT_PRECISION 4
+#endif
+
 void bfx_grin_init(BFX*);
 void bfx_grin_run(BFX*);
 

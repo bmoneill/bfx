@@ -24,6 +24,8 @@ void bfx_grin_init(BFX* bfx) {
 
     bfx->lang_data     = calloc(1, sizeof(BFX_GrinData));
     BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
+    data->unit         = bfx->flags & BFX_FLAG_DEGREES ? BFX_GRIN_DEG : BFX_GRIN_RAD;
+    data->precision    = BFX_GRIN_DEFAULT_PRECISION;
     bfx_build_loops(bfx);
 }
 

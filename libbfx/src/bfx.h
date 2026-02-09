@@ -74,6 +74,7 @@ typedef enum {
 #define BFX_FLAG_GRAPHICS                     16 //!< Interpreter: Enable graphics mode
 #define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE                                                         \
     32 //!< Interpreter: Use input in source file separated by '!'
+#define BFX_FLAG_DEGREES 64 //!< Interpreter (Grin): Use degrees instead of radians
 
 /**
  * @brief Language options for the interpreter/compiler

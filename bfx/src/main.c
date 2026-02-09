@@ -10,6 +10,7 @@
 
 #include "bfx.h"
 #include "compile.h"
+#include "langs/grin.h"
 
 #include <getopt.h>
 #include <stdbool.h>
@@ -35,6 +36,7 @@ int main(int argc, char* argv[]) {
     char* path        = NULL;
     char* output_path = NULL;
     bool  compile     = false;
+    int   precision   = BFX_GRIN_DEFAULT_PRECISION;
 
     memset(&bfx, 0, sizeof(bfx));
     bfx.flags        = 0;
@@ -43,7 +45,7 @@ int main(int argc, char* argv[]) {
     bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
     bfx.lang         = BFX_LANG_BRAINFUCK;
 
-    while ((opt = getopt(argc, argv, "cCde:g:Gio:prst:vwY")) != -1) {
+    while ((opt = getopt(argc, argv, "cCde:Gio:pPrst:vwY")) != -1) {
         switch (opt) {
         case 'c':
             compile = true;
@@ -55,14 +57,20 @@ int main(int argc, char* argv[]) {
         case 'd':
             bfx.flags |= BFX_FLAG_DEBUG;
             break;
+        case 'D':
+            bfx.flags |= BFX_FLAG_DEGREES;
+            break;
         case 'e':
             if ((bfx.eof_behavior = get_eof_behavior(optarg)) == -1) {
                 print_usage(argv[0]);
                 return EXIT_FAILURE;
             }
             break;
-        case 'G':
+        case 'g':
             printf("-%c Unimplemented.\n", opt);
+            break;
+        case 'G':
+            bfx.lang = BFX_LANG_GRIN;
             break;
         case 'i':
             bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
@@ -106,7 +114,9 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
     }
 
-    bfx.tape = calloc(bfx.tape_size, sizeof(uint8_t));
+    if (bfx.lang != BFX_LANG_GRIN) {
+        bfx.tape = calloc(bfx.tape_size, sizeof(uint8_t));
+    }
     if (!(bfx.flags & BFX_FLAG_REPL) && path) {
         bfx_run_file(path, &bfx);
     } else if ((bfx.flags & BFX_FLAG_REPL) && !path) {
@@ -144,8 +154,8 @@ static int get_eof_behavior(const char* s) {
  */
 static void print_usage(const char* argv0) {
     fprintf(stderr,
-            "Usage: %s [-cCdGiPrsvY] [-e eof_behavior] [-g start-end] [-o output_file] [-t "
-            "tape_size] [file]\n",
+            "Usage: %s [-cCdDGiprsvY] [-e eof_behavior] [-g start-end] [-o output_file] [-P "
+            "precision] [-t tape_size] [file]\n",
             argv0);
     fprintf(stderr, "Options:\n");
     fprintf(stderr,
@@ -156,6 +166,7 @@ static void print_usage(const char* argv0) {
     fprintf(stderr,
             " -d:\t\t\tEnable debugging mode (# will print the line number, tape pointer,\n");
     fprintf(stderr, "    \t\t\tinstruction pointer, and a memory dump.\n");
+    fprintf(stderr, " -D:\t\t\tUse degrees by default (Grin)\n");
     fprintf(stderr, " -G:\t\t\tEnable Grin language support\n");
     fprintf(stderr, " -i:\t\t\tSeparate code from input using !\n");
     fprintf(stderr, " -p:\t\t\tEnable pbrain language support\n");
