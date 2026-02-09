@@ -184,12 +184,6 @@ static void print_usage(const char* argv0) {
             "                 \t\"%s\", or \"%s\".\n",
             EOF_BEHAVIOR_DECREMENT_S,
             EOF_BEHAVIOR_UNCHANGED_S);
-    fprintf(stderr,
-            " -g a,MxN,s:\t\tDisplay the contents of the tape between a and M*N with each cell\n");
-    fprintf(stderr,
-            "                 \tbeing represented as a square of size s. If the cell is 0,\n");
-    fprintf(stderr,
-            "                 \tthe square will be black, and any other value will be white.\n");
     fprintf(stderr, " -o output_file:\t(for compilation) Write the output to the specified file\n");
     fprintf(stderr, "                \tinstead of a.out(.c).\n");
     fprintf(stderr,

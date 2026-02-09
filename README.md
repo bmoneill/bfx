@@ -5,7 +5,8 @@
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
 programming language brainfuck, as well as an interpreter and REPL for some of
-its derivatives ([pbrain](https://esolangs.org/wiki/Pbrain), [weave](https://esolangs.org/wiki/Weave)).
+its derivatives ([pbrain](https://esolangs.org/wiki/Pbrain), [weave](https://esolangs.org/wiki/Weave),
+and [Grin](https://esolangs.org/wiki/Grin)).
 
 ## Building
 
@@ -19,7 +20,7 @@ cmake --build build
 ## Usage
 
 ```shell
-bfx [-cCdiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
+bfx [-cCdDgiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
 ```
 
 - `-c`: Compile to native binary.
