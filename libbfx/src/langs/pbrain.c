@@ -37,10 +37,17 @@ void bfx_pbrain_init(BFX* bfx) {
  */
 void bfx_pbrain_run(BFX* bfx) {
     void (*ops[128])(BFX*, BFX_FileIndex*) = {
-        [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
-        ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
-        [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['('] = bfx_op_start_procedure,
-        [':'] = bfx_op_call,     [')'] = bfx_op_ret,
+        [']'] = bfx_op_brainfuck_loop_end,
+        ['['] = bfx_op_brainfuck_loop_start,
+        ['+'] = bfx_op_brainfuck_inc_t,
+        ['-'] = bfx_op_brainfuck_dec_t,
+        ['>'] = bfx_op_brainfuck_inc_tp,
+        ['<'] = bfx_op_brainfuck_dec_tp,
+        [','] = bfx_op_brainfuck_getchar,
+        ['.'] = bfx_op_brainfuck_putchar,
+        ['('] = bfx_op_pbrain_start_procedure,
+        [':'] = bfx_op_pbrain_call,
+        [')'] = bfx_op_pbrain_ret,
     };
 
     bfx_parse_ops(bfx, ops);
@@ -58,7 +65,7 @@ void bfx_pbrain_run(BFX* bfx) {
  * @param bf Pointer to the interpreter struct
  * @param idx Pointer to the file index struct
  */
-void bfx_op_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
+void bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
     size_t          i;
     BFX_PBrainData* data                              = (BFX_PBrainData*) bfx->lang_data;
 
@@ -78,7 +85,7 @@ void bfx_op_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
 /**
  * @brief Call a procedure by its identifier (pbrain).
  */
-void bfx_op_call(BFX* bfx, BFX_FileIndex* index) {
+void bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     for (size_t i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bfx->tape[bfx->tp]) {
@@ -93,7 +100,7 @@ void bfx_op_call(BFX* bfx, BFX_FileIndex* index) {
 /**
  * @brief Return from a procedure (pbrain).
  */
-void bfx_op_ret(BFX* bfx, BFX_FileIndex* index) {
+void bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     if (data->stack_top > 0) {
         bfx->ip = data->stack[data->stack_top];

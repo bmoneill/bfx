@@ -9,9 +9,11 @@
 #include <string.h>
 
 static void (*bfx_brainfork_ops[128])(BFX*, BFX_FileIndex*) = {
-    [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
-    ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
-    [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['Y'] = bfx_op_fork,
+    [']'] = bfx_op_brainfuck_loop_end, ['['] = bfx_op_brainfuck_loop_start,
+    ['+'] = bfx_op_brainfuck_inc_t,    ['-'] = bfx_op_brainfuck_dec_t,
+    ['>'] = bfx_op_brainfuck_inc_tp,   ['<'] = bfx_op_brainfuck_dec_tp,
+    [','] = bfx_op_brainfuck_getchar,  ['.'] = bfx_op_brainfuck_putchar,
+    ['Y'] = bfx_op_brainfork_fork,
 };
 
 /**
@@ -50,7 +52,7 @@ void* bfx_brainfork_run_child(void* arg) {
 /**
  * @brief Fork (brainfork)
  */
-void bfx_op_fork(BFX* bfx, BFX_FileIndex* index) {
+void bfx_op_brainfork_fork(BFX* bfx, BFX_FileIndex* index) {
     BFX_BrainforkData* data = bfx->lang_data;
     if (data->thread_count >= BFX_MAX_THREADS) {
         BFX_ERROR("Maximum thread count reached");

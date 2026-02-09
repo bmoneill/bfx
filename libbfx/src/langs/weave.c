@@ -90,9 +90,11 @@ void bfx_weave_init(BFX* bfx) {
  */
 void bfx_weave_run(BFX* bfx) {
     void (*ops[128])(BFX*, BFX_FileIndex*) = {
-        [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
-        ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
-        [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['~'] = bfx_op_toggle,
+        [']'] = bfx_op_brainfuck_loop_end, ['['] = bfx_op_brainfuck_loop_start,
+        ['+'] = bfx_op_brainfuck_inc_t,    ['-'] = bfx_op_brainfuck_dec_t,
+        ['>'] = bfx_op_brainfuck_inc_tp,   ['<'] = bfx_op_brainfuck_dec_tp,
+        [','] = bfx_op_brainfuck_getchar,  ['.'] = bfx_op_brainfuck_putchar,
+        ['~'] = bfx_op_weave_toggle,
     };
 
     BFX_WeaveData* data    = (BFX_WeaveData*) bfx->lang_data;
@@ -139,7 +141,7 @@ static void* bfx_weave_create(void* data) {
 /**
  * @brief Toggle between thread and global tape (weave).
  */
-void bfx_op_toggle(BFX* bfx, BFX_FileIndex* index) {
+void bfx_op_weave_toggle(BFX* bfx, BFX_FileIndex* index) {
     uint8_t* old_tape = bfx->tape;
     bfx->tape         = bfx->lang_data;
     bfx->lang_data    = old_tape;

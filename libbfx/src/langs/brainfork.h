@@ -19,6 +19,6 @@ void  bfx_brainfork_run(BFX*);
 void* bfx_brainfork_run_child(void*);
 
 /* ops */
-void bfx_op_fork(BFX*, BFX_FileIndex*);
+void bfx_op_brainfork_fork(BFX*, BFX_FileIndex*);
 
 #endif

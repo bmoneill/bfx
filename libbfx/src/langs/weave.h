@@ -12,6 +12,6 @@ void bfx_weave_init(BFX*);
 void bfx_weave_run(BFX*);
 
 /* ops */
-void bfx_op_toggle(BFX*, BFX_FileIndex*);
+void bfx_op_weave_toggle(BFX*, BFX_FileIndex*);
 
 #endif
