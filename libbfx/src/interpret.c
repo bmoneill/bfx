@@ -30,6 +30,6 @@ void bfx_interpret(BFX* bfx) {
     case BFX_LANG_GRIN:
         bfx_grin_init(bfx);
         bfx_grin_run(bfx);
-        break; // TODO implement
+        break;
     }
 }

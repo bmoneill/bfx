@@ -37,45 +37,6 @@ void bfx_diagnose(BFX* bf, BFX_FileIndex* idx) {
 }
 
 /**
- * @brief Resets the brainfuck program state.
- *
- * This function resets the program state by clearing the program buffer,
- * tape, and loop structure, and resetting the instruction pointer and tape pointer.
- */
-void bfx_reset(BFX* bf) {
-    bfx_reset_loops(bf);
-    memset(bf->program, 0, bf->program_len * sizeof(char));
-    memset(bf->tape, 0, bf->tape_size * sizeof(uint8_t));
-    bf->program_len = 0;
-    bf->ip          = 0;
-    bf->tp          = 0;
-    bf->tp_max      = 0;
-}
-
-void bfx_init(BFX* bf, int flags) {
-    bf->flags        = flags;
-    bf->receiving    = false;
-    bf->program      = NULL;
-    bf->program_len  = 0;
-    bf->program_size = 0;
-    bf->input_start  = 0;
-    bf->input_ptr    = 0;
-    bf->input_len    = 0;
-    bf->tape         = calloc(BFX_DEFAULT_TAPE_SIZE, sizeof(uint8_t));
-    bf->tape_size    = BFX_DEFAULT_TAPE_SIZE;
-    bf->ip           = -1;
-    bf->tp           = 0;
-    bf->tp_max       = 0;
-    bf->loops        = NULL;
-    bf->loops_len    = 0;
-    bf->loops_size   = 0;
-    bf->input_max    = 0;
-    bf->eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
-    bf->lang         = BFX_DEFAULT_LANG;
-    bf->lang_data    = NULL;
-}
-
-/**
  * @brief Runs the program loaded from a file.
  *
  * This function builds the loop structure for the brainfuck program,
@@ -210,23 +171,6 @@ void bfx_free(BFX* bf) {
 }
 
 /**
- * @brief Initializes a bf_t.
- * @param bf Pointer to the bf_t
- * @param flags Flags for the bf_t.
- * @param tape_size Size of the tape.
- * @param eof_behavior Behavior when reaching EOF.
- */
-static void init_bf(BFX* bf, int flags, int tape_size, int eof_behavior) {
-    memset(bf, 0, sizeof(BFX));
-    bf->flags        = flags;
-    bf->tape_size    = tape_size;
-    bf->tape         = calloc(tape_size, sizeof(uint8_t));
-    bf->receiving    = true;
-    bf->eof_behavior = eof_behavior;
-}
-
-/**
- *  @brief Loads a brainfuck program from a file into memory.
  *
  *   This function opens the specified file, reads its contents into a dynamically allocated buffer,
  *   and stores the program length. If the file cannot be opened or memory allocation fails,

@@ -170,7 +170,6 @@ typedef struct {
 
 void bfx_build_loops(BFX*);
 void bfx_free(BFX*);
-void bfx_reset(BFX*);
 void bfx_run_file(const char*, BFX*);
 void bfx_run_repl(BFX*);
 
