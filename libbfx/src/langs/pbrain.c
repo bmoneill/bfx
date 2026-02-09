@@ -6,7 +6,6 @@
 
 #include "pbrain.h"
 
-#include "../bfx.h"
 #include "brainfuck.h"
 #include "util.h"
 

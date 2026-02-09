@@ -5,7 +5,6 @@
  */
 
 #include "brainfuck.h"
-#include "../bfx.h"
 #include "util.h"
 
 #include <stdio.h>
