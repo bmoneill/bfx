@@ -66,9 +66,6 @@ int main(int argc, char* argv[]) {
                 return EXIT_FAILURE;
             }
             break;
-        case 'g':
-            printf("-%c Unimplemented.\n", opt);
-            break;
         case 'G':
             bfx.lang = BFX_LANG_GRIN;
             break;
@@ -110,6 +107,10 @@ int main(int argc, char* argv[]) {
     }
 
     if (compile) {
+        if (bfx.lang != BFX_LANG_BRAINFUCK) {
+            fprintf(stderr, "Brainfuck is the only language supported for compilation.\n");
+            return EXIT_FAILURE;
+        }
         bfx_compile(path, output_path, &bfx);
         return EXIT_SUCCESS;
     }
