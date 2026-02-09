@@ -8,14 +8,10 @@
 
 #include "../bfx.h"
 
-#ifndef BFX_WEAVE_MAX_THREADS
-/**
- * @brief Maximum number of threads allowed in the Weave language.
- */
-#define BFX_WEAVE_MAX_THREADS 128
-#endif
-
 void bfx_weave_init(BFX*);
 void bfx_weave_run(BFX*);
+
+/* ops */
+void bfx_op_toggle(BFX*, BFX_FileIndex*);
 
 #endif

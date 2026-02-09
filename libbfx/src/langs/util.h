@@ -7,6 +7,13 @@
 
 #include "bfx.h"
 
+#ifndef BFX_MAX_THREADS
+/**
+ * @brief Maximum number of threads allowed in multithreaded languages.
+ */
+#define BFX_MAX_THREADS 128
+#endif
+
 void bfx_parse_ops(BFX*, void (*[128])(BFX*, BFX_FileIndex*));
 
 #endif

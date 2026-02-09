@@ -43,4 +43,9 @@ typedef struct {
 void bfx_pbrain_init(BFX* bfx);
 void bfx_pbrain_run(BFX* bf);
 
+/* ops */
+void bfx_op_start_procedure(BFX*, BFX_FileIndex*);
+void bfx_op_call(BFX*, BFX_FileIndex*);
+void bfx_op_ret(BFX*, BFX_FileIndex*);
+
 #endif

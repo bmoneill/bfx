@@ -13,4 +13,14 @@
 void bfx_brainfuck_init(BFX*);
 void bfx_brainfuck_run(BFX*);
 
+/* ops */
+void bfx_op_inc_tp(BFX*, BFX_FileIndex*);
+void bfx_op_dec_tp(BFX*, BFX_FileIndex*);
+void bfx_op_inc_t(BFX*, BFX_FileIndex*);
+void bfx_op_dec_t(BFX*, BFX_FileIndex*);
+void bfx_op_loop_start(BFX*, BFX_FileIndex*);
+void bfx_op_loop_end(BFX*, BFX_FileIndex*);
+void bfx_op_getchar(BFX*, BFX_FileIndex*);
+void bfx_op_putchar(BFX*, BFX_FileIndex*);
+
 #endif

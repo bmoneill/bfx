@@ -6,8 +6,8 @@
 
 #include "weave.h"
 
-#include "bfx.h"
-#include "ops.h"
+#include "../bfx.h"
+#include "brainfuck.h"
 #include "util.h"
 
 #include <pthread.h>
@@ -41,12 +41,12 @@ static void* bfx_weave_create(void*);
  */
 void bfx_weave_init(BFX* bfx) {
     int    threadCount = 0;
-    size_t threadLengths[BFX_WEAVE_MAX_THREADS];
+    size_t threadLengths[BFX_MAX_THREADS];
 
     threadLengths[0] = 0;
     for (size_t i = 0; i < bfx->program_len; i++) {
         if (bfx->program[i] == ';') {
-            if (threadCount > BFX_WEAVE_MAX_THREADS) {
+            if (threadCount > BFX_MAX_THREADS) {
                 BFX_ERROR("Too many threads.");
             }
             threadCount++;
@@ -134,4 +134,13 @@ static void* bfx_weave_create(void* data) {
     BFX*              bfx     = wrapper->bfx;
     bfx_parse_ops(bfx, wrapper->ops);
     return NULL;
+}
+
+/**
+ * @brief Toggle between thread and global tape (weave).
+ */
+void bfx_op_toggle(BFX* bf, BFX_FileIndex* index) {
+    uint8_t* old_tape = bf->tape;
+    bf->tape          = bf->lang_data;
+    bf->lang_data     = old_tape;
 }

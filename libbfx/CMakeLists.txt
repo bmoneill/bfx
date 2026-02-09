@@ -31,7 +31,6 @@ set(LIBRARY_PUBLIC_SRC ${LIBRARY_PUBLIC_SRC}
 "${LIBRARY_BASE_PATH}/langs/brainfuck.c"
 "${LIBRARY_BASE_PATH}/langs/grin.c"
 "${LIBRARY_BASE_PATH}/langs/pbrain.c"
-"${LIBRARY_BASE_PATH}/langs/ops.c"
 "${LIBRARY_BASE_PATH}/langs/util.c"
 "${LIBRARY_BASE_PATH}/langs/weave.c"
 )
@@ -42,7 +41,6 @@ set(LIBRARY_PUBLIC_HEADERS
  "${LIBRARY_BASE_PATH}/interpret.h"
  "${LIBRARY_BASE_PATH}/langs/brainfuck.h"
  "${LIBRARY_BASE_PATH}/langs/grin.h"
- "${LIBRARY_BASE_PATH}/langs/ops.h"
  "${LIBRARY_BASE_PATH}/langs/pbrain.h"
  "${LIBRARY_BASE_PATH}/langs/util.h"
  "${LIBRARY_BASE_PATH}/langs/weave.h"
