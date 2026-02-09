@@ -8,6 +8,7 @@
 #include "bfx.h"
 #include "langs/bf.h"
 #include "langs/pbrain.h"
+#include "langs/weave.h"
 
 void bfx_interpret(BFX* bfx) {
     switch (bfx->lang) {
@@ -22,7 +23,9 @@ void bfx_interpret(BFX* bfx) {
     case BFX_LANG_BRAINFORK:
         break; // TODO implement
     case BFX_LANG_WEAVE:
-        break; // TODO implement
+        bfx_weave_init(bfx);
+        bfx_weave_run(bfx);
+        break;
     case BFX_LANG_GRIN:
         break; // TODO implement
     }

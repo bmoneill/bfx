@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
     bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
     bfx.lang         = BFX_LANG_BRAINFUCK;
 
-    while ((opt = getopt(argc, argv, "cCde:g:Gio:Prst:vY")) != -1) {
+    while ((opt = getopt(argc, argv, "cCde:g:Gio:prst:vwY")) != -1) {
         switch (opt) {
         case 'c':
             compile = true;
@@ -70,8 +70,8 @@ int main(int argc, char* argv[]) {
         case 'o':
             output_path = optarg;
             break;
-        case 'P':
-            printf("-%c Unimplemented.\n", opt);
+        case 'p':
+            bfx.lang = BFX_LANG_PBRAIN;
             break;
         case 'r':
             bfx.flags |= BFX_FLAG_REPL;
@@ -85,6 +85,9 @@ int main(int argc, char* argv[]) {
         case 'v':
             print_version(argv[0]);
             return EXIT_SUCCESS;
+        case 'w':
+            bfx.lang = BFX_LANG_WEAVE;
+            break;
         case 'Y':
             printf("-%c Unimplemented.\n", opt);
             break;
@@ -155,10 +158,11 @@ static void print_usage(const char* argv0) {
     fprintf(stderr, "    \t\t\tinstruction pointer, and a memory dump.\n");
     fprintf(stderr, " -G:\t\t\tEnable Grin language support\n");
     fprintf(stderr, " -i:\t\t\tSeparate code from input using !\n");
-    fprintf(stderr, " -P:\t\t\tEnable pbrain language support\n");
+    fprintf(stderr, " -p:\t\t\tEnable pbrain language support\n");
     fprintf(stderr, " -r:\t\t\tEnable REPL mode\n");
     fprintf(stderr, " -s:\t\t\tDisable special instructions\n");
     fprintf(stderr, " -v:\t\t\tPrint version information\n");
+    fprintf(stderr, " -w:\t\t\tEnable weave language support\n");
     fprintf(stderr, " -Y:\t\t\tEnable brainfork language support\n");
     fprintf(stderr, "\n");
     fprintf(stderr, " -e eof_behavior:\tSet the behavior of the interpreter when EOF is\n");

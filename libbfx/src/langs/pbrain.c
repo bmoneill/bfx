@@ -12,17 +12,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void bfx_pbrain_populate_procedure(BFX*, BFX_FileIndex*);
-
 /**
  * @brief Initialize the P-Brain interpreter
  * @param bfx Pointer to the already-allocated interpreter struct
  */
 void bfx_pbrain_init(BFX* bfx) {
-    bfx->lang_data       = malloc(sizeof(BFX_pbrainData));
+    bfx->lang_data       = calloc(1, sizeof(BFX_pbrainData));
     BFX_pbrainData* data = (BFX_pbrainData*) bfx->lang_data;
     data->procedures_len = 0;
-    data->procedures     = NULL;
+    data->procedures     = malloc(sizeof(BFX_pbrainProcedure) * BFX_PBRAIN_MAX_PROCEDURES);
+    data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
     bfx_build_loops(bfx);
 }
 
@@ -62,4 +61,9 @@ void bfx_pbrain_run(BFX* bfx) {
     };
 
     bfx_parse_ops(bfx, ops);
+
+    BFX_pbrainData* data = (BFX_pbrainData*) bfx->lang_data;
+    free(data->procedures);
+    free(data->stack);
+    free(data);
 }

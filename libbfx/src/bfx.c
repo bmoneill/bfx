@@ -183,13 +183,12 @@ void bfx_build_loops(BFX* bf) {
         }
     }
 
+    free(stack);
+
     if (stack_top != 0) {
         fprintf(stderr, "libbfx: Error (%d,%d): Unmatched opening bracket '['.\n", line, line_idx);
-        free(stack);
         exit(EXIT_FAILURE);
     }
-
-    free(stack);
 }
 
 /**

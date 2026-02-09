@@ -9,6 +9,10 @@
 
 #include "../bfx.h"
 
+#ifndef BFX_PBRAIN_MAX_PROCEDURES
+#define BFX_PBRAIN_MAX_PROCEDURES 256
+#endif
+
 /**
  * @brief Structure to represent a procedure in the pbrain language.
  */

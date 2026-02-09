@@ -94,14 +94,12 @@ void bfx_weave_run(BFX* bfx) {
     // Cleanup
     free(threads);
     for (size_t i = 0; i < data->threadCount; i++) {
-        free(data->threads[i].tape);
-
+        free(data->threads[i].program);
         if (data->threads[i].tape == bfx->tape) {
             free(data->threads[i].lang_data);
         } else {
             free(data->threads[i].tape);
         }
-
         free(data->threads[i].loops);
     }
     free(data);

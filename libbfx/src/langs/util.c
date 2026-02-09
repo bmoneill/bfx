@@ -1,5 +1,7 @@
 #include "util.h"
 
+#include <stdio.h>
+
 /**
  * @brief This function parses operations for a brainfuck-like language.
  *
