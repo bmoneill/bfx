@@ -4,8 +4,8 @@
  * This file contains the implementation of the Brainfuck interpreter.
  */
 
-#include "../bfx.h"
 #include "brainfuck.h"
+#include "../bfx.h"
 #include "grin.h"
 #include "util.h"
 
@@ -33,53 +33,53 @@ void bfx_brainfuck_run(BFX* bfx) {
 /**
  * @brief Increment tape pointer (brainfuck).
  */
-void bfx_op_inc_tp(BFX* bf, BFX_FileIndex* index) {
-    bf->tp++;
-    if ((size_t) bf->tp > bf->tape_size) {
+void bfx_op_inc_tp(BFX* bfx, BFX_FileIndex* index) {
+    bfx->tp++;
+    if ((size_t) bfx->tp > bfx->tape_size) {
         fprintf(stderr,
                 "Warning (%d,%d): Tape pointer overflow. Tape pointer set to zero.\n",
                 index->line,
                 index->line_idx);
-        bf->tp = 0;
-    } else if (bf->tp > bf->tp_max) {
-        bf->tp_max = bf->tp;
+        bfx->tp = 0;
+    } else if (bfx->tp > bfx->tp_max) {
+        bfx->tp_max = bfx->tp;
     }
 }
 
 /**
  * @brief Decrement tape pointer (brainfuck).
  */
-void bfx_op_dec_tp(BFX* bf, BFX_FileIndex* index) {
-    bf->tp--;
-    if (bf->tp < 0) {
+void bfx_op_dec_tp(BFX* bfx, BFX_FileIndex* index) {
+    bfx->tp--;
+    if (bfx->tp < 0) {
         fprintf(stderr,
                 "Warning (%d,%d): Tape pointer underflow. Tape pointer set to zero.\n",
                 index->line,
                 index->line_idx);
-        bf->tp = 0;
+        bfx->tp = 0;
     }
 }
 
 /**
  * @brief Increment tape value (brainfuck).
  */
-void bfx_op_inc_t(BFX* bf, BFX_FileIndex* index) { bf->tape[BFX_T]++; }
+void bfx_op_inc_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[BFX_T]++; }
 
 /**
  * @brief Decrement tape value (brainfuck).
  */
-void bfx_op_dec_t(BFX* bf, BFX_FileIndex* index) { bf->tape[BFX_T]--; }
+void bfx_op_dec_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[BFX_T]--; }
 
 /**
  * @brief Start of loop (brainfuck).
  */
-void bfx_op_loop_start(BFX* bf, BFX_FileIndex* index) {
-    if (!bf->tape[BFX_T]) {
-        for (size_t i = 0; i < bf->loops_len; i++) {
-            if (bf->loops[i].start.idx == bf->ip) {
-                bf->ip          = bf->loops[i].end.idx;
-                index->line     = bf->loops[i].end.line;
-                index->line_idx = bf->loops[i].end.line_idx;
+void bfx_op_loop_start(BFX* bfx, BFX_FileIndex* index) {
+    if (!bfx->tape[BFX_T]) {
+        for (size_t i = 0; i < bfx->loops_len; i++) {
+            if (bfx->loops[i].start.idx == bfx->ip) {
+                bfx->ip         = bfx->loops[i].end.idx;
+                index->line     = bfx->loops[i].end.line;
+                index->line_idx = bfx->loops[i].end.line_idx;
             }
         }
     }
@@ -88,13 +88,13 @@ void bfx_op_loop_start(BFX* bf, BFX_FileIndex* index) {
 /**
  * @brief End of loop (brainfuck).
  */
-void bfx_op_loop_end(BFX* bf, BFX_FileIndex* index) {
-    if (bf->tape[BFX_T]) {
-        for (size_t i = 0; i < bf->loops_len; i++) {
-            if (bf->loops[i].end.idx == bf->ip) {
-                bf->ip          = bf->loops[i].start.idx;
-                index->line     = bf->loops[i].start.line;
-                index->line_idx = bf->loops[i].start.line_idx;
+void bfx_op_loop_end(BFX* bfx, BFX_FileIndex* index) {
+    if (bfx->tape[BFX_T]) {
+        for (size_t i = 0; i < bfx->loops_len; i++) {
+            if (bfx->loops[i].end.idx == bfx->ip) {
+                bfx->ip         = bfx->loops[i].start.idx;
+                index->line     = bfx->loops[i].start.line;
+                index->line_idx = bfx->loops[i].start.line_idx;
             }
         }
     }
@@ -103,12 +103,12 @@ void bfx_op_loop_end(BFX* bf, BFX_FileIndex* index) {
 /**
  * @brief Get character from input or stdin (brainfuck).
  */
-void bfx_op_getchar(BFX* bf, BFX_FileIndex* index) {
+void bfx_op_getchar(BFX* bfx, BFX_FileIndex* index) {
     char c;
-    if (bf->flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
-        if (bf->input_ptr < bf->input_len) {
-            c = bf->program[bf->input_ptr];
-            bf->input_ptr++;
+    if (bfx->flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
+        if (bfx->input_ptr < bfx->input_len) {
+            c = bfx->program[bfx->input_ptr];
+            bfx->input_ptr++;
         } else {
             c = EOF;
         }
@@ -116,21 +116,21 @@ void bfx_op_getchar(BFX* bf, BFX_FileIndex* index) {
         c = fgetc(stdin);
     }
 
-    if (bf->receiving) {
+    if (bfx->receiving) {
         if (c == EOF) {
-            bf->receiving = false;
+            bfx->receiving = false;
         } else {
-            bf->tape[bf->tp] = c;
+            bfx->tape[bfx->tp] = c;
         }
     }
 
-    if (!bf->receiving) {
-        switch (bf->eof_behavior) {
+    if (!bfx->receiving) {
+        switch (bfx->eof_behavior) {
         case BFX_EOF_BEHAVIOR_ZERO:
-            bf->tape[bf->tp] = 0;
+            bfx->tape[bfx->tp] = 0;
             break;
         case BFX_EOF_BEHAVIOR_DECREMENT:
-            bf->tape[bf->tp]--;
+            bfx->tape[bfx->tp]--;
             break;
         }
     }
@@ -139,4 +139,4 @@ void bfx_op_getchar(BFX* bf, BFX_FileIndex* index) {
 /**
  * @brief Output the current cell value as a character (brainfuck).
  */
-void bfx_op_putchar(BFX* bf, BFX_FileIndex* index) { putchar(bf->tape[bf->tp]); }
+void bfx_op_putchar(BFX* bfx, BFX_FileIndex* index) { putchar(bfx->tape[bfx->tp]); }

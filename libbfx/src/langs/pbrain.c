@@ -58,16 +58,16 @@ void bfx_pbrain_run(BFX* bfx) {
  * @param bf Pointer to the interpreter struct
  * @param idx Pointer to the file index struct
  */
-void bfx_op_start_procedure(BFX* bf, BFX_FileIndex* idx) {
+void bfx_op_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
     size_t          i;
-    BFX_PBrainData* data                              = (BFX_PBrainData*) bf->lang_data;
+    BFX_PBrainData* data                              = (BFX_PBrainData*) bfx->lang_data;
 
-    data->procedures[data->procedures_len].start_idx  = bf->ip + 1;
-    data->procedures[data->procedures_len].identifier = bf->tape[bf->tp];
-    for (i = bf->ip; i < bf->program_len; i++) {
-        if (bf->program[i] == ')') {
+    data->procedures[data->procedures_len].start_idx  = bfx->ip + 1;
+    data->procedures[data->procedures_len].identifier = bfx->tape[bfx->tp];
+    for (i = bfx->ip; i < bfx->program_len; i++) {
+        if (bfx->program[i] == ')') {
             data->procedures[data->procedures_len].end_idx = i;
-            bf->ip                                         = i + 1;
+            bfx->ip                                        = i + 1;
             data->procedures_len++;
             return;
         }
@@ -78,13 +78,13 @@ void bfx_op_start_procedure(BFX* bf, BFX_FileIndex* idx) {
 /**
  * @brief Call a procedure by its identifier (pbrain).
  */
-void bfx_op_call(BFX* bf, BFX_FileIndex* index) {
-    BFX_PBrainData* data = (BFX_PBrainData*) bf->lang_data;
+void bfx_op_call(BFX* bfx, BFX_FileIndex* index) {
+    BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     for (size_t i = 0; i < data->procedures_len; i++) {
-        if (data->procedures[i].identifier == bf->tape[bf->tp]) {
+        if (data->procedures[i].identifier == bfx->tape[bfx->tp]) {
             data->stack_top++;
-            data->stack[data->stack_top] = bf->ip;
-            bf->ip                       = data->procedures[i].start_idx;
+            data->stack[data->stack_top] = bfx->ip;
+            bfx->ip                      = data->procedures[i].start_idx;
             return;
         }
     }
@@ -93,10 +93,10 @@ void bfx_op_call(BFX* bf, BFX_FileIndex* index) {
 /**
  * @brief Return from a procedure (pbrain).
  */
-void bfx_op_ret(BFX* bf, BFX_FileIndex* index) {
-    BFX_PBrainData* data = (BFX_PBrainData*) bf->lang_data;
+void bfx_op_ret(BFX* bfx, BFX_FileIndex* index) {
+    BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     if (data->stack_top > 0) {
-        bf->ip = data->stack[data->stack_top];
+        bfx->ip = data->stack[data->stack_top];
         data->stack_top--;
     }
 }

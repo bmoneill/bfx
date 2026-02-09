@@ -33,7 +33,7 @@ void bfx_brainfork_run(BFX* bfx) {
  * @param arg Pointer to the interpreter struct
  */
 void* bfx_brainfork_run_child(void* arg) {
-    BFX* bfx = (BFX*)arg;
+    BFX* bfx = (BFX*) arg;
     bfx_brainfork_run(bfx);
     return NULL;
 }
@@ -41,7 +41,7 @@ void* bfx_brainfork_run_child(void* arg) {
 /**
  * @brief Fork (brainfork)
  */
-void bfx_op_fork(BFX* bf, BFX_FileIndex* index) {
-    BFX_BrainforkData* data = bf->lang_data;
-    pthread_create(&data->threads[data->thread_count++], NULL, bfx_brainfork_run_child, bf);
+void bfx_op_fork(BFX* bfx, BFX_FileIndex* index) {
+    BFX_BrainforkData* data = bfx->lang_data;
+    pthread_create(&data->threads[data->thread_count++], NULL, bfx_brainfork_run_child, bfx);
 }

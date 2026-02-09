@@ -139,8 +139,8 @@ static void* bfx_weave_create(void* data) {
 /**
  * @brief Toggle between thread and global tape (weave).
  */
-void bfx_op_toggle(BFX* bf, BFX_FileIndex* index) {
-    uint8_t* old_tape = bf->tape;
-    bf->tape          = bf->lang_data;
-    bf->lang_data     = old_tape;
+void bfx_op_toggle(BFX* bfx, BFX_FileIndex* index) {
+    uint8_t* old_tape = bfx->tape;
+    bfx->tape         = bfx->lang_data;
+    bfx->lang_data    = old_tape;
 }

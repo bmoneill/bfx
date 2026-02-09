@@ -34,8 +34,8 @@ typedef struct {
 #endif
 
 #define BFX_T                                                                                      \
-    (bf->lang == BFX_LANG_GRIN ? ((int) ((BFX_GrinData*) bf->lang_data)->tape[bf->tp])             \
-                               : bf->tape[bf->tp])
+    (bfx->lang == BFX_LANG_GRIN ? ((int) ((BFX_GrinData*) bfx->lang_data)->tape[bfx->tp])          \
+                                : bfx->tape[bfx->tp])
 
 void bfx_grin_init(BFX*);
 void bfx_grin_run(BFX*);
