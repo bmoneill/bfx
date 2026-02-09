@@ -10,8 +10,10 @@
 #include "grin.h"
 #include "pbrain.h"
 
+#include <ctype.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <wchar.h>
 
 #define BFX_T                                                                                      \
@@ -193,7 +195,20 @@ void bfx_op_getchar_ascii(BFX* bf, BFX_FileIndex* index) {
  * @brief Set current cell to inputted number (Grin)
  */
 void bfx_op_getchar_number(BFX* bf, BFX_FileIndex* index) {
-    // TODO implement
+    char s[64];
+    int  c, i = 0;
+    while ((c = fgetc(stdin)) != EOF) {
+        if (isdigit(c) && c == '.') {
+            s[i++] = c;
+        } else {
+            break;
+        }
+    }
+
+    if (i > 0) {
+        s[i + 1]                    = '\0';
+        BFX_GRIN_DATA->tape[bf->tp] = atof(s);
+    }
 }
 
 /**
