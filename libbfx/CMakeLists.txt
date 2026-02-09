@@ -50,6 +50,8 @@ add_library (
  ${LIBRARY_NAME} SHARED ${LIBRARY_PUBLIC_SRC}
 )
 
+target_link_libraries(${LIBRARY_NAME} PRIVATE m)
+
 set_target_properties(
  ${LIBRARY_NAME} PROPERTIES
  VERSION		${LIBRARY_VERSION_STRING}
