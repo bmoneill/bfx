@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
             bfx.lang = BFX_LANG_WEAVE;
             break;
         case 'Y':
-            printf("-%c Unimplemented.\n", opt);
+            bfx.lang = BFX_LANG_BRAINFORK;
             break;
         default:
             print_usage(argv[0]);

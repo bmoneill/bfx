@@ -28,17 +28,19 @@ set(LIBRARY_PUBLIC_SRC
  "${LIBRARY_BASE_PATH}/interpret.c"
 )
 set(LIBRARY_PUBLIC_SRC ${LIBRARY_PUBLIC_SRC}
-"${LIBRARY_BASE_PATH}/langs/brainfuck.c"
-"${LIBRARY_BASE_PATH}/langs/grin.c"
-"${LIBRARY_BASE_PATH}/langs/pbrain.c"
-"${LIBRARY_BASE_PATH}/langs/util.c"
-"${LIBRARY_BASE_PATH}/langs/weave.c"
+ "${LIBRARY_BASE_PATH}/langs/brainfork.c"
+ "${LIBRARY_BASE_PATH}/langs/brainfuck.c"
+ "${LIBRARY_BASE_PATH}/langs/grin.c"
+ "${LIBRARY_BASE_PATH}/langs/pbrain.c"
+ "${LIBRARY_BASE_PATH}/langs/util.c"
+ "${LIBRARY_BASE_PATH}/langs/weave.c"
 )
 
 set(LIBRARY_PUBLIC_HEADERS
  "${LIBRARY_BASE_PATH}/bfx.h"
  "${LIBRARY_BASE_PATH}/compile.h"
  "${LIBRARY_BASE_PATH}/interpret.h"
+ "${LIBRARY_BASE_PATH}/langs/brainfork.h"
  "${LIBRARY_BASE_PATH}/langs/brainfuck.h"
  "${LIBRARY_BASE_PATH}/langs/grin.h"
  "${LIBRARY_BASE_PATH}/langs/pbrain.h"

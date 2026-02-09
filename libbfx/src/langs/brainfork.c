@@ -4,7 +4,15 @@
 #include "util.h"
 
 #include <pthread.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+static void (*bfx_brainfork_ops[128])(BFX*, BFX_FileIndex*) = {
+    [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
+    ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
+    [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['Y'] = bfx_op_fork,
+};
 
 /**
  * @brief Initialize the Brainfork interpreter
@@ -20,12 +28,12 @@ void bfx_brainfork_init(BFX* bfx) {
  * @param bfx Pointer to the interpreter struct
  */
 void bfx_brainfork_run(BFX* bfx) {
-    void (*ops[128])(BFX*, BFX_FileIndex*) = {
-        [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
-        ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
-        [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['Y'] = bfx_op_fork,
-    };
-    bfx_parse_ops(bfx, ops);
+    bfx_parse_ops(bfx, bfx_brainfork_ops);
+
+    BFX_BrainforkData* data = bfx->lang_data;
+    for (size_t i = 0; i < data->thread_count; i++) {
+        pthread_join(data->threads[i], NULL);
+    }
 }
 
 /**
@@ -34,7 +42,8 @@ void bfx_brainfork_run(BFX* bfx) {
  */
 void* bfx_brainfork_run_child(void* arg) {
     BFX* bfx = (BFX*) arg;
-    bfx_brainfork_run(bfx);
+    bfx_parse_ops(bfx, bfx_brainfork_ops);
+    free(bfx);
     return NULL;
 }
 
@@ -43,5 +52,17 @@ void* bfx_brainfork_run_child(void* arg) {
  */
 void bfx_op_fork(BFX* bfx, BFX_FileIndex* index) {
     BFX_BrainforkData* data = bfx->lang_data;
-    pthread_create(&data->threads[data->thread_count++], NULL, bfx_brainfork_run_child, bfx);
+    if (data->thread_count >= BFX_MAX_THREADS) {
+        BFX_ERROR("Maximum thread count reached");
+        return;
+    }
+
+    BFX* childBFX = malloc(sizeof(BFX));
+    memcpy(childBFX, bfx, sizeof(BFX));
+
+    bfx->tape[bfx->tp] = 0;
+    childBFX->tp++;
+    childBFX->tape[childBFX->tp] = 1;
+
+//    pthread_create(&data->threads[data->thread_count++], NULL, bfx_brainfork_run_child, childBFX);
 }
