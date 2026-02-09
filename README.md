@@ -5,8 +5,8 @@
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
 programming language brainfuck, as well as an interpreter and REPL for some of
-its derivatives ([pbrain](https://esolangs.org/wiki/Pbrain), [weave](https://esolangs.org/wiki/Weave),
-and [Grin](https://esolangs.org/wiki/Grin)).
+its derivatives ([Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://esolangs.org/wiki/Weave),
+[Grin](https://esolangs.org/wiki/Grin), and [Brainfork](https://esolangs.org/wiki/Brainfork)).
 
 ## Building
 
@@ -23,26 +23,34 @@ cmake --build build
 bfx [-cCdDgiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
 ```
 
-- `-c`: Compile to native binary.
-- `-C`: Compile to C.
-- `-d`: Print tape pointer, instruction pointer, and values of all previously
-  accessed cells whenever a `#` is encountered.
-- `-D`: Default to degrees instead of radians (Grin).
-- `-g`: Enable Grin language support.
-- `-i`: Separate code from input using `!`.
-- `-p`: Enable pbrain language support.
-- `-r`: Run in interactive REPL mode (can be reset with `@` unless `-s` was provided).
-- `-s`: Disable interpretation of special characters (`#` and `@`).
-- `-v`: Print version information.
-- `-w`: Enable Weave language support.
+### General Interpreter Options
 
 - `-e eof_behavior`: Specify behavior when encountering EOF. Valid values are
                      "zero" (the default, sets the current cell to zero),
                      "decrement" (subtract one from the current cell), and
                      "unchanged" (do not change the current cell).
+- `-i`: Separate code from input using `!`.
+- `-r`: Run in interactive REPL mode.
+- `-t tape_size`: Specify the size of the tape (default: 30000)
+
+### Compiler Options
+
+- `-c`: Compile to native binary.
+- `-C`: Compile to C.
 - `-o output_file`: Specify the output file (default: './a.out' for binaries,
   './a.out.c' for C source)
-- `-t tape_size`: Specify the size of the tape (default: 30000)
+
+### Language-Related Options
+
+- `-D`: Default to degrees instead of radians (Grin).
+- `-g`: Enable Grin language support.
+- `-p`: Enable Pbrain language support.
+- `-w`: Enable Weave language support.
+- `-Y`: Enable Brainfork support.
+
+### Other
+
+- `-v`: Print version information.
 
 If `file` is not specified, `bfx` will read source code from standard input.
 
