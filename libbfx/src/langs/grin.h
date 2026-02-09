@@ -33,14 +33,14 @@ typedef struct {
 #define BFX_GRIN_DEFAULT_PRECISION 4
 #endif
 
-#define BFX_T                                                                                      \
-    (bfx->lang == BFX_LANG_GRIN ? ((int) ((BFX_GrinData*) bfx->lang_data)->tape[bfx->tp])          \
-                                : bfx->tape[bfx->tp])
-
 void bfx_grin_init(BFX*);
 void bfx_grin_run(BFX*);
 
 /* ops */
+void bfx_op_inc_t_grin(BFX*, BFX_FileIndex*);
+void bfx_op_dec_t_grin(BFX*, BFX_FileIndex*);
+void bfx_op_loop_start_grin(BFX*, BFX_FileIndex*);
+void bfx_op_loop_end_grin(BFX*, BFX_FileIndex*);
 void bfx_op_putchar_ascii(BFX*, BFX_FileIndex*);
 void bfx_op_putchar_number(BFX*, BFX_FileIndex*);
 void bfx_op_getchar_ascii(BFX*, BFX_FileIndex*);

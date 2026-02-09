@@ -68,11 +68,11 @@ void bfx_grin_run(BFX* bfx) {
                                                ['|']  = bfx_op_or,
                                                ['!']  = bfx_op_not,
                                                ['@']  = bfx_op_negate,
-                                               ['[']  = bfx_op_loop_start,
-                                               [']']  = bfx_op_loop_end,
+                                               ['[']  = bfx_op_loop_start_grin,
+                                               [']']  = bfx_op_loop_end_grin,
                                                ['?']  = bfx_op_simplify,
-                                               ['}']  = bfx_op_inc_t,
-                                               ['{']  = bfx_op_dec_t,
+                                               ['}']  = bfx_op_inc_t_grin,
+                                               ['{']  = bfx_op_dec_t_grin,
                                                ['(']  = bfx_op_print,
                                                [')']  = bfx_op_newline,
                                                ['s']  = bfx_op_sin,
@@ -98,6 +98,46 @@ void bfx_grin_run(BFX* bfx) {
     // Free language-specific data
     BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
     free(data);
+}
+
+/**
+ * @brief Increment value at tape pointer (Grin).
+ */
+void bfx_op_inc_t_grin(BFX* bfx, BFX_FileIndex* index) { BFX_GRIN_DATA->tape[bfx->tp]--; }
+
+/**
+ * @brief Decrement value at tape pointer (Grin).
+ */
+void bfx_op_dec_t_grin(BFX* bfx, BFX_FileIndex* index) { BFX_GRIN_DATA->tape[bfx->tp]--; }
+
+/**
+ * @brief Start of loop (Grin).
+ */
+void bfx_op_loop_start_grin(BFX* bfx, BFX_FileIndex* index) {
+    if (!BFX_GRIN_DATA->tape[bfx->tp]) {
+        for (size_t i = 0; i < bfx->loops_len; i++) {
+            if (bfx->loops[i].start.idx == bfx->ip) {
+                bfx->ip         = bfx->loops[i].end.idx;
+                index->line     = bfx->loops[i].end.line;
+                index->line_idx = bfx->loops[i].end.line_idx;
+            }
+        }
+    }
+}
+
+/**
+ * @brief End of loop (Grin).
+ */
+void bfx_op_loop_end_grin(BFX* bfx, BFX_FileIndex* index) {
+    if (BFX_GRIN_DATA->tape[bfx->tp]) {
+        for (size_t i = 0; i < bfx->loops_len; i++) {
+            if (bfx->loops[i].end.idx == bfx->ip) {
+                bfx->ip         = bfx->loops[i].start.idx;
+                index->line     = bfx->loops[i].start.line;
+                index->line_idx = bfx->loops[i].start.line_idx;
+            }
+        }
+    }
 }
 
 /**

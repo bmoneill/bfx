@@ -59,10 +59,13 @@ void bfx_op_fork(BFX* bfx, BFX_FileIndex* index) {
 
     BFX* childBFX = malloc(sizeof(BFX));
     memcpy(childBFX, bfx, sizeof(BFX));
+    childBFX->tape = calloc(bfx->tape_size, sizeof(uint8_t));
+    memcpy(childBFX->tape, bfx->tape, bfx->tape_size);
 
     bfx->tape[bfx->tp] = 0;
     childBFX->tp++;
     childBFX->tape[childBFX->tp] = 1;
+    childBFX->ip++;
 
-//    pthread_create(&data->threads[data->thread_count++], NULL, bfx_brainfork_run_child, childBFX);
+    pthread_create(&data->threads[data->thread_count++], NULL, bfx_brainfork_run_child, childBFX);
 }

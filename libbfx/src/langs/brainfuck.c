@@ -6,7 +6,6 @@
 
 #include "brainfuck.h"
 #include "../bfx.h"
-#include "grin.h"
 #include "util.h"
 
 #include <stdio.h>
@@ -63,18 +62,18 @@ void bfx_op_dec_tp(BFX* bfx, BFX_FileIndex* index) {
 /**
  * @brief Increment tape value (brainfuck).
  */
-void bfx_op_inc_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[BFX_T]++; }
+void bfx_op_inc_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[bfx->tp]++; }
 
 /**
  * @brief Decrement tape value (brainfuck).
  */
-void bfx_op_dec_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[BFX_T]--; }
+void bfx_op_dec_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[bfx->tp]--; }
 
 /**
  * @brief Start of loop (brainfuck).
  */
 void bfx_op_loop_start(BFX* bfx, BFX_FileIndex* index) {
-    if (!bfx->tape[BFX_T]) {
+    if (!bfx->tape[bfx->tp]) {
         for (size_t i = 0; i < bfx->loops_len; i++) {
             if (bfx->loops[i].start.idx == bfx->ip) {
                 bfx->ip         = bfx->loops[i].end.idx;
@@ -89,7 +88,7 @@ void bfx_op_loop_start(BFX* bfx, BFX_FileIndex* index) {
  * @brief End of loop (brainfuck).
  */
 void bfx_op_loop_end(BFX* bfx, BFX_FileIndex* index) {
-    if (bfx->tape[BFX_T]) {
+    if (bfx->tape[bfx->tp]) {
         for (size_t i = 0; i < bfx->loops_len; i++) {
             if (bfx->loops[i].end.idx == bfx->ip) {
                 bfx->ip         = bfx->loops[i].start.idx;
@@ -139,4 +138,4 @@ void bfx_op_getchar(BFX* bfx, BFX_FileIndex* index) {
 /**
  * @brief Output the current cell value as a character (brainfuck).
  */
-void bfx_op_putchar(BFX* bfx, BFX_FileIndex* index) { putchar(bfx->tape[bfx->tp]); }
+void bfx_op_putchar(BFX* bf, BFX_FileIndex* index) { putchar(bf->tape[bf->tp]); }
