@@ -14,6 +14,7 @@
 
 /**
  * @brief Initialize the P-Brain interpreter
+ *
  * @param bfx Pointer to the already-allocated interpreter struct
  */
 void bfx_pbrain_init(BFX* bfx) {
@@ -50,6 +51,10 @@ void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
 
 /**
  * @brief Run the P-Brain interpreter
+ *
+ * This function initializes and runs the P-Brain interpreter threads.
+ * It frees all language-specific data.
+ *
  * @param bfx Pointer to the interpreter struct
  */
 void bfx_pbrain_run(BFX* bfx) {
@@ -62,6 +67,7 @@ void bfx_pbrain_run(BFX* bfx) {
 
     bfx_parse_ops(bfx, ops);
 
+    // Free language-specific data
     BFX_pbrainData* data = (BFX_pbrainData*) bfx->lang_data;
     free(data->procedures);
     free(data->stack);

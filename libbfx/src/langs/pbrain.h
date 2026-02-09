@@ -10,6 +10,12 @@
 #include "../bfx.h"
 
 #ifndef BFX_PBRAIN_MAX_PROCEDURES
+/**
+ * @brief Maximum number of procedures allowed in the P-Brain language.
+ *
+ * This limit is set to the maximum possible value since procedures are
+ * designated by 8-bit identifiers.
+ */
 #define BFX_PBRAIN_MAX_PROCEDURES 256
 #endif
 

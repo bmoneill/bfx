@@ -1,6 +1,11 @@
+/**
+ * @file langs/weave.c
+ *
+ * This file contains functions related to interpreting the Weave language.
+ */
+
 #include "weave.h"
 
-#include "bf.h"
 #include "bfx.h"
 #include "ops.h"
 #include "util.h"
@@ -10,14 +15,22 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @brief Weave language data structure.
+ */
 typedef struct {
-    BFX*   threads;
-    size_t threadCount;
+    BFX*   threads; //!< Pointer to the array of threads
+    size_t threadCount; //!< Number of threads
 } BFX_WeaveData;
 
+/**
+ * @brief Weave thread wrapper structure.
+ *
+ * Used in bfx_weave_create() for pthread_create().
+ */
 typedef struct {
-    BFX* bfx;
-    void (*ops[128])(BFX*, BFX_FileIndex*);
+    BFX* bfx; //!< Pointer to the main BFX interpreter structure
+    void (*ops[128])(BFX*, BFX_FileIndex*); //!< Pointer to the array of operations
 } BFX_WeaveWrapper;
 
 static void* bfx_weave_create(void*);
@@ -69,6 +82,10 @@ void bfx_weave_init(BFX* bfx) {
 
 /**
  * @brief Run the Weave interpreter
+ *
+ * This function initializes and runs the Weave interpreter threads.
+ * It creates and joins the threads, and frees the language-specific data.
+ *
  * @param bfx Pointer to the interpreter struct
  */
 void bfx_weave_run(BFX* bfx) {
@@ -92,7 +109,7 @@ void bfx_weave_run(BFX* bfx) {
         pthread_join(threads[i], NULL);
     }
 
-    // Cleanup
+    // Free language-specific data
     free(threads);
     for (size_t i = 0; i < data->threadCount; i++) {
         free(data->threads[i].program);
@@ -106,6 +123,12 @@ void bfx_weave_run(BFX* bfx) {
     free(data);
 }
 
+/**
+ * @brief Thread entry point for Weave interpreter threads
+ *
+ * @param data Pointer to the Weave wrapper struct
+ * @return NULL
+ */
 static void* bfx_weave_create(void* data) {
     BFX_WeaveWrapper* wrapper = (BFX_WeaveWrapper*) data;
     BFX*              bfx     = wrapper->bfx;

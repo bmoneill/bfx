@@ -1,3 +1,7 @@
+/**
+ * @file langs/util.h
+ * @brief Language-independent utility function definitions.
+ */
 #ifndef BFX_LANGS_UTIL_H
 #define BFX_LANGS_UTIL_H
 

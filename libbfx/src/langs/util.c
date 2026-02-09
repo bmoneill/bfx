@@ -1,12 +1,16 @@
+/**
+ * @file langs/util.c
+ * @brief Language-independent utility functions.
+ */
 #include "util.h"
 
 #include <stdio.h>
 
 /**
- * @brief This function parses operations for a brainfuck-like language.
+ * @brief Parses operations for a brainfuck-like language.
  *
  * @param bfx The BFX instance to run
- * @param ops The array of operation functions
+ * @param ops Operation function map
  */
 void bfx_parse_ops(BFX* bfx, void (*ops[128])(BFX*, BFX_FileIndex*)) {
     BFX_FileIndex idx;

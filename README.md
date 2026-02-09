@@ -4,7 +4,7 @@
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
-programming language brainfuck, written in C89.
+programming language brainfuck and some of its derivatives (pbrain, weave).
 
 ## Building
 
@@ -18,7 +18,7 @@ cmake --build build
 ## Usage
 
 ```shell
-bfx [-cCdirsv] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
+bfx [-cCdiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
 ```
 
 - `-c`: Compile to native binary.
@@ -26,9 +26,11 @@ bfx [-cCdirsv] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
 - `-d`: Print tape pointer, instruction pointer, and values of all previously
   accessed cells whenever a `#` is encountered.
 - `-i`: Separate code from input using `!`.
+- `-p`: Enable pbrain language support.
 - `-r`: Run in interactive REPL mode (can be reset with `@` unless `-s` was provided).
 - `-s`: Disable interpretation of special characters (`#` and `@`).
 - `-v`: Print version information.
+- `-w`: Enable Weave language support.
 
 - `-e eof_behavior`: Specify behavior when encountering EOF. Valid values are
                      "zero" (the default, sets the current cell to zero),
@@ -57,5 +59,5 @@ If you find a bug, submit an issue, PR, or email me with a description and/or pa
 
 ## License
 
-Copyright (c) 2022-2025 Ben O'Neill <ben@oneill.sh>. This work is released under the
-terms of the MIT License. See [LICENSE](LICENSE) for the license terms.
+Copyright (c) 2022-2026 Ben O'Neill <ben@oneill.sh>. This work is released under
+the terms of the MIT License. See [LICENSE](LICENSE) for the license terms.
