@@ -56,7 +56,7 @@ void bfx_weave_init(BFX* bfx) {
         }
     }
 
-    int progIdx              = 0;
+    int            progIdx   = 0;
     BFX_WeaveData* weaveData = malloc(sizeof(BFX_WeaveData));
     bfx->lang_data           = weaveData;
     weaveData->threads       = calloc(threadCount + 1, sizeof(BFX));
