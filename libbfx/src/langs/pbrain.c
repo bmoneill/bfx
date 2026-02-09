@@ -18,10 +18,10 @@
  * @param bfx Pointer to the already-allocated interpreter struct
  */
 void bfx_pbrain_init(BFX* bfx) {
-    bfx->lang_data       = calloc(1, sizeof(BFX_pbrainData));
-    BFX_pbrainData* data = (BFX_pbrainData*) bfx->lang_data;
+    bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
+    BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     data->procedures_len = 0;
-    data->procedures     = malloc(sizeof(BFX_pbrainProcedure) * BFX_PBRAIN_MAX_PROCEDURES);
+    data->procedures     = malloc(sizeof(BFX_PBrainProcedure) * BFX_PBRAIN_MAX_PROCEDURES);
     data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
     bfx_build_loops(bfx);
 }
@@ -34,7 +34,7 @@ void bfx_pbrain_init(BFX* bfx) {
  */
 void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
     size_t          i;
-    BFX_pbrainData* data                              = (BFX_pbrainData*) bf->lang_data;
+    BFX_PBrainData* data                              = (BFX_PBrainData*) bf->lang_data;
 
     data->procedures[data->procedures_len].start_idx  = bf->ip + 1;
     data->procedures[data->procedures_len].identifier = bf->tape[bf->tp];
@@ -68,7 +68,7 @@ void bfx_pbrain_run(BFX* bfx) {
     bfx_parse_ops(bfx, ops);
 
     // Free language-specific data
-    BFX_pbrainData* data = (BFX_pbrainData*) bfx->lang_data;
+    BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     free(data->procedures);
     free(data->stack);
     free(data);
