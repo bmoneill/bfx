@@ -19,13 +19,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define BRAINFORK_S "brainfork"
+#define BRAINFUCK_S "brainfuck"
+#define GRIN_S      "grin"
+#define PBRAIN_S    "pbrain"
+#define WEAVE_S     "weave"
+
 #define EOF_BEHAVIOR_ZERO_S      "zero"
 #define EOF_BEHAVIOR_DECREMENT_S "decrement"
 #define EOF_BEHAVIOR_UNCHANGED_S "unchanged"
 
-static int  get_eof_behavior(const char*);
-static void print_usage(const char*);
-static void print_version(const char*);
+static int          get_eof_behavior(const char*);
+static BFX_Language get_language(const char*);
+static void         print_usage(const char*);
+static void         print_version(const char*);
 
 /**
  * @brief Entry point.
@@ -45,7 +52,7 @@ int main(int argc, char* argv[]) {
     bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
     bfx.lang         = BFX_LANG_BRAINFUCK;
 
-    while ((opt = getopt(argc, argv, "cCde:Gio:pPrst:vwY")) != -1) {
+    while ((opt = getopt(argc, argv, "cCde:il:o:Prst:v")) != -1) {
         switch (opt) {
         case 'c':
             compile = true;
@@ -71,6 +78,9 @@ int main(int argc, char* argv[]) {
             break;
         case 'i':
             bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
+            break;
+        case 'l':
+            bfx.lang = get_language(optarg);
             break;
         case 'o':
             output_path = optarg;
@@ -106,6 +116,12 @@ int main(int argc, char* argv[]) {
         path = argv[optind];
     }
 
+    if (bfx.lang == BFX_LANG_UNKNOWN) {
+        fprintf(stderr, "Unknown language specified.\n");
+        print_usage(argv[0]);
+        return EXIT_FAILURE;
+    }
+
     if (compile) {
         if (bfx.lang != BFX_LANG_BRAINFUCK) {
             fprintf(stderr, "Brainfuck is the only language supported for compilation.\n");
@@ -132,6 +148,22 @@ int main(int argc, char* argv[]) {
     return EXIT_SUCCESS;
 }
 
+static BFX_Language get_language(const char* s) {
+    if (!strcmp(s, BRAINFORK_S)) {
+        return BFX_LANG_BRAINFORK;
+    } else if (!strcmp(s, BRAINFUCK_S)) {
+        return BFX_LANG_BRAINFUCK;
+    } else if (!strcmp(s, GRIN_S)) {
+        return BFX_LANG_GRIN;
+    } else if (!strcmp(s, PBRAIN_S)) {
+        return BFX_LANG_PBRAIN;
+    } else if (!strcmp(s, WEAVE_S)) {
+        return BFX_LANG_WEAVE;
+    }
+
+    return BFX_LANG_UNKNOWN;
+}
+
 static int get_eof_behavior(const char* s) {
     int         i;
     const char* eof_behavior[3];
@@ -155,41 +187,9 @@ static int get_eof_behavior(const char* s) {
  */
 static void print_usage(const char* argv0) {
     fprintf(stderr,
-            "Usage: %s [-cCdDGiprsvY] [-e eof_behavior] [-g start-end] [-o output_file] [-P "
+            "Usage: %s [-cCdDirsv] [-e eof_behavior] [-l language] [-o output_file] [-P "
             "precision] [-t tape_size] [file]\n",
             argv0);
-    fprintf(stderr, "Options:\n");
-    fprintf(stderr,
-            " -c:\t\t\tCompile the brainfuck code into a native executable. Default output\n");
-    fprintf(stderr, "    \t\t\tfile is ./a.out.\n");
-    fprintf(stderr,
-            " -C:\t\t\tCompile the brainfuck code into C. Default output file is ./a.out.c.\n");
-    fprintf(stderr,
-            " -d:\t\t\tEnable debugging mode (# will print the line number, tape pointer,\n");
-    fprintf(stderr, "    \t\t\tinstruction pointer, and a memory dump.\n");
-    fprintf(stderr, " -D:\t\t\tUse degrees by default (Grin)\n");
-    fprintf(stderr, " -G:\t\t\tEnable Grin language support\n");
-    fprintf(stderr, " -i:\t\t\tSeparate code from input using !\n");
-    fprintf(stderr, " -p:\t\t\tEnable pbrain language support\n");
-    fprintf(stderr, " -r:\t\t\tEnable REPL mode\n");
-    fprintf(stderr, " -s:\t\t\tDisable special instructions\n");
-    fprintf(stderr, " -v:\t\t\tPrint version information\n");
-    fprintf(stderr, " -w:\t\t\tEnable weave language support\n");
-    fprintf(stderr, " -Y:\t\t\tEnable brainfork language support\n");
-    fprintf(stderr, "\n");
-    fprintf(stderr, " -e eof_behavior:\tSet the behavior of the interpreter when EOF is\n");
-    fprintf(stderr,
-            "                 \tencountered in the input. Valid values are \"%s\" (default),\n",
-            EOF_BEHAVIOR_ZERO_S);
-    fprintf(stderr,
-            "                 \t\"%s\", or \"%s\".\n",
-            EOF_BEHAVIOR_DECREMENT_S,
-            EOF_BEHAVIOR_UNCHANGED_S);
-    fprintf(stderr, " -o output_file:\t(for compilation) Write the output to the specified file\n");
-    fprintf(stderr, "                \tinstead of a.out(.c).\n");
-    fprintf(stderr,
-            " -t tape_size:\t\tSet the size of the tape. Default is %d.\n",
-            BFX_DEFAULT_TAPE_SIZE);
 }
 
 static void print_version(const char* argv0) { fprintf(stderr, "%s %s\n", argv0, BFX_VERSION); }

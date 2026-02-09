@@ -12,6 +12,9 @@
 #include "langs/pbrain.h"
 #include "langs/weave.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 void bfx_interpret(BFX* bfx) {
     switch (bfx->lang) {
     case BFX_LANG_BRAINFUCK:
@@ -33,6 +36,9 @@ void bfx_interpret(BFX* bfx) {
     case BFX_LANG_GRIN:
         bfx_grin_init(bfx);
         bfx_grin_run(bfx);
+        break;
+    case BFX_LANG_UNKNOWN:
+        BFX_ERROR("Unknown language");
         break;
     }
 }

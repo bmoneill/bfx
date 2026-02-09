@@ -80,6 +80,7 @@ typedef enum {
  * @brief Language options for the interpreter/compiler
  */
 typedef enum {
+    BFX_LANG_UNKNOWN, //!< Unknown language
     BFX_LANG_BRAINFUCK, //!< brainfuck language
     BFX_LANG_BRAINFORK, //!< brainfork language
     BFX_LANG_PBRAIN, //!< pbrain language

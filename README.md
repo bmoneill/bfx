@@ -20,7 +20,7 @@ cmake --build build
 ## Usage
 
 ```shell
-bfx [-cCdDgiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
+bfx [options...] [file]
 ```
 
 ### General Interpreter Options
@@ -30,6 +30,7 @@ bfx [-cCdDgiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
                      "decrement" (subtract one from the current cell), and
                      "unchanged" (do not change the current cell).
 - `-i`: Separate code from input using `!`.
+- `-l language`: Specify the language to use (Default: brainfuck).
 - `-r`: Run in interactive REPL mode.
 - `-t tape_size`: Specify the size of the tape (default: 30000)
 
@@ -40,17 +41,20 @@ bfx [-cCdDgiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
 - `-o output_file`: Specify the output file (default: './a.out' for binaries,
   './a.out.c' for C source)
 
-### Language-Related Options
+### Other Options
 
 - `-D`: Default to degrees instead of radians (Grin).
-- `-g`: Enable Grin language support.
-- `-p`: Enable Pbrain language support.
-- `-w`: Enable Weave language support.
-- `-Y`: Enable Brainfork support.
-
-### Other
-
+- `-P precision`: Specify the number of decimal places to print (Grin). Default
+  is 6.
 - `-v`: Print version information.
+
+### Languages
+
+- `brainfork`
+- `brainfuck` (Default)
+- `grin`
+- `pbrain`
+- `weave`
 
 If `file` is not specified, `bfx` will read source code from standard input.
 
