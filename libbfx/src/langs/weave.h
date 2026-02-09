@@ -3,6 +3,11 @@
 
 #include "../bfx.h"
 
-void bfx_op_weave_toggle(BFX*, BFX_FileIndex*);
+#ifndef BFX_WEAVE_MAX_THREADS
+#define BFX_WEAVE_MAX_THREADS 128
+#endif
+
+void bfx_weave_init(BFX*);
+void bfx_weave_run(BFX*);
 
 #endif

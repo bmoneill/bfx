@@ -7,6 +7,7 @@
 #include "pbrain.h"
 #include "bfx.h"
 #include "ops.h"
+#include "util.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,39 +27,12 @@ void bfx_pbrain_init(BFX* bfx) {
 }
 
 /**
- * @brief Run the P-Brain interpreter
- * @param bfx Pointer to the interpreter struct
+ * @brief Populate the procedure table with the given procedure.
+ *
+ * @param bf Pointer to the interpreter struct
+ * @param idx Pointer to the file index struct
  */
-void bfx_pbrain_run(BFX* bfx) {
-    BFX_FileIndex idx;
-    idx.idx                                = 0;
-    idx.line_idx                           = 0;
-    idx.line                               = 1;
-
-    void (*ops[128])(BFX*, BFX_FileIndex*) = {
-        [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
-        ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
-        [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['('] = bfx_pbrain_populate_procedure,
-        [':'] = bfx_op_call,     [')'] = bfx_op_ret,
-    };
-
-    while ((size_t) bfx->ip < bfx->program_len) {
-        if (bfx->program[bfx->ip] == '\n') {
-            idx.line++;
-            idx.line_idx = 0;
-        } else {
-            idx.line_idx++;
-        }
-
-        int op = (int) bfx->program[bfx->ip];
-        if (ops[op]) {
-            ops[(int) bfx->program[bfx->ip]](bfx, &idx);
-        }
-        bfx->ip++;
-    }
-}
-
-static void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
+void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
     size_t          i;
     BFX_pbrainData* data                              = (BFX_pbrainData*) bf->lang_data;
 
@@ -73,4 +47,19 @@ static void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
         }
     }
     BFX_ERROR("Expected ')'");
+}
+
+/**
+ * @brief Run the P-Brain interpreter
+ * @param bfx Pointer to the interpreter struct
+ */
+void bfx_pbrain_run(BFX* bfx) {
+    void (*ops[128])(BFX*, BFX_FileIndex*) = {
+        [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
+        ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
+        [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['('] = bfx_pbrain_populate_procedure,
+        [':'] = bfx_op_call,     [')'] = bfx_op_ret,
+    };
+
+    bfx_parse_ops(bfx, ops);
 }

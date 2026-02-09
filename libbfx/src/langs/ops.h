@@ -23,4 +23,7 @@ void bfx_op_putchar(BFX*, BFX_FileIndex*);
 void bfx_op_call(BFX*, BFX_FileIndex*);
 void bfx_op_ret(BFX*, BFX_FileIndex*);
 
+/* weave */
+void bfx_op_toggle(BFX*, BFX_FileIndex*);
+
 #endif

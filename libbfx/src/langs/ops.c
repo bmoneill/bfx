@@ -147,3 +147,12 @@ void bfx_op_ret(BFX* bf, BFX_FileIndex* index) {
         data->stack_top--;
     }
 }
+
+/**
+ * @brief Toggle between thread and global tape (weave).
+ */
+void bfx_op_toggle(BFX* bf, BFX_FileIndex* index) {
+    uint8_t* old_tape = bf->tape;
+    bf->tape          = bf->lang_data;
+    bf->lang_data     = old_tape;
+}

@@ -31,6 +31,7 @@ typedef struct {
 } BFX_pbrainData;
 
 void bfx_pbrain_init(BFX* bfx);
+void bfx_pbrain_populate_procedure(BFX*, BFX_FileIndex*);
 void bfx_pbrain_run(BFX* bf);
 
 #endif
