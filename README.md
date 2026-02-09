@@ -26,6 +26,8 @@ bfx [-cCdiprsvw] [-e eof_behavior] [-o output_file] [-t tape_size] [file]
 - `-C`: Compile to C.
 - `-d`: Print tape pointer, instruction pointer, and values of all previously
   accessed cells whenever a `#` is encountered.
+- `-D`: Default to degrees instead of radians (Grin).
+- `-g`: Enable Grin language support.
 - `-i`: Separate code from input using `!`.
 - `-p`: Enable pbrain language support.
 - `-r`: Run in interactive REPL mode (can be reset with `@` unless `-s` was provided).
