@@ -52,7 +52,7 @@ void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
 /**
  * @brief Run the P-Brain interpreter
  *
- * This function initializes and runs the P-Brain interpreter threads.
+ * This function initializes and runs the P-Brain interpreter.
  * It frees all language-specific data.
  *
  * @param bfx Pointer to the interpreter struct
