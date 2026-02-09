@@ -1,6 +1,7 @@
 #include "weave.h"
 
 #include "bf.h"
+#include "bfx.h"
 #include "ops.h"
 #include "util.h"
 
@@ -26,34 +27,34 @@ static void* bfx_weave_create(void*);
  * @param bfx Pointer to the already-allocated interpreter struct
  */
 void bfx_weave_init(BFX* bfx) {
-    int    threadIdx = 0;
+    int    threadCount = 0;
     size_t threadLengths[BFX_WEAVE_MAX_THREADS];
 
+    threadLengths[0] = 0;
     for (size_t i = 0; i < bfx->program_len; i++) {
         if (bfx->program[i] == ';') {
-            threadIdx = 0;
-            if (threadIdx > BFX_WEAVE_MAX_THREADS) {
+            if (threadCount > BFX_WEAVE_MAX_THREADS) {
                 BFX_ERROR("Too many threads.");
             }
-            threadLengths[threadIdx] = 0;
+            threadCount++;
+            threadLengths[threadCount] = 0;
         } else {
-            threadLengths[threadIdx]++;
+            threadLengths[threadCount]++;
         }
     }
 
     int progIdx              = 0;
-    bfx->lang_data           = malloc(sizeof(BFX_WeaveData));
+    BFX_WeaveData* weaveData = malloc(sizeof(BFX_WeaveData));
+    bfx->lang_data           = weaveData;
+    weaveData->threads       = calloc(threadCount + 1, sizeof(BFX));
+    weaveData->threadCount   = threadCount + 1;
 
-    BFX_WeaveData* weaveData = (BFX_WeaveData*) bfx->lang_data;
-    weaveData->threads       = malloc(sizeof(BFX) * threadIdx + 1);
-    weaveData->threadCount   = threadIdx + 1;
-
-    threadIdx                = 0;
     for (size_t i = 0; i < weaveData->threadCount; i++) {
-        BFX* threadBFX          = &((BFX*) bfx->lang_data)[i];
-        threadBFX->program      = malloc(threadLengths[i]);
+        BFX* threadBFX          = &weaveData->threads[i];
+        threadBFX->program      = malloc(threadLengths[i] + 1);
         threadBFX->program_len  = threadLengths[i];
-        threadBFX->program_size = threadBFX->program_len;
+        threadBFX->program_size = threadLengths[i];
+
         memcpy(threadBFX->program, bfx->program + progIdx, threadLengths[i]);
         progIdx += threadLengths[i];
 
@@ -62,7 +63,7 @@ void bfx_weave_init(BFX* bfx) {
         threadBFX->tape_size = BFX_DEFAULT_TAPE_SIZE;
         threadBFX->lang_data = bfx->tape;
 
-        bfx_bf_init(threadBFX);
+        bfx_build_loops(threadBFX);
     }
 }
 
