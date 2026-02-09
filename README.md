@@ -4,7 +4,8 @@
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
-programming language brainfuck and some of its derivatives (pbrain, weave).
+programming language brainfuck, as well as an interpreter and REPL for some of
+its derivatives ([pbrain](https://esolangs.org/wiki/Pbrain), [weave](https://esolangs.org/wiki/Weave)).
 
 ## Building
 
