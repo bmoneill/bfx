@@ -3,8 +3,8 @@
  *
  * This file contains function definitions related to interpreting the Grin language.
  */
-#ifndef BFX_OPS_GRIN_H
-#define BFX_OPS_GRIN_H
+#ifndef BFX_LANGS_GRIN_H
+#define BFX_LANGS_GRIN_H
 
 #include "../bfx.h"
 

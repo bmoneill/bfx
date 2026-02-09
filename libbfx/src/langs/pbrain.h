@@ -4,8 +4,8 @@
  * This file contains public definitions for the implementation of the P-Brain interpreter.
  */
 
-#ifndef BFX_PBRAIN_H
-#define BFX_PBRAIN_H
+#ifndef BFX_LANGS_PBRAIN_H
+#define BFX_LANGS_PBRAIN_H
 
 #include "../bfx.h"
 

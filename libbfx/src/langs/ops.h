@@ -4,8 +4,8 @@
  * This file contains public definitions for all ops for the supported languages.
  */
 
-#ifndef BFX_OPS_H
-#define BFX_OPS_H
+#ifndef BFX_LANGS_OPS_H
+#define BFX_LANGS_OPS_H
 
 #include "../bfx.h"
 

@@ -3,8 +3,8 @@
  *
  * This file contains function definitions related to interpreting the Weave language.
  */
-#ifndef BFX_OPS_WEAVE_H
-#define BFX_OPS_WEAVE_H
+#ifndef BFX_LANGS_WEAVE_H
+#define BFX_LANGS_WEAVE_H
 
 #include "../bfx.h"
 
