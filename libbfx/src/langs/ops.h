@@ -20,6 +20,7 @@ void bfx_op_getchar(BFX*, BFX_FileIndex*);
 void bfx_op_putchar(BFX*, BFX_FileIndex*);
 
 /* pbrain */
+void bfx_op_start_procedure(BFX*, BFX_FileIndex*);
 void bfx_op_call(BFX*, BFX_FileIndex*);
 void bfx_op_ret(BFX*, BFX_FileIndex*);
 

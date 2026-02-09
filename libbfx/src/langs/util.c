@@ -7,10 +7,10 @@
 #include <stdio.h>
 
 /**
- * @brief Parses operations for a brainfuck-like language.
+ * @brief Executes operations on the BFX instance.
  *
  * @param bfx The BFX instance to run
- * @param ops Operation function map
+ * @param ops Operation map
  */
 void bfx_parse_ops(BFX* bfx, void (*ops[128])(BFX*, BFX_FileIndex*)) {
     BFX_FileIndex idx;

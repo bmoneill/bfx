@@ -120,6 +120,7 @@ typedef enum {
 #define BFX_SPECIAL_INSTRUCTIONS_ENABLED(b) (!((b).flags & BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS))
 
 /**
+
  * @brief Structure to represent an index in a file (or user input).
  */
 typedef struct {
@@ -142,7 +143,7 @@ typedef struct {
 } BFX_Block;
 
 /**
- * @struct bfx_t
+ * @struct BFX
  * @brief Structure to store generic data for a brainfuck-like esolang interpreter.
  */
 typedef struct {

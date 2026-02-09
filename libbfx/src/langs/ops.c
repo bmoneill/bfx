@@ -136,6 +136,29 @@ void bfx_op_getchar(BFX* bf, BFX_FileIndex* index) {
 void bfx_op_putchar(BFX* bf, BFX_FileIndex* index) { putchar(bf->tape[bf->tp]); }
 
 /**
+ * @brief Begin procedure definition (pbrain).
+ *
+ * @param bf Pointer to the interpreter struct
+ * @param idx Pointer to the file index struct
+ */
+void bfx_op_start_procedure(BFX* bf, BFX_FileIndex* idx) {
+    size_t          i;
+    BFX_PBrainData* data                              = (BFX_PBrainData*) bf->lang_data;
+
+    data->procedures[data->procedures_len].start_idx  = bf->ip + 1;
+    data->procedures[data->procedures_len].identifier = bf->tape[bf->tp];
+    for (i = bf->ip; i < bf->program_len; i++) {
+        if (bf->program[i] == ')') {
+            data->procedures[data->procedures_len].end_idx = i;
+            bf->ip                                         = i + 1;
+            data->procedures_len++;
+            return;
+        }
+    }
+    BFX_ERROR("Expected ')'");
+}
+
+/**
  * @brief Call a procedure by its identifier (pbrain).
  */
 void bfx_op_call(BFX* bf, BFX_FileIndex* index) {

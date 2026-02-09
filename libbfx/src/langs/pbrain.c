@@ -27,29 +27,6 @@ void bfx_pbrain_init(BFX* bfx) {
 }
 
 /**
- * @brief Populate the procedure table with the given procedure.
- *
- * @param bf Pointer to the interpreter struct
- * @param idx Pointer to the file index struct
- */
-void bfx_pbrain_populate_procedure(BFX* bf, BFX_FileIndex* idx) {
-    size_t          i;
-    BFX_PBrainData* data                              = (BFX_PBrainData*) bf->lang_data;
-
-    data->procedures[data->procedures_len].start_idx  = bf->ip + 1;
-    data->procedures[data->procedures_len].identifier = bf->tape[bf->tp];
-    for (i = bf->ip; i < bf->program_len; i++) {
-        if (bf->program[i] == ')') {
-            data->procedures[data->procedures_len].end_idx = i;
-            bf->ip                                         = i + 1;
-            data->procedures_len++;
-            return;
-        }
-    }
-    BFX_ERROR("Expected ')'");
-}
-
-/**
  * @brief Run the P-Brain interpreter
  *
  * This function initializes and runs the P-Brain interpreter.
@@ -61,7 +38,7 @@ void bfx_pbrain_run(BFX* bfx) {
     void (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_loop_end, ['['] = bfx_op_loop_start, ['+'] = bfx_op_inc_t,
         ['-'] = bfx_op_dec_t,    ['>'] = bfx_op_inc_tp,     ['<'] = bfx_op_dec_tp,
-        [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['('] = bfx_pbrain_populate_procedure,
+        [','] = bfx_op_getchar,  ['.'] = bfx_op_putchar,    ['('] = bfx_op_start_procedure,
         [':'] = bfx_op_call,     [')'] = bfx_op_ret,
     };
 
