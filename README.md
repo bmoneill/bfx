@@ -2,6 +2,7 @@
 
 [![CI status](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml).
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
+[![Doxygen status](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml)
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
 programming language brainfuck, as well as an interpreter and REPL for some of
