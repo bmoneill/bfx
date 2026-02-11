@@ -1,7 +1,7 @@
 #ifndef BFX_LANGS_BRAINFORK_H
 #define BFX_LANGS_BRAINFORK_H
 
-#include "../bfx.h"
+#include "bfx.h"
 #include "util.h"
 
 #include <pthread.h>

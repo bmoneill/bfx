@@ -11,8 +11,6 @@
 
 #include <ctype.h>
 #include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #define BFX_GRIN_DATA  ((BFX_GrinData*) bfx->lang_data)
 #define BFX_CONVERT(a) ((BFX_GRIN_DATA->unit == BFX_GRIN_DEG) ? (a * M_PI / 180.0) : a)

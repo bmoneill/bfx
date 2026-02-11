@@ -4,8 +4,6 @@
  */
 #include "util.h"
 
-#include <stdio.h>
-
 /**
  * @brief Executes operations on the BFX instance.
  *

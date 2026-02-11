@@ -7,7 +7,7 @@
 #ifndef BFX_LANGS_PBRAIN_H
 #define BFX_LANGS_PBRAIN_H
 
-#include "../bfx.h"
+#include "bfx.h"
 
 #ifndef BFX_PBRAIN_MAX_PROCEDURES
 /**

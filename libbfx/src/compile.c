@@ -6,9 +6,6 @@
 
 #include "compile.h"
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 static void        bfx_init_tokens(void);

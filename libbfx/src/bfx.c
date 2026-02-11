@@ -21,6 +21,9 @@ static void bfx_reset_loops(BFX*);
  *
  * This function prints the current state of the BFX instance, including the line number,
  * tape pointer, instruction pointer, and memory map.
+ *
+ * @param bfx The BFX instance to diagnose.
+ * @param idx The file index to use for line information.
  */
 void bfx_diagnose(BFX* bfx, BFX_FileIndex* idx) {
     fprintf(stderr,
@@ -98,6 +101,8 @@ void bfx_run_repl(BFX* bfx) {
  * It ensures that matching brackets are correctly paired, allowing for
  * proper execution flow during interpretation.
  *
+ * @param bfx The BFX instance to build loops for.
+ *
  * @note This function does not return a value. If an error occurs (such as exceeding MAX_LOOPS),
  *       it prints an error message and terminates the program using exit(EXIT_FAILURE).
  */
@@ -153,18 +158,18 @@ void bfx_build_loops(BFX* bfx) {
 
 /**
  * @brief Frees the memory allocated for the BFX instance.
- * @param bf Pointer to the BFX instance.
+ * @param bfx Pointer to the BFX instance.
  */
-void bfx_free(BFX* bf) {
-    if (bf) {
-        if (bf->program) {
-            free(bf->program);
+void bfx_free(BFX* bfx) {
+    if (bfx) {
+        if (bfx->program) {
+            free(bfx->program);
         }
-        if (bf->tape) {
-            free(bf->tape);
+        if (bfx->tape) {
+            free(bfx->tape);
         }
-        if (bf->loops) {
-            free(bf->loops);
+        if (bfx->loops) {
+            free(bfx->loops);
         }
     }
 }
@@ -229,6 +234,8 @@ static int bfx_load_file(BFX* bfx, const char* path) {
  * @brief Resets the loop structure.
  *
  * This function resets the loop structure by clearing the loop buffer.
+ *
+ * @param bfx The BFX instance to reset loops for.
  */
 static void bfx_reset_loops(BFX* bfx) {
     memset(bfx->loops, 0, bfx->loops_len);

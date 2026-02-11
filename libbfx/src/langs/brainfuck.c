@@ -3,11 +3,9 @@
  *
  * This file contains the implementation of the Brainfuck interpreter.
  */
-
 #include "brainfuck.h"
-#include "util.h"
 
-#include <stdio.h>
+#include "util.h"
 
 /**
  * @brief Initialize the Brainfuck interpreter

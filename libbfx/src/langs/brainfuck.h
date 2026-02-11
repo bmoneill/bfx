@@ -8,7 +8,7 @@
 
 #define BFX_LANGS_BF_H
 
-#include "../bfx.h"
+#include "bfx.h"
 
 void bfx_brainfuck_init(BFX*);
 void bfx_brainfuck_run(BFX*);

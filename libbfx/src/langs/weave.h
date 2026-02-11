@@ -6,7 +6,7 @@
 #ifndef BFX_LANGS_WEAVE_H
 #define BFX_LANGS_WEAVE_H
 
-#include "../bfx.h"
+#include "bfx.h"
 
 void bfx_weave_init(BFX*);
 void bfx_weave_run(BFX*);

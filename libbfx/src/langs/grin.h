@@ -6,7 +6,7 @@
 #ifndef BFX_LANGS_GRIN_H
 #define BFX_LANGS_GRIN_H
 
-#include "../bfx.h"
+#include "bfx.h"
 
 /**
  * @brief Unit of measurement for Grin language.

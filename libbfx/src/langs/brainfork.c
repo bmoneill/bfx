@@ -3,9 +3,6 @@
 #include "brainfuck.h"
 #include "util.h"
 
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 static void (*bfx_brainfork_ops[128])(BFX*, BFX_FileIndex*) = {

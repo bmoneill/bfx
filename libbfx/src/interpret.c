@@ -12,9 +12,6 @@
 #include "langs/pbrain.h"
 #include "langs/weave.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
 void bfx_interpret(BFX* bfx) {
     switch (bfx->lang) {
     case BFX_LANG_BRAINFUCK:

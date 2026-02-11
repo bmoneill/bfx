@@ -9,9 +9,6 @@
 #include "brainfuck.h"
 #include "util.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
 /**
  * @brief Initialize the P-Brain interpreter
  *
