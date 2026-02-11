@@ -13,7 +13,7 @@
 /**
  * @brief Head of the compiled program
  */
-#define BFX_COMPILE_HEAD "#include <stdio.h>\nint main(void) {unsigned char t[%ld];int p=0;"
+#define BFX_COMPILE_HEAD "#include <bfx/bfx.h>\nint main(void) {BFX bfx; char* program;"
 #endif
 
 #ifndef BFX_TMP_FILE_PATH

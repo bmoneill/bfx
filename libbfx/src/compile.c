@@ -11,9 +11,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void        bfx_init_tokens(void);
-
-static const char* tokens[']' + 1];
+#define BFX_SET_PROPERTY_BOOL(property, value)                                                     \
+    if (value) {                                                                                   \
+        fprintf(output, "bfx.%s = true;", property);                                               \
+    } else {                                                                                       \
+        fprintf(output, "bfx.%s = false;", property);                                              \
+    }
+#define BFX_SET_PROPERTY_INT(property, value)      fprintf(output, "bfx.%s = %d;", property, value)
+#define BFX_SET_PROPERTY_SIZE_T(property, value)   fprintf(output, "bfx.%s = %ld;", property, value)
+#define BFX_SET_PROPERTY_UINT16_T(property, value) fprintf(output, "bfx.%s = %d;", property, value)
 
 /**
  * @brief Compile Brainfuck code from input_path to output_path.
@@ -51,14 +57,26 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
     }
 
     /*** Actual compilation ***/
-    bfx_init_tokens();
-    int depth = 0;
-    fprintf(output, BFX_COMPILE_HEAD, bfx->tape_size);
+    fprintf(output, BFX_COMPILE_HEAD);
+    BFX_SET_PROPERTY_UINT16_T("flags", bfx->flags);
+    BFX_SET_PROPERTY_BOOL("receiving", bfx->receiving);
+    BFX_SET_PROPERTY_SIZE_T("program_len", bfx->program_len);
+    BFX_SET_PROPERTY_SIZE_T("program_size", bfx->program_size);
+    BFX_SET_PROPERTY_SIZE_T("input_start", bfx->input_start);
+    BFX_SET_PROPERTY_SIZE_T("input_ptr", bfx->input_ptr);
+    BFX_SET_PROPERTY_SIZE_T("input_len", bfx->input_len);
+    BFX_SET_PROPERTY_SIZE_T("tape_size", bfx->tape_size);
+    BFX_SET_PROPERTY_INT("ip", bfx->ip);
+    BFX_SET_PROPERTY_INT("tp", bfx->tp);
+    BFX_SET_PROPERTY_INT("tp_max", bfx->tp_max);
+    BFX_SET_PROPERTY_SIZE_T("loops_len", bfx->loops_len);
+    BFX_SET_PROPERTY_SIZE_T("loops_size", bfx->loops_size);
+    BFX_SET_PROPERTY_SIZE_T("input_max", bfx->input_max);
+    BFX_SET_PROPERTY_INT("eof_behavior", bfx->eof_behavior);
+    BFX_SET_PROPERTY_INT("lang", bfx->lang);
+
     int c;
     while ((c = fgetc(input)) != EOF) {
-        if (tokens[c]) {
-            fprintf(output, "%s", tokens[c]);
-        }
     }
 
     if (depth != 0) {
@@ -84,19 +102,4 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
             BFX_ERROR("Failed to compile program");
         }
     }
-}
-
-/**
- * @brief Initializes compiler tokens
- */
-static void bfx_init_tokens(void) {
-    memset(tokens, 0, (']' + 1) * sizeof(char*));
-    tokens['>'] = "p++;";
-    tokens['<'] = "p--;";
-    tokens['+'] = "t[p]++;";
-    tokens['-'] = "t[p]--;";
-    tokens['.'] = "putchar(t[p]);";
-    tokens[','] = "t[p]=getchar();";
-    tokens['['] = "while(t[p]){";
-    tokens[']'] = "}";
 }
