@@ -5,6 +5,4 @@
 void setUp(void) {}
 void tearDown(void) {}
 
-void test_bfx_diagnose(void) {
-    TEST_ASSERT_EQUAL(1,1);
-}
+void test_bfx_diagnose(void) { TEST_ASSERT_EQUAL(1, 1); }
