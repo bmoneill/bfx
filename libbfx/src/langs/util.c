@@ -91,7 +91,10 @@ void bfx_parse_ops(BFX* bfx, int (*ops[128])(BFX*, BFX_FileIndex*)) {
         if (ops[op]) {
             int ret = ops[(int) bfx->program[bfx->ip]](bfx, &idx);
             if (ret) {
-                fprintf(stderr, "libbfx: Error (%d,%d): Operation failed.\n", idx.line, idx.line_idx);
+                fprintf(stderr,
+                        "libbfx: Error (%d,%d): Operation failed.\n",
+                        idx.line,
+                        idx.line_idx);
                 return;
             }
         }
