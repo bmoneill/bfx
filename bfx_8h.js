@@ -36,7 +36,6 @@ var bfx_8h =
       [ "BFX_LANG_GRIN", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa8ebdcfb4120f4ded081cb3fcb1534e15", null ],
       [ "BFX_LANG_WEAVE", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa7de93b4362021619db45827bf452f361", null ]
     ] ],
-    [ "bfx_build_loops", "bfx_8h.html#ad951c1ed1e5bc86bba18755e6db1987b", null ],
     [ "bfx_free", "bfx_8h.html#a28ce396c4e6fda1189680109a32c5db4", null ],
     [ "bfx_run_file", "bfx_8h.html#ae87752fa022fc85bfc6f7ec7a42508ad", null ],
     [ "bfx_run_repl", "bfx_8h.html#aad42be1c5378097fcea488601647def4", null ]

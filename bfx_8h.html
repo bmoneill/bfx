@@ -101,6 +101,8 @@ $(document).ready(function(){initNavTree('bfx_8h.html',''); initResizable(); });
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 </div>
 <p><a href="bfx_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -202,9 +204,6 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad951c1ed1e5bc86bba18755e6db1987b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#ad951c1ed1e5bc86bba18755e6db1987b">bfx_build_loops</a> (<a class="el" href="structBFX.html">BFX</a> *)</td></tr>
-<tr class="memdesc:ad951c1ed1e5bc86bba18755e6db1987b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the loop structure for the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance.  <br /></td></tr>
-<tr class="separator:ad951c1ed1e5bc86bba18755e6db1987b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ce396c4e6fda1189680109a32c5db4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#a28ce396c4e6fda1189680109a32c5db4">bfx_free</a> (<a class="el" href="structBFX.html">BFX</a> *)</td></tr>
 <tr class="memdesc:a28ce396c4e6fda1189680109a32c5db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory allocated for the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance.  <br /></td></tr>
 <tr class="separator:a28ce396c4e6fda1189680109a32c5db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -610,28 +609,6 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ad951c1ed1e5bc86bba18755e6db1987b" name="ad951c1ed1e5bc86bba18755e6db1987b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad951c1ed1e5bc86bba18755e6db1987b">&#9670;&#160;</a></span>bfx_build_loops()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void bfx_build_loops </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
-          <td class="paramname"><em>bfx</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Builds the loop structure for the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance. </p>
-<p>This function scans the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> program and constructs the necessary data structures to efficiently handle loop constructs ('[' and ']'). It ensures that matching brackets are correctly paired, allowing for proper execution flow during interpretation.</p>
-<dl class="section note"><dt>Note</dt><dd>This function does not return a value. If an error occurs (such as exceeding MAX_LOOPS), it prints an error message and terminates the program using exit(EXIT_FAILURE). </dd></dl>
-
-</div>
-</div>
 <a id="a28ce396c4e6fda1189680109a32c5db4" name="a28ce396c4e6fda1189680109a32c5db4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a28ce396c4e6fda1189680109a32c5db4">&#9670;&#160;</a></span>bfx_free()</h2>
 
@@ -642,16 +619,17 @@ Functions</h2></td></tr>
           <td class="memname">void bfx_free </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
-          <td class="paramname"><em>bf</em></td><td>)</td>
+          <td class="paramname"><em>bfx</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Frees the memory allocated for the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance. </p>
+<p>This function frees the memory allocated for the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance, including the program buffer, tape buffer, and loop buffer. It does not free the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance itself.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bf</td><td>Pointer to the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance. </td></tr>
+    <tr><td class="paramname">bfx</td><td>Pointer to the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance. </td></tr>
   </table>
   </dd>
 </dl>

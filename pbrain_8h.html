@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('pbrain_8h.html',''); initResizable(); 
   <div class="headertitle"><div class="title">pbrain.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="bfx_8h_source.html">../bfx.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="bfx_8h_source.html">bfx.h</a>&quot;</code><br />
 </div>
 <p><a href="pbrain_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -124,15 +124,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a4aa441d7ba1d9b2decc2f8ce67ab0c2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pbrain_8h.html#a4aa441d7ba1d9b2decc2f8ce67ab0c2a">bfx_pbrain_run</a> (<a class="el" href="structBFX.html">BFX</a> *bf)</td></tr>
 <tr class="memdesc:a4aa441d7ba1d9b2decc2f8ce67ab0c2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the P-Brain interpreter.  <br /></td></tr>
 <tr class="separator:a4aa441d7ba1d9b2decc2f8ce67ab0c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b59655bec4da75092f3c150fde80a1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pbrain_8h.html#a8b59655bec4da75092f3c150fde80a1f">bfx_op_pbrain_start_procedure</a> (<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)</td></tr>
-<tr class="memdesc:a8b59655bec4da75092f3c150fde80a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin procedure definition (pbrain).  <br /></td></tr>
-<tr class="separator:a8b59655bec4da75092f3c150fde80a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9004b678fd4454382e9315e42c01def"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pbrain_8h.html#ac9004b678fd4454382e9315e42c01def">bfx_op_pbrain_call</a> (<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)</td></tr>
-<tr class="memdesc:ac9004b678fd4454382e9315e42c01def"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a procedure by its identifier (pbrain).  <br /></td></tr>
-<tr class="separator:ac9004b678fd4454382e9315e42c01def"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf576f6ba14738c906872ea792b9f0f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pbrain_8h.html#aaf576f6ba14738c906872ea792b9f0f7">bfx_op_pbrain_ret</a> (<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)</td></tr>
-<tr class="memdesc:aaf576f6ba14738c906872ea792b9f0f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return from a procedure (pbrain).  <br /></td></tr>
-<tr class="separator:aaf576f6ba14738c906872ea792b9f0f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a714b3f98fb92ed9ac7bc75dc5cf6270b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pbrain_8h.html#a714b3f98fb92ed9ac7bc75dc5cf6270b">bfx_op_pbrain_start_procedure</a> (<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)</td></tr>
+<tr class="memdesc:a714b3f98fb92ed9ac7bc75dc5cf6270b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin procedure definition (pbrain).  <br /></td></tr>
+<tr class="separator:a714b3f98fb92ed9ac7bc75dc5cf6270b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a129c60a181f7dcb355389b172e059be8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pbrain_8h.html#a129c60a181f7dcb355389b172e059be8">bfx_op_pbrain_call</a> (<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)</td></tr>
+<tr class="memdesc:a129c60a181f7dcb355389b172e059be8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a procedure by its identifier (pbrain).  <br /></td></tr>
+<tr class="separator:a129c60a181f7dcb355389b172e059be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ea03058a9828bf57279231d2366075"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pbrain_8h.html#ae6ea03058a9828bf57279231d2366075">bfx_op_pbrain_ret</a> (<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)</td></tr>
+<tr class="memdesc:ae6ea03058a9828bf57279231d2366075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return from a procedure (pbrain).  <br /></td></tr>
+<tr class="separator:ae6ea03058a9828bf57279231d2366075"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains public definitions for the implementation of the P-Brain interpreter. </p>
@@ -155,14 +155,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ac9004b678fd4454382e9315e42c01def" name="ac9004b678fd4454382e9315e42c01def"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9004b678fd4454382e9315e42c01def">&#9670;&#160;</a></span>bfx_op_pbrain_call()</h2>
+<a id="a129c60a181f7dcb355389b172e059be8" name="a129c60a181f7dcb355389b172e059be8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a129c60a181f7dcb355389b172e059be8">&#9670;&#160;</a></span>bfx_op_pbrain_call()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_op_pbrain_call </td>
+          <td class="memname">int bfx_op_pbrain_call </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -185,14 +185,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaf576f6ba14738c906872ea792b9f0f7" name="aaf576f6ba14738c906872ea792b9f0f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf576f6ba14738c906872ea792b9f0f7">&#9670;&#160;</a></span>bfx_op_pbrain_ret()</h2>
+<a id="ae6ea03058a9828bf57279231d2366075" name="ae6ea03058a9828bf57279231d2366075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ea03058a9828bf57279231d2366075">&#9670;&#160;</a></span>bfx_op_pbrain_ret()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_op_pbrain_ret </td>
+          <td class="memname">int bfx_op_pbrain_ret </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -215,14 +215,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8b59655bec4da75092f3c150fde80a1f" name="a8b59655bec4da75092f3c150fde80a1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b59655bec4da75092f3c150fde80a1f">&#9670;&#160;</a></span>bfx_op_pbrain_start_procedure()</h2>
+<a id="a714b3f98fb92ed9ac7bc75dc5cf6270b" name="a714b3f98fb92ed9ac7bc75dc5cf6270b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a714b3f98fb92ed9ac7bc75dc5cf6270b">&#9670;&#160;</a></span>bfx_op_pbrain_start_procedure()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_op_pbrain_start_procedure </td>
+          <td class="memname">int bfx_op_pbrain_start_procedure </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>

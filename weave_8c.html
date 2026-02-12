@@ -100,8 +100,6 @@ $(document).ready(function(){initNavTree('weave_8c.html',''); initResizable(); }
 <code>#include &quot;<a class="el" href="brainfuck_8h_source.html">brainfuck.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 <code>#include &lt;pthread.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -121,21 +119,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a357d9d9dff61d73628ab2cb1347c3f5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="weave_8c.html#a357d9d9dff61d73628ab2cb1347c3f5b">bfx_weave_run</a> (<a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
 <tr class="memdesc:a357d9d9dff61d73628ab2cb1347c3f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the Weave interpreter.  <br /></td></tr>
 <tr class="separator:a357d9d9dff61d73628ab2cb1347c3f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af22c75a22ffa756e07b024ff15103d36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="weave_8c.html#af22c75a22ffa756e07b024ff15103d36">bfx_op_weave_toggle</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:af22c75a22ffa756e07b024ff15103d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle between thread and global tape (weave).  <br /></td></tr>
-<tr class="separator:af22c75a22ffa756e07b024ff15103d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38aef7e5916f2a7188e87de38bd1546b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="weave_8c.html#a38aef7e5916f2a7188e87de38bd1546b">bfx_op_weave_toggle</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a38aef7e5916f2a7188e87de38bd1546b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle between thread and global tape (weave).  <br /></td></tr>
+<tr class="separator:a38aef7e5916f2a7188e87de38bd1546b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains functions related to interpreting the Weave language. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="af22c75a22ffa756e07b024ff15103d36" name="af22c75a22ffa756e07b024ff15103d36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af22c75a22ffa756e07b024ff15103d36">&#9670;&#160;</a></span>bfx_op_weave_toggle()</h2>
+<a id="a38aef7e5916f2a7188e87de38bd1546b" name="a38aef7e5916f2a7188e87de38bd1546b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38aef7e5916f2a7188e87de38bd1546b">&#9670;&#160;</a></span>bfx_op_weave_toggle()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_op_weave_toggle </td>
+          <td class="memname">int bfx_op_weave_toggle </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
