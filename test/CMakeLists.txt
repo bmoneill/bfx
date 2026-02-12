@@ -19,3 +19,4 @@ function(add_bfx_test name)
 endfunction()
 
 add_bfx_test(bfx)
+add_bfx_test(brainfuck)
