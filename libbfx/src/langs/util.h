@@ -14,6 +14,7 @@
 #define BFX_MAX_THREADS 128
 #endif
 
+void bfx_build_loops(BFX*);
 void bfx_parse_ops(BFX*, void (*[128])(BFX*, BFX_FileIndex*));
 
 #endif
