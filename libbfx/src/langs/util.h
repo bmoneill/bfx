@@ -15,6 +15,6 @@
 #endif
 
 void bfx_build_loops(BFX*);
-void bfx_parse_ops(BFX*, void (*[128])(BFX*, BFX_FileIndex*));
+void bfx_parse_ops(BFX*, int (*[128])(BFX*, BFX_FileIndex*));
 
 #endif

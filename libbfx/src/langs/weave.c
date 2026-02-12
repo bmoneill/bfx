@@ -27,7 +27,7 @@ typedef struct {
  */
 typedef struct {
     BFX* bfx; //!< Pointer to the main BFX interpreter structure
-    void (*ops[128])(BFX*, BFX_FileIndex*); //!< Pointer to the array of operations
+    int (*ops[128])(BFX*, BFX_FileIndex*); //!< Pointer to the array of operations
 } BFX_WeaveWrapper;
 
 static void* bfx_weave_create(void*);
@@ -86,7 +86,7 @@ void bfx_weave_init(BFX* bfx) {
  * @param bfx Pointer to the interpreter struct
  */
 void bfx_weave_run(BFX* bfx) {
-    void (*ops[128])(BFX*, BFX_FileIndex*) = {
+    int (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_brainfuck_loop_end, ['['] = bfx_op_brainfuck_loop_start,
         ['+'] = bfx_op_brainfuck_inc_t,    ['-'] = bfx_op_brainfuck_dec_t,
         ['>'] = bfx_op_brainfuck_inc_tp,   ['<'] = bfx_op_brainfuck_dec_tp,
@@ -138,8 +138,9 @@ static void* bfx_weave_create(void* data) {
 /**
  * @brief Toggle between thread and global tape (weave).
  */
-void bfx_op_weave_toggle(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_weave_toggle(BFX* bfx, BFX_FileIndex* index) {
     uint8_t* old_tape = bfx->tape;
     bfx->tape         = bfx->lang_data;
     bfx->lang_data    = old_tape;
+    return 0;
 }

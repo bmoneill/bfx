@@ -18,7 +18,7 @@ void bfx_brainfuck_init(BFX* bfx) { bfx_build_loops(bfx); }
  * @param bfx Pointer to the interpreter struct
  */
 void bfx_brainfuck_run(BFX* bfx) {
-    void (*ops[128])(BFX*, BFX_FileIndex*) = {
+    int (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_brainfuck_loop_end, ['['] = bfx_op_brainfuck_loop_start,
         ['+'] = bfx_op_brainfuck_inc_t,    ['-'] = bfx_op_brainfuck_dec_t,
         ['>'] = bfx_op_brainfuck_inc_tp,   ['<'] = bfx_op_brainfuck_dec_tp,
@@ -30,7 +30,7 @@ void bfx_brainfuck_run(BFX* bfx) {
 /**
  * @brief Increment tape pointer (brainfuck).
  */
-void bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
     bfx->tp++;
     if ((size_t) bfx->tp > bfx->tape_size) {
         fprintf(stderr,
@@ -41,12 +41,13 @@ void bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
     } else if (bfx->tp > bfx->tp_max) {
         bfx->tp_max = bfx->tp;
     }
+    return 0;
 }
 
 /**
  * @brief Decrement tape pointer (brainfuck).
  */
-void bfx_op_brainfuck_dec_tp(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_brainfuck_dec_tp(BFX* bfx, BFX_FileIndex* index) {
     bfx->tp--;
     if (bfx->tp < 0) {
         fprintf(stderr,
@@ -55,52 +56,67 @@ void bfx_op_brainfuck_dec_tp(BFX* bfx, BFX_FileIndex* index) {
                 index->line_idx);
         bfx->tp = 0;
     }
+    return 0;
 }
 
 /**
  * @brief Increment tape value (brainfuck).
  */
-void bfx_op_brainfuck_inc_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[bfx->tp]++; }
+int bfx_op_brainfuck_inc_t(BFX* bfx, BFX_FileIndex* index) {
+    bfx->tape[bfx->tp]++;
+    return 0;
+}
 
 /**
  * @brief Decrement tape value (brainfuck).
  */
-void bfx_op_brainfuck_dec_t(BFX* bfx, BFX_FileIndex* index) { bfx->tape[bfx->tp]--; }
+int bfx_op_brainfuck_dec_t(BFX* bfx, BFX_FileIndex* index) {
+    bfx->tape[bfx->tp]--;
+    return 0;
+}
 
 /**
  * @brief Start of loop (brainfuck).
  */
-void bfx_op_brainfuck_loop_start(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_brainfuck_loop_start(BFX* bfx, BFX_FileIndex* index) {
     if (!bfx->tape[bfx->tp]) {
         for (size_t i = 0; i < bfx->loops_len; i++) {
             if (bfx->loops[i].start.idx == bfx->ip) {
                 bfx->ip         = bfx->loops[i].end.idx;
                 index->line     = bfx->loops[i].end.line;
                 index->line_idx = bfx->loops[i].end.line_idx;
+                return 0;
             }
         }
     }
+
+    BFX_ERROR("Unmatched '[' encountered.");
+    return 1;
 }
 
 /**
  * @brief End of loop (brainfuck).
  */
-void bfx_op_brainfuck_loop_end(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_brainfuck_loop_end(BFX* bfx, BFX_FileIndex* index) {
     if (bfx->tape[bfx->tp]) {
         for (size_t i = 0; i < bfx->loops_len; i++) {
             if (bfx->loops[i].end.idx == bfx->ip) {
                 bfx->ip         = bfx->loops[i].start.idx;
                 index->line     = bfx->loops[i].start.line;
                 index->line_idx = bfx->loops[i].start.line_idx;
+                return 0;
             }
         }
     }
+
+    BFX_ERROR("Unmatched ']' encountered.");
+    return 1;
 }
 
 /**
  * @brief Get character from input or stdin (brainfuck).
  */
-void bfx_op_brainfuck_getchar(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_brainfuck_getchar(BFX* bfx, BFX_FileIndex* index) {
     char c;
     if (bfx->flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
         if (bfx->input_ptr < bfx->input_len) {
@@ -131,9 +147,13 @@ void bfx_op_brainfuck_getchar(BFX* bfx, BFX_FileIndex* index) {
             break;
         }
     }
+    return 0;
 }
 
 /**
  * @brief Output the current cell value as a character (brainfuck).
  */
-void bfx_op_brainfuck_putchar(BFX* bf, BFX_FileIndex* index) { putchar(bf->tape[bf->tp]); }
+int bfx_op_brainfuck_putchar(BFX* bf, BFX_FileIndex* index) {
+    putchar(bf->tape[bf->tp]);
+    return 0;
+}

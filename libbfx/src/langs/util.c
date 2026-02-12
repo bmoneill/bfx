@@ -73,7 +73,7 @@ void bfx_build_loops(BFX* bfx) {
  * @param bfx The BFX instance to run
  * @param ops Operation map
  */
-void bfx_parse_ops(BFX* bfx, void (*ops[128])(BFX*, BFX_FileIndex*)) {
+void bfx_parse_ops(BFX* bfx, int (*ops[128])(BFX*, BFX_FileIndex*)) {
     BFX_FileIndex idx;
     idx.idx      = 0;
     idx.line_idx = 0;
@@ -89,7 +89,11 @@ void bfx_parse_ops(BFX* bfx, void (*ops[128])(BFX*, BFX_FileIndex*)) {
 
         int op = (int) bfx->program[bfx->ip];
         if (ops[op]) {
-            ops[(int) bfx->program[bfx->ip]](bfx, &idx);
+            int ret = ops[(int) bfx->program[bfx->ip]](bfx, &idx);
+            if (ret) {
+                fprintf(stderr, "libbfx: Error (%d,%d): Operation failed.\n", idx.line, idx.line_idx);
+                return;
+            }
         }
         bfx->ip++;
     }

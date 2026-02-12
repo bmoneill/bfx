@@ -91,6 +91,10 @@ void bfx_run_repl(BFX* bfx) {
 
 /**
  * @brief Frees the memory allocated for the BFX instance.
+ *
+ * This function frees the memory allocated for the BFX instance, including the program buffer,
+ * tape buffer, and loop buffer. It does not free the BFX instance itself.
+ *
  * @param bfx Pointer to the BFX instance.
  */
 void bfx_free(BFX* bfx) {

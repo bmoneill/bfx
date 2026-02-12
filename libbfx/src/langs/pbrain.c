@@ -6,6 +6,7 @@
 
 #include "pbrain.h"
 
+#include "bfx.h"
 #include "brainfuck.h"
 #include "util.h"
 
@@ -32,7 +33,7 @@ void bfx_pbrain_init(BFX* bfx) {
  * @param bfx Pointer to the interpreter struct
  */
 void bfx_pbrain_run(BFX* bfx) {
-    void (*ops[128])(BFX*, BFX_FileIndex*) = {
+    int (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_brainfuck_loop_end,
         ['['] = bfx_op_brainfuck_loop_start,
         ['+'] = bfx_op_brainfuck_inc_t,
@@ -61,7 +62,7 @@ void bfx_pbrain_run(BFX* bfx) {
  * @param bf Pointer to the interpreter struct
  * @param idx Pointer to the file index struct
  */
-void bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
+int bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
     size_t          i;
     BFX_PBrainData* data                              = (BFX_PBrainData*) bfx->lang_data;
 
@@ -72,34 +73,43 @@ void bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
             data->procedures[data->procedures_len].end_idx = i;
             bfx->ip                                        = i + 1;
             data->procedures_len++;
-            return;
+            return 0;
         }
     }
     BFX_ERROR("Expected ')'");
+    return 1;
 }
 
 /**
  * @brief Call a procedure by its identifier (pbrain).
  */
-void bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     for (size_t i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bfx->tape[bfx->tp]) {
             data->stack_top++;
+            if (data->stack_top > BFX_INITIAL_LOOP_SIZE) {
+                BFX_ERROR("Stack overflow.");
+                return 1;
+            }
             data->stack[data->stack_top] = bfx->ip;
             bfx->ip                      = data->procedures[i].start_idx;
-            return;
+            return 0;
         }
     }
+    return 1;
 }
 
 /**
  * @brief Return from a procedure (pbrain).
  */
-void bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
+int bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     if (data->stack_top > 0) {
         bfx->ip = data->stack[data->stack_top];
         data->stack_top--;
+        return 0;
     }
+    BFX_ERROR("Stack underflow.");
+    return 1;
 }

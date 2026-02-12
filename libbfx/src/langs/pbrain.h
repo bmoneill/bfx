@@ -44,8 +44,8 @@ void bfx_pbrain_init(BFX* bfx);
 void bfx_pbrain_run(BFX* bf);
 
 /* ops */
-void bfx_op_pbrain_start_procedure(BFX*, BFX_FileIndex*);
-void bfx_op_pbrain_call(BFX*, BFX_FileIndex*);
-void bfx_op_pbrain_ret(BFX*, BFX_FileIndex*);
+int bfx_op_pbrain_start_procedure(BFX*, BFX_FileIndex*);
+int bfx_op_pbrain_call(BFX*, BFX_FileIndex*);
+int bfx_op_pbrain_ret(BFX*, BFX_FileIndex*);
 
 #endif
