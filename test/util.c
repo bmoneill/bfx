@@ -14,7 +14,7 @@ char      out[1024];
 
 void      initialize(const char*);
 
-void initialize(const char* program_str) {
+void      initialize(const char* program_str) {
     size_t program_len = strlen(program_str);
     memset(&bfx, 0, sizeof(bfx));
     memset(tape, 0, sizeof(uint8_t) * BFX_DEFAULT_TAPE_SIZE);
