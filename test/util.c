@@ -1,6 +1,18 @@
-#include "util.h"
-
 #include <string.h>
+
+#include "bfx.h"
+
+#define REDIRECT_STDOUT                                                                            \
+    freopen("/dev/null", "a", stdout);                                                             \
+    setbuf(stdout, out);
+
+BFX       bfx;
+char      program[1024];
+uint8_t   tape[BFX_DEFAULT_TAPE_SIZE];
+BFX_Block loops[1024];
+char      out[1024];
+
+void      initialize(const char*);
 
 void initialize(const char* program_str) {
     size_t program_len = strlen(program_str);
