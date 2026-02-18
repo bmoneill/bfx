@@ -74,18 +74,28 @@ void test_bfx_op_brainfuck_dec_t_WhereCellIsUnderflowed(void) {
     TEST_ASSERT_EQUAL_INT(255, bfx.tape[bfx.tp]);
 }
 
-void test_bfx_op_brainfuck_loops_WhereCellIsZero(void) {
+void test_brainfuck_loops_WhereCellIsZero(void) {
     EXECUTE("[+>]");
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[0]);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[1]);
 }
 
-void test_bfx_op_brainfuck_loops_WhereCellIsNonZero(void) {
+void test_brainfuck_loops_WhereCellIsNonZero(void) {
     EXECUTE("+[>+<-]");
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[0]);
     TEST_ASSERT_EQUAL_INT(1, bfx.tape[1]);
+}
+
+void test_brainfuck_loops_WithNonMatchingOpenBracket(void) {
+    EXECUTE("+[>+<-");
+    TEST_ASSERT_EQUAL_INT(BFX_SYNTAX_ERROR, ret);
+}
+
+void test_brainfuck_loops_WithNonMatchingCloseBracket(void) {
+    EXECUTE("+>+<-]");
+    TEST_ASSERT_EQUAL_INT(BFX_SYNTAX_ERROR, ret);
 }
 
 void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsTrue(void) {
@@ -169,5 +179,3 @@ void test_bfx_op_putchar(void) {
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_STRING("A", stdout_buffer);
 }
-
-// TODO: Loop error tests
