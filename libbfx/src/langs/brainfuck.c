@@ -5,32 +5,33 @@
  */
 #include "brainfuck.h"
 
+#include "bfx.h"
 #include "util.h"
 
 /**
  * @brief Initialize the Brainfuck interpreter
  * @param bfx Pointer to the already-allocated interpreter struct
  */
-void bfx_brainfuck_init(BFX* bfx) { bfx_build_loops(bfx); }
+BFX_Error bfx_brainfuck_init(BFX* bfx) { return bfx_build_loops(bfx); }
 
 /**
  * @brief Run the Brainfuck interpreter
  * @param bfx Pointer to the interpreter struct
  */
-void bfx_brainfuck_run(BFX* bfx) {
-    int (*ops[128])(BFX*, BFX_FileIndex*) = {
+BFX_Error bfx_brainfuck_run(BFX* bfx) {
+    BFX_Error (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_brainfuck_loop_end, ['['] = bfx_op_brainfuck_loop_start,
         ['+'] = bfx_op_brainfuck_inc_t,    ['-'] = bfx_op_brainfuck_dec_t,
         ['>'] = bfx_op_brainfuck_inc_tp,   ['<'] = bfx_op_brainfuck_dec_tp,
         [','] = bfx_op_brainfuck_getchar,  ['.'] = bfx_op_brainfuck_putchar,
     };
-    bfx_parse_ops(bfx, ops);
+    return bfx_parse_ops(bfx, ops);
 }
 
 /**
  * @brief Increment tape pointer (brainfuck).
  */
-int bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
     bfx->tp++;
     if ((size_t) bfx->tp >= bfx->tape_size) {
         fprintf(stderr,
@@ -41,13 +42,13 @@ int bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
     } else if (bfx->tp > bfx->tp_max) {
         bfx->tp_max = bfx->tp;
     }
-    return 0;
+    return BFX_SUCCESS;
 }
 
 /**
  * @brief Decrement tape pointer (brainfuck).
  */
-int bfx_op_brainfuck_dec_tp(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_dec_tp(BFX* bfx, BFX_FileIndex* index) {
     bfx->tp--;
     if (bfx->tp < 0) {
         fprintf(stderr,
@@ -56,67 +57,73 @@ int bfx_op_brainfuck_dec_tp(BFX* bfx, BFX_FileIndex* index) {
                 index->line_idx);
         bfx->tp = 0;
     }
-    return 0;
+    return BFX_SUCCESS;
 }
 
 /**
  * @brief Increment tape value (brainfuck).
  */
-int bfx_op_brainfuck_inc_t(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_inc_t(BFX* bfx, BFX_FileIndex* index) {
     bfx->tape[bfx->tp]++;
-    return 0;
+    return BFX_SUCCESS;
 }
 
 /**
  * @brief Decrement tape value (brainfuck).
  */
-int bfx_op_brainfuck_dec_t(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_dec_t(BFX* bfx, BFX_FileIndex* index) {
     bfx->tape[bfx->tp]--;
-    return 0;
+    return BFX_SUCCESS;
 }
 
 /**
  * @brief Start of loop (brainfuck).
  */
-int bfx_op_brainfuck_loop_start(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_loop_start(BFX* bfx, BFX_FileIndex* index) {
     if (!bfx->tape[bfx->tp]) {
         for (size_t i = 0; i < bfx->loops_len; i++) {
             if (bfx->loops[i].start.idx == bfx->ip) {
                 bfx->ip         = bfx->loops[i].end.idx;
                 index->line     = bfx->loops[i].end.line;
                 index->line_idx = bfx->loops[i].end.line_idx;
-                return 0;
+                return BFX_SUCCESS;
             }
         }
-        BFX_ERROR("Unmatched '[' encountered.");
-        return 1;
+        fprintf(stderr,
+                "Unmatched '[' encountered at line (%d,%d)\n",
+                index->line,
+                index->line_idx);
+        return BFX_SYNTAX_ERROR;
     }
-    return 0;
+    return BFX_SUCCESS;
 }
 
 /**
  * @brief End of loop (brainfuck).
  */
-int bfx_op_brainfuck_loop_end(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_loop_end(BFX* bfx, BFX_FileIndex* index) {
     if (bfx->tape[bfx->tp]) {
         for (size_t i = 0; i < bfx->loops_len; i++) {
             if (bfx->loops[i].end.idx == bfx->ip) {
                 bfx->ip         = bfx->loops[i].start.idx;
                 index->line     = bfx->loops[i].start.line;
                 index->line_idx = bfx->loops[i].start.line_idx;
-                return 0;
+                return BFX_SUCCESS;
             }
         }
-        BFX_ERROR("Unmatched ']' encountered.");
-        return 1;
+        fprintf(stderr,
+                "Unmatched ']' encountered at line (%d,%d)\n",
+                index->line,
+                index->line_idx);
+        return BFX_SYNTAX_ERROR;
     }
-    return 0;
+    return BFX_SUCCESS;
 }
 
 /**
  * @brief Get character from input or stdin (brainfuck).
  */
-int bfx_op_brainfuck_getchar(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_getchar(BFX* bfx, BFX_FileIndex* index) {
     char c;
     if (bfx->flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
         if (bfx->input_ptr < bfx->input_len) {
@@ -147,13 +154,13 @@ int bfx_op_brainfuck_getchar(BFX* bfx, BFX_FileIndex* index) {
             break;
         }
     }
-    return 0;
+    return BFX_SUCCESS;
 }
 
 /**
  * @brief Output the current cell value as a character (brainfuck).
  */
-int bfx_op_brainfuck_putchar(BFX* bf, BFX_FileIndex* index) {
+BFX_Error bfx_op_brainfuck_putchar(BFX* bf, BFX_FileIndex* index) {
     putchar(bf->tape[bf->tp]);
-    return 0;
+    return BFX_SUCCESS;
 }

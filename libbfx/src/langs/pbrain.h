@@ -40,12 +40,12 @@ typedef struct {
     size_t              stack_top; //!< Top index of the stack
 } BFX_PBrainData;
 
-void bfx_pbrain_init(BFX* bfx);
-void bfx_pbrain_run(BFX* bf);
+BFX_Error bfx_pbrain_init(BFX*);
+BFX_Error bfx_pbrain_run(BFX*);
 
 /* ops */
-int bfx_op_pbrain_start_procedure(BFX*, BFX_FileIndex*);
-int bfx_op_pbrain_call(BFX*, BFX_FileIndex*);
-int bfx_op_pbrain_ret(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_pbrain_start_procedure(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_pbrain_call(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_pbrain_ret(BFX*, BFX_FileIndex*);
 
 #endif

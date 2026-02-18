@@ -6,73 +6,84 @@
 
 #define INITIALIZE(s)                                                                              \
     initialize(s);                                                                                 \
-    bfx.lang = BFX_LANG_BRAINFUCK;
+    bfx.lang = BFX_LANG_brainfuck;
 
 #define EXECUTE(s)                                                                                 \
     INITIALIZE(s);                                                                                 \
-    bfx_interpret(&bfx);
+    ret = bfx_interpret(&bfx);
 
 BFX  bfx;
+int  ret;
 
 void setUp(void) { memset(stdout_buffer, 0, BUFFER_LENGTH); }
 void tearDown(void) {}
 
 void test_bfx_op_brainfuck_inc_tp(void) {
     EXECUTE(">");
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(1, bfx.tp);
 }
 
 void test_bfx_op_brainfuck_inc_tp_WhereTapePointerIsOverflowed(void) {
     INITIALIZE(">");
     bfx.tp = BFX_DEFAULT_TAPE_SIZE - 1;
-    bfx_interpret(&bfx);
+    ret    = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tp);
 }
 
 void test_bfx_op_brainfuck_dec_tp(void) {
     INITIALIZE("<");
     bfx.tp = 1;
-    bfx_interpret(&bfx);
+    ret    = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tp);
 }
 
 void test_bfx_op_brainfuck_dec_tp_WhereTapePointerIsUnderflowed(void) {
     EXECUTE("<");
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tp);
 }
 
 void test_bfx_op_brainfuck_inc_t(void) {
     EXECUTE("+");
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(1, bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_brainfuck_inc_t_WhereCellIsOverflowed(void) {
     INITIALIZE("+");
     bfx.tape[bfx.tp] = 255;
-    bfx_interpret(&bfx);
+    ret              = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_brainfuck_dec_t(void) {
     INITIALIZE("-");
     bfx.tape[bfx.tp] = 1;
-    bfx_interpret(&bfx);
+    ret              = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_brainfuck_dec_t_WhereCellIsUnderflowed(void) {
     EXECUTE("-");
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(255, bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_brainfuck_loops_WhereCellIsZero(void) {
     EXECUTE("[+>]");
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[0]);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[1]);
 }
 
 void test_bfx_op_brainfuck_loops_WhereCellIsNonZero(void) {
     EXECUTE("+[>+<-]");
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[0]);
     TEST_ASSERT_EQUAL_INT(1, bfx.tape[1]);
 }
@@ -88,7 +99,8 @@ void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsTrue(void) {
     bfx.input_ptr   = bfx.input_start;
     bfx.receiving   = true;
     bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
-    bfx_interpret(&bfx);
+    ret = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT('A', bfx.tape[bfx.tp]);
 }
 
@@ -99,7 +111,8 @@ void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsFalse(void) {
     bfx.input_ptr   = bfx.input_start;
     bfx.receiving   = false;
     bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
-    bfx_interpret(&bfx);
+    ret = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
 }
 
@@ -108,7 +121,8 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsTrue(void) {
     bfx.receiving = true;
 
     WRITE_TO_STDIN("A");
-    bfx_interpret(&bfx);
+    ret = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT('A', bfx.tape[bfx.tp]);
 }
 
@@ -119,7 +133,8 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithZer
 
     WRITE_TO_STDIN("A");
     bfx.tape[bfx.tp] = 1;
-    bfx_interpret(&bfx);
+    ret              = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
 }
 
@@ -131,7 +146,8 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithDec
 
     WRITE_TO_STDIN("A");
     bfx.tape[bfx.tp] = 2;
-    bfx_interpret(&bfx);
+    ret              = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(1, bfx.tape[bfx.tp]);
 }
 
@@ -143,7 +159,8 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithUnc
 
     WRITE_TO_STDIN("A");
     bfx.tape[bfx.tp] = 2;
-    bfx_interpret(&bfx);
+    ret              = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(2, bfx.tape[bfx.tp]);
 }
 
@@ -151,8 +168,9 @@ void test_bfx_op_putchar(void) {
     INITIALIZE(".");
     bfx.tape[bfx.tp] = 'A';
     REDIRECT_STDOUT;
-    bfx_interpret(&bfx);
+    ret = bfx_interpret(&bfx);
     RESTORE_STDOUT;
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_STRING("A", stdout_buffer);
 }
 

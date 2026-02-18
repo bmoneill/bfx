@@ -14,11 +14,11 @@ typedef struct {
     size_t    thread_count; //!< Number of threads
 } BFX_BrainforkData;
 
-void  bfx_brainfork_init(BFX*);
-void  bfx_brainfork_run(BFX*);
-void* bfx_brainfork_run_child(void*);
+BFX_Error bfx_brainfork_init(BFX*);
+BFX_Error bfx_brainfork_run(BFX*);
+void*     bfx_brainfork_run_child(void*);
 
 /* ops */
-int bfx_op_brainfork_fork(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_brainfork_fork(BFX*, BFX_FileIndex*);
 
 #endif

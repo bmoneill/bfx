@@ -12,30 +12,26 @@
 #include "langs/pbrain.h"
 #include "langs/weave.h"
 
-void bfx_interpret(BFX* bfx) {
+#define BFX_LANG(s)                                                                                \
+    case BFX_LANG_##s:                                                                             \
+        ret = bfx_##s##_init(bfx);                                                                 \
+        if (ret) {                                                                                 \
+            return ret;                                                                            \
+        }                                                                                          \
+        return bfx_##s##_run(bfx);
+
+BFX_Error bfx_interpret(BFX* bfx) {
+    int ret;
     switch (bfx->lang) {
-    case BFX_LANG_BRAINFUCK:
-        bfx_brainfuck_init(bfx);
-        bfx_brainfuck_run(bfx);
-        break;
-    case BFX_LANG_PBRAIN:
-        bfx_pbrain_init(bfx);
-        bfx_pbrain_run(bfx);
-        break;
-    case BFX_LANG_BRAINFORK:
-        bfx_brainfork_init(bfx);
-        bfx_brainfork_run(bfx);
-        break;
-    case BFX_LANG_WEAVE:
-        bfx_weave_init(bfx);
-        bfx_weave_run(bfx);
-        break;
-    case BFX_LANG_GRIN:
-        bfx_grin_init(bfx);
-        bfx_grin_run(bfx);
-        break;
+        BFX_LANG(brainfuck)
+        BFX_LANG(brainfork)
+        BFX_LANG(grin)
+        BFX_LANG(pbrain)
+        BFX_LANG(weave)
     case BFX_LANG_UNKNOWN:
         BFX_ERROR("Unknown language");
-        break;
+        return BFX_RUNTIME_ERROR;
     }
+
+    return BFX_RUNTIME_ERROR;
 }

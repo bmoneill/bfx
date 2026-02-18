@@ -15,12 +15,12 @@
  *
  * @param bfx Pointer to the already-allocated interpreter struct
  */
-void bfx_pbrain_init(BFX* bfx) {
+BFX_Error bfx_pbrain_init(BFX* bfx) {
     bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     data->procedures_len = 0;
     data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
-    bfx_build_loops(bfx);
+    return bfx_build_loops(bfx);
 }
 
 /**
@@ -31,8 +31,8 @@ void bfx_pbrain_init(BFX* bfx) {
  *
  * @param bfx Pointer to the interpreter struct
  */
-void bfx_pbrain_run(BFX* bfx) {
-    int (*ops[128])(BFX*, BFX_FileIndex*) = {
+BFX_Error bfx_pbrain_run(BFX* bfx) {
+    BFX_Error (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_brainfuck_loop_end,
         ['['] = bfx_op_brainfuck_loop_start,
         ['+'] = bfx_op_brainfuck_inc_t,
@@ -46,12 +46,14 @@ void bfx_pbrain_run(BFX* bfx) {
         [')'] = bfx_op_pbrain_ret,
     };
 
-    bfx_parse_ops(bfx, ops);
+    int ret = bfx_parse_ops(bfx, ops);
 
     // Free language-specific data
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     free(data->stack);
     free(data);
+
+    return ret;
 }
 
 /**
@@ -60,7 +62,7 @@ void bfx_pbrain_run(BFX* bfx) {
  * @param bf Pointer to the interpreter struct
  * @param idx Pointer to the file index struct
  */
-int bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
+BFX_Error bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
     size_t          i;
     BFX_PBrainData* data                              = (BFX_PBrainData*) bfx->lang_data;
 
@@ -81,7 +83,7 @@ int bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
 /**
  * @brief Call a procedure by its identifier (pbrain).
  */
-int bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     for (size_t i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bfx->tape[bfx->tp]) {
@@ -101,7 +103,7 @@ int bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
 /**
  * @brief Return from a procedure (pbrain).
  */
-int bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     if (data->stack_top > 0) {
         bfx->ip = data->stack[data->stack_top];

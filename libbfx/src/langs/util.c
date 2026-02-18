@@ -3,6 +3,7 @@
  * @brief Language-independent utility functions.
  */
 #include "util.h"
+#include "bfx.h"
 
 /**
  * @brief Builds the loop structure for the BFX instance.
@@ -17,7 +18,7 @@
  * @note This function does not return a value. If an error occurs (such as exceeding MAX_LOOPS),
  *       it prints an error message and terminates the program using exit(EXIT_FAILURE).
  */
-void bfx_build_loops(BFX* bfx) {
+BFX_Error bfx_build_loops(BFX* bfx) {
     BFX_FileIndex* stack      = malloc(sizeof(BFX_FileIndex) * BFX_INITIAL_LOOP_SIZE);
     int            stack_top  = 0;
     int            stack_size = BFX_INITIAL_LOOP_SIZE;
@@ -45,7 +46,7 @@ void bfx_build_loops(BFX* bfx) {
                         line,
                         line_idx);
                 free(stack);
-                exit(EXIT_FAILURE);
+                return BFX_SYNTAX_ERROR;
             }
             BFX_FileIndex start                     = stack[--stack_top];
             bfx->loops[bfx->loops_len].start        = start;
@@ -63,8 +64,10 @@ void bfx_build_loops(BFX* bfx) {
 
     if (stack_top != 0) {
         fprintf(stderr, "libbfx: Error (%d,%d): Unmatched opening bracket '['.\n", line, line_idx);
-        exit(EXIT_FAILURE);
+        return BFX_SYNTAX_ERROR;
     }
+
+    return BFX_SUCCESS;
 }
 
 /**
@@ -72,8 +75,9 @@ void bfx_build_loops(BFX* bfx) {
  *
  * @param bfx The BFX instance to run
  * @param ops Operation map
+ * @return Error code
  */
-void bfx_parse_ops(BFX* bfx, int (*ops[128])(BFX*, BFX_FileIndex*)) {
+BFX_Error bfx_parse_ops(BFX* bfx, BFX_Error (*ops[128])(BFX*, BFX_FileIndex*)) {
     BFX_FileIndex idx;
     idx.idx      = 0;
     idx.line_idx = 0;
@@ -91,13 +95,42 @@ void bfx_parse_ops(BFX* bfx, int (*ops[128])(BFX*, BFX_FileIndex*)) {
         if (ops[op]) {
             int ret = ops[(int) bfx->program[bfx->ip]](bfx, &idx);
             if (ret) {
-                fprintf(stderr,
-                        "libbfx: Error (%d,%d): Operation failed.\n",
-                        idx.line,
-                        idx.line_idx);
-                return;
+                switch (ret) {
+                case BFX_SYNTAX_ERROR:
+                    fprintf(stderr,
+                            "libbfx: Error (%d,%d): Syntax error.\n",
+                            idx.line,
+                            idx.line_idx);
+                    break;
+                case BFX_OUT_OF_MEMORY_ERROR:
+                    fprintf(stderr,
+                            "libbfx: Error (%d,%d): Out of memory error.\n",
+                            idx.line,
+                            idx.line_idx);
+                    break;
+                case BFX_STACK_OVERFLOW_ERROR:
+                    fprintf(stderr,
+                            "libbfx: Error (%d,%d): Stack overflow error.\n",
+                            idx.line,
+                            idx.line_idx);
+                    break;
+                case BFX_STACK_UNDERFLOW_ERROR:
+                    fprintf(stderr,
+                            "libbfx: Error (%d,%d): Stack underflow error.\n",
+                            idx.line,
+                            idx.line_idx);
+                    break;
+                default:
+                    fprintf(stderr,
+                            "libbfx: Error (%d,%d): Unknown error.\n",
+                            idx.line,
+                            idx.line_idx);
+                    break;
+                }
+                return ret;
             }
         }
         bfx->ip++;
     }
+    return BFX_SUCCESS;
 }

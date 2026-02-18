@@ -1,3 +1,4 @@
+#include "bfx.h"
 #include "unity.h"
 
 #include "interpret.h"
@@ -5,6 +6,7 @@
 #include "util.c"
 
 BFX_PBrainData data;
+int            ret;
 
 void           setUp(void) {
     memset(stdout_buffer, 0, BUFFER_LENGTH);
@@ -18,11 +20,12 @@ void test_bfx_op_pbrain_procedures(void) {
     // then add 2 and print again.
     initialize("+([-]++++++++++.): ++.");
     bfx.lang_data = &data;
-    bfx.lang      = BFX_LANG_PBRAIN;
+    bfx.lang      = BFX_LANG_pbrain;
 
     REDIRECT_STDOUT;
-    bfx_interpret(&bfx);
+    ret = bfx_interpret(&bfx);
     RESTORE_STDOUT;
+    TEST_ASSERT_EQUAL_INT(0, ret);
     TEST_ASSERT_EQUAL_INT(10, stdout_buffer[0]);
     TEST_ASSERT_EQUAL_INT(12, stdout_buffer[1]);
 }
@@ -33,13 +36,23 @@ void test_bfx_op_pbrain_procedures_nested(void) {
     // adds 1, and prints again. Call procedure 2.
     initialize("+([-]++++++++++.) +([-]+:+.):");
     bfx.lang_data = &data;
-    bfx.lang      = BFX_LANG_PBRAIN;
+    bfx.lang      = BFX_LANG_pbrain;
 
     REDIRECT_STDOUT;
-    bfx_interpret(&bfx);
+    ret = bfx_interpret(&bfx);
     RESTORE_STDOUT;
+    TEST_ASSERT_EQUAL_INT(0, ret);
     TEST_ASSERT_EQUAL_INT(10, stdout_buffer[0]);
     TEST_ASSERT_EQUAL_INT(11, stdout_buffer[1]);
 }
 
-// TODO Stack overflow, underflow tests
+void test_bfx_op_pbrain_procedures_stack_overflow(void) {
+    // Make a procedure with identifier 1 that calls itself recursively.
+    // This should cause a stack overflow.
+    initialize("+(:):");
+    bfx.lang_data = &data;
+    bfx.lang      = BFX_LANG_pbrain;
+
+    int ret       = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_STACK_OVERFLOW_ERROR, ret);
+}

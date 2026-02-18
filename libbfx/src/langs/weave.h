@@ -8,11 +8,11 @@
 
 #include "bfx.h"
 
-void bfx_weave_init(BFX*);
-void bfx_weave_run(BFX*);
+BFX_Error bfx_weave_init(BFX*);
+BFX_Error bfx_weave_run(BFX*);
 
 /* ops */
-int bfx_op_weave_toggle(BFX*, BFX_FileIndex*);
-int bfx_op_weave_exit(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_weave_toggle(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_weave_exit(BFX*, BFX_FileIndex*);
 
 #endif

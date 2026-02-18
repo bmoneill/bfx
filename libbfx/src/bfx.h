@@ -60,6 +60,20 @@
 #define BFX_VERSION "unknown"
 #endif
 
+#ifndef BFX_DEFAULT_LANG
+/**
+ * @brief Default language for the interpreter/compiler
+ */
+#define BFX_DEFAULT_LANG BFX_LANG_BRAINFUCK
+#endif
+
+#ifndef BFX_DEFAULT_EOF_BEHAVIOR
+/**
+ * @brief Default EOF behavior for the interpreter
+ */
+#define BFX_DEFAULT_EOF_BEHAVIOR BFX_EOF_BEHAVIOR_ZERO
+#endif
+
 /**
  * @brief Behaviors for the interpreter when an EOF is encountered in input
  */
@@ -83,29 +97,26 @@ typedef enum {
  */
 typedef enum {
     BFX_LANG_UNKNOWN, //!< Unknown language
-    BFX_LANG_BRAINFUCK, //!< brainfuck language
-    BFX_LANG_BRAINFORK, //!< brainfork language
-    BFX_LANG_PBRAIN, //!< pbrain language
-    BFX_LANG_GRIN, //!< Grin language
-    BFX_LANG_WEAVE //!< Weave language
+    BFX_LANG_brainfuck, //!< brainfuck language
+    BFX_LANG_brainfork, //!< brainfork language
+    BFX_LANG_pbrain, //!< pbrain language
+    BFX_LANG_grin, //!< Grin language
+    BFX_LANG_weave //!< Weave language
 } BFX_Language;
 
-/**
- * @brief Default language for the interpreter/compiler
- */
-#define BFX_DEFAULT_LANG BFX_LANG_BRAINFUCK
-
-/**
- * @brief Default EOF behavior for the interpreter
- */
-#define BFX_DEFAULT_EOF_BEHAVIOR BFX_EOF_BEHAVIOR_ZERO
+typedef enum {
+    BFX_SUCCESS = 0, //!< No error
+    BFX_STACK_OVERFLOW_ERROR, //!< Stack overflow error
+    BFX_STACK_UNDERFLOW_ERROR, //!< Stack underflow error
+    BFX_SYNTAX_ERROR, //!< Syntax error
+    BFX_OUT_OF_MEMORY_ERROR, //!< Out of memory error
+    BFX_RUNTIME_ERROR, //!< Runtime error
+} BFX_Error;
 
 /**
  * @brief Error handling macro for the interpreter
  */
-#define BFX_ERROR(s)                                                                               \
-    fprintf(stderr, "libbfx: Error: %s\n", s);                                                     \
-    exit(EXIT_FAILURE);
+#define BFX_ERROR(s) fprintf(stderr, "libbfx: Error: %s\n", s);
 
 /**
  * @brief Check if the interpreter is in debug mode (arg is of type BFX)
