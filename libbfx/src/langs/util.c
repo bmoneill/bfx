@@ -94,39 +94,32 @@ BFX_Error bfx_parse_ops(BFX* bfx, BFX_Error (*ops[128])(BFX*, BFX_FileIndex*)) {
         int op = (int) bfx->program[bfx->ip];
         if (ops[op]) {
             int ret = ops[(int) bfx->program[bfx->ip]](bfx, &idx);
-            if (ret) {
-                switch (ret) {
-                case BFX_SYNTAX_ERROR:
-                    fprintf(stderr,
-                            "libbfx: Error (%d,%d): Syntax error.\n",
-                            idx.line,
-                            idx.line_idx);
-                    break;
-                case BFX_OUT_OF_MEMORY_ERROR:
-                    fprintf(stderr,
-                            "libbfx: Error (%d,%d): Out of memory error.\n",
-                            idx.line,
-                            idx.line_idx);
-                    break;
-                case BFX_STACK_OVERFLOW_ERROR:
-                    fprintf(stderr,
-                            "libbfx: Error (%d,%d): Stack overflow error.\n",
-                            idx.line,
-                            idx.line_idx);
-                    break;
-                case BFX_STACK_UNDERFLOW_ERROR:
-                    fprintf(stderr,
-                            "libbfx: Error (%d,%d): Stack underflow error.\n",
-                            idx.line,
-                            idx.line_idx);
-                    break;
-                default:
-                    fprintf(stderr,
-                            "libbfx: Error (%d,%d): Unknown error.\n",
-                            idx.line,
-                            idx.line_idx);
-                    break;
-                }
+            switch (ret) {
+            case BFX_SUCCESS:
+                break;
+            case BFX_SYNTAX_ERROR:
+                fprintf(stderr, "libbfx: Error (%d,%d): Syntax error.\n", idx.line, idx.line_idx);
+                return ret;
+            case BFX_OUT_OF_MEMORY_ERROR:
+                fprintf(stderr,
+                        "libbfx: Error (%d,%d): Out of memory error.\n",
+                        idx.line,
+                        idx.line_idx);
+                return ret;
+            case BFX_STACK_OVERFLOW_ERROR:
+                fprintf(stderr,
+                        "libbfx: Error (%d,%d): Stack overflow error.\n",
+                        idx.line,
+                        idx.line_idx);
+                return ret;
+            case BFX_STACK_UNDERFLOW_ERROR:
+                fprintf(stderr,
+                        "libbfx: Error (%d,%d): Stack underflow error.\n",
+                        idx.line,
+                        idx.line_idx);
+                return ret;
+            default:
+                fprintf(stderr, "libbfx: Error (%d,%d): Unknown error.\n", idx.line, idx.line_idx);
                 return ret;
             }
         }

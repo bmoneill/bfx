@@ -5,13 +5,9 @@
 #include "langs/pbrain.h"
 #include "util.c"
 
-BFX_PBrainData data;
-int            ret;
+int  ret;
 
-void           setUp(void) {
-    memset(stdout_buffer, 0, BUFFER_LENGTH);
-    memset(&data, 0, sizeof(BFX_PBrainData));
-}
+void setUp(void) { memset(stdout_buffer, 0, BUFFER_LENGTH); }
 
 void tearDown(void) {}
 
@@ -19,8 +15,7 @@ void test_bfx_op_pbrain_procedures(void) {
     // Make a procedure with identifier 1 that prints a newline and call it,
     // then add 2 and print again.
     initialize("+([-]++++++++++.): ++.");
-    bfx.lang_data = &data;
-    bfx.lang      = BFX_LANG_pbrain;
+    bfx.lang = BFX_LANG_pbrain;
 
     REDIRECT_STDOUT;
     ret = bfx_interpret(&bfx);
@@ -35,8 +30,7 @@ void test_bfx_op_pbrain_procedures_nested(void) {
     // Make a procedure with identifier 2 that calls procedure 1,
     // adds 1, and prints again. Call procedure 2.
     initialize("+([-]++++++++++.) +([-]+:+.):");
-    bfx.lang_data = &data;
-    bfx.lang      = BFX_LANG_pbrain;
+    bfx.lang = BFX_LANG_pbrain;
 
     REDIRECT_STDOUT;
     ret = bfx_interpret(&bfx);
@@ -47,12 +41,18 @@ void test_bfx_op_pbrain_procedures_nested(void) {
 }
 
 void test_bfx_op_pbrain_procedures_stack_overflow(void) {
-    // Make a procedure with identifier 1 that calls itself recursively.
-    // This should cause a stack overflow.
-    initialize("+(:):");
-    bfx.lang_data = &data;
-    bfx.lang      = BFX_LANG_pbrain;
+    // Two procedures that call each other recursively.
+    initialize("+([-]++:)   +([-]+:)   :");
+    bfx.lang = BFX_LANG_pbrain;
 
-    int ret       = bfx_interpret(&bfx);
+    int ret  = bfx_interpret(&bfx);
     TEST_ASSERT_EQUAL_INT(BFX_STACK_OVERFLOW_ERROR, ret);
+}
+
+void test_bfx_op_pbrain_procedures_stack_underflow(void) {
+    initialize(")");
+    bfx.lang = BFX_LANG_pbrain;
+
+    int ret  = bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_STACK_UNDERFLOW_ERROR, ret);
 }

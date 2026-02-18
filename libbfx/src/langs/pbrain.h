@@ -19,6 +19,10 @@
 #define BFX_PBRAIN_MAX_PROCEDURES 256
 #endif
 
+#ifndef BFX_PBRAIN_STACK_SIZE
+#define BFX_PBRAIN_STACK_SIZE 16
+#endif
+
 /**
  * @brief Structure to represent a procedure in the pbrain language.
  */
@@ -36,7 +40,7 @@ typedef struct {
 typedef struct {
     BFX_PBrainProcedure procedures[BFX_PBRAIN_MAX_PROCEDURES]; //!< Array of procedures
     size_t              procedures_len; //!< Length of the procedures array
-    size_t*             stack; //!< Array of stack elements
+    size_t              stack[BFX_PBRAIN_STACK_SIZE]; //!< Array of stack elements
     size_t              stack_top; //!< Top index of the stack
 } BFX_PBrainData;
 

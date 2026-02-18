@@ -20,7 +20,6 @@ BFX_Error bfx_pbrain_init(BFX* bfx) {
         bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
         BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
         data->procedures_len = 0;
-        data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
     }
     return bfx_build_loops(bfx);
 }
@@ -52,7 +51,6 @@ BFX_Error bfx_pbrain_run(BFX* bfx) {
 
     // Free language-specific data
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
-    free(data->stack);
     free(data);
 
     return ret;
@@ -75,11 +73,11 @@ BFX_Error bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
             data->procedures[data->procedures_len].end_idx = i;
             bfx->ip                                        = i;
             data->procedures_len++;
-            return 0;
+            return BFX_SUCCESS;
         }
     }
     BFX_ERROR("Expected ')'");
-    return 1;
+    return BFX_SYNTAX_ERROR;
 }
 
 /**
@@ -90,16 +88,17 @@ BFX_Error bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
     for (size_t i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bfx->tape[bfx->tp]) {
             data->stack_top++;
-            if (data->stack_top > BFX_INITIAL_LOOP_SIZE) {
+            if (data->stack_top > BFX_PBRAIN_STACK_SIZE) {
                 BFX_ERROR("Stack overflow.");
-                return 1;
+                return BFX_STACK_OVERFLOW_ERROR;
             }
             data->stack[data->stack_top] = bfx->ip;
             bfx->ip                      = data->procedures[i].start_idx;
-            return 0;
+            return BFX_SUCCESS;
         }
     }
-    return 1;
+    BFX_ERROR("Procedure not found.");
+    return BFX_RUNTIME_ERROR;
 }
 
 /**
@@ -110,8 +109,8 @@ BFX_Error bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
     if (data->stack_top > 0) {
         bfx->ip = data->stack[data->stack_top];
         data->stack_top--;
-        return 0;
+        return BFX_SUCCESS;
     }
     BFX_ERROR("Stack underflow.");
-    return 1;
+    return BFX_STACK_UNDERFLOW_ERROR;
 }
