@@ -52,10 +52,20 @@ add_library (
  ${LIBRARY_NAME} SHARED ${LIBRARY_PUBLIC_SRC}
 )
 
+add_library(${LIBRARY_NAME}_static STATIC ${LIBRARY_PUBLIC_SRC})
+
 target_link_libraries(${LIBRARY_NAME} PRIVATE m)
+
+target_link_libraries(${LIBRARY_NAME}_static PRIVATE m)
 
 set_target_properties(
  ${LIBRARY_NAME} PROPERTIES
+ VERSION		${LIBRARY_VERSION_STRING}
+ SOVERSION	    ${LIBRARY_VERSION_MAJOR}
+)
+
+set_target_properties(
+ ${LIBRARY_NAME}_static PROPERTIES
  VERSION		${LIBRARY_VERSION_STRING}
  SOVERSION	    ${LIBRARY_VERSION_MAJOR}
 )
@@ -72,8 +82,13 @@ INSTALL (
  TARGETS ${LIBRARY_NAME}
  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
+set_target_properties(${LIBRARY_NAME}_static PROPERTIES OUTPUT_NAME ${LIBRARY_NAME})
+INSTALL (
+ TARGETS ${LIBRARY_NAME}_static
+ ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
 
 foreach(header IN LISTS LIBRARY_PUBLIC_HEADERS)
-  get_filename_component(header_name ${header} NAME)
-  install(FILES ${header} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/bfx RENAME ${header_name})
+    get_filename_component(header_name ${header} NAME)
+    install(FILES ${header} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/bfx RENAME ${header_name})
 endforeach()

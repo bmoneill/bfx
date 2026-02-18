@@ -11,20 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef BFX_DEFAULT_COMPILER
-/**
- * @brief Default compiler to use when compiling generated C code.
- */
-#define BFX_DEFAULT_COMPILER "gcc"
-#endif
-
-#ifndef BFX_DEFAULT_COMPILE_FLAGS
-/**
- * @brief Default compile flags to use when compiling generated C code.
- */
-#define BFX_DEFAULT_COMPILE_FLAGS "-O3 -s -ffast-math"
-#endif
-
 #ifndef BFX_DEFAULT_INPUT_MAX
 /**
  * @brief Default maximum input size for the interpreter.

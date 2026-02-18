@@ -6,7 +6,9 @@
 
 #include "compile.h"
 
-#include <string.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define BFX_SET_PROPERTY_BOOL(property, value)                                                     \
     if (value) {                                                                                   \
@@ -17,6 +19,8 @@
 #define BFX_SET_PROPERTY_INT(property, value)      fprintf(output, "bfx.%s = %d;", property, value)
 #define BFX_SET_PROPERTY_SIZE_T(property, value)   fprintf(output, "bfx.%s = %ld;", property, value)
 #define BFX_SET_PROPERTY_UINT16_T(property, value) fprintf(output, "bfx.%s = %d;", property, value)
+#define BFX_SET_PROPERTY_CONST_CHAR(property, value)                                               \
+    fprintf(output, "bfx.%s = \"%s\";", property, value)
 
 /**
  * @brief Compile Brainfuck code from input_path to output_path.
@@ -42,23 +46,52 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
     } else if (!(input = fopen(input_path, "r"))) {
         BFX_ERROR("Failed to open input file");
     }
-
     if (!output_path) {
         output_path = binary_output ? "./a.out" : "./a.out.c";
     }
-
-    if (binary_output && !(output = fopen(BFX_TMP_FILE_PATH, "w"))) {
+    if (!(output = fopen(BFX_TMP_FILE_PATH, "w"))) {
         BFX_ERROR("Failed to create temporary file");
-    } else if (!(output = fopen(output_path, "w"))) {
-        BFX_ERROR("Failed to open output file");
+        return;
+    }
+
+    /**** Load program ****/
+    char   c;
+    size_t i       = 0;
+    size_t ceiling = 2048;
+    char*  program = malloc(2048);
+    while ((c = fgetc(input)) != EOF) {
+        switch (c) {
+        case '\"':
+            program[i]     = '\\';
+            program[i + 1] = '"';
+            i += 2;
+            break;
+        case '\\':
+            program[i]     = '\\';
+            program[i + 1] = '\\';
+            i += 2;
+            break;
+        case '\n':
+            break;
+        default:
+            program[i] = c;
+            i++;
+        }
+
+        if (i >= ceiling - 2) {
+            ceiling += 2048;
+            program = realloc(program, ceiling);
+        }
     }
 
     /*** Actual compilation ***/
     fprintf(output, BFX_COMPILE_HEAD);
+    fprintf(output, "bfx.tape = malloc(%ld * sizeof(char));\n", bfx->tape_size);
     BFX_SET_PROPERTY_UINT16_T("flags", bfx->flags);
     BFX_SET_PROPERTY_BOOL("receiving", bfx->receiving);
-    BFX_SET_PROPERTY_SIZE_T("program_len", bfx->program_len);
-    BFX_SET_PROPERTY_SIZE_T("program_size", bfx->program_size);
+    BFX_SET_PROPERTY_SIZE_T("program_len", i);
+    BFX_SET_PROPERTY_SIZE_T("program_size", i);
+    BFX_SET_PROPERTY_CONST_CHAR("program", program);
     BFX_SET_PROPERTY_SIZE_T("input_start", bfx->input_start);
     BFX_SET_PROPERTY_SIZE_T("input_ptr", bfx->input_ptr);
     BFX_SET_PROPERTY_SIZE_T("input_len", bfx->input_len);
@@ -71,32 +104,22 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
     BFX_SET_PROPERTY_SIZE_T("input_max", bfx->input_max);
     BFX_SET_PROPERTY_INT("eof_behavior", bfx->eof_behavior);
     BFX_SET_PROPERTY_INT("lang", bfx->lang);
-
-    int c;
-    while ((c = fgetc(input)) != EOF) {
-    }
-
-    if (depth != 0) {
-        fclose(output);
-        remove(output_path);
-        BFX_ERROR("Unbalanced brackets");
-    }
-
-    fprintf(output, "return 0;}");
+    fprintf(output, "return bfx_interpret(&bfx);}");
     fclose(output);
 
-    if (binary_output) {
-        char* cmd = malloc(128);
-        sprintf(cmd,
-                "%s %s -o %s %s",
-                BFX_DEFAULT_COMPILER,
-                BFX_DEFAULT_COMPILE_FLAGS,
-                output_path,
-                BFX_TMP_FILE_PATH);
-        int sys_ret = system(cmd);
-        remove(BFX_TMP_FILE_PATH);
-        if (sys_ret != 0) {
-            BFX_ERROR("Failed to compile program");
-        }
+    char* cmd = malloc(128);
+    sprintf(cmd,
+            "%s %s -o %s %s %s",
+            BFX_DEFAULT_COMPILER,
+            BFX_DEFAULT_COMPILE_FLAGS,
+            output_path,
+            BFX_TMP_FILE_PATH,
+            BFX_COMPILER_LDFLAGS);
+    int sys_ret = system(cmd);
+    remove(BFX_TMP_FILE_PATH);
+    if (sys_ret != 0) {
+        BFX_ERROR("Failed to compile program");
     }
+
+    free(cmd);
 }

@@ -52,14 +52,10 @@ int main(int argc, char* argv[]) {
     bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
     bfx.lang         = BFX_LANG_brainfuck;
 
-    while ((opt = getopt(argc, argv, "cCde:il:o:Prst:v")) != -1) {
+    while ((opt = getopt(argc, argv, "cde:il:o:Prst:v")) != -1) {
         switch (opt) {
         case 'c':
             compile = true;
-            break;
-        case 'C':
-            compile = true;
-            bfx.flags |= BFX_FLAG_ONLY_GENERATE_C_SOURCE;
             break;
         case 'd':
             bfx.flags |= BFX_FLAG_DEBUG;
@@ -123,10 +119,6 @@ int main(int argc, char* argv[]) {
     }
 
     if (compile) {
-        if (bfx.lang != BFX_LANG_brainfuck) {
-            fprintf(stderr, "Brainfuck is the only language supported for compilation.\n");
-            return EXIT_FAILURE;
-        }
         bfx_compile(path, output_path, &bfx);
         return EXIT_SUCCESS;
     }
@@ -192,7 +184,7 @@ static int get_eof_behavior(const char* s) {
  */
 static void print_usage(const char* argv0) {
     fprintf(stderr,
-            "Usage: %s [-cCdDirsv] [-e eof_behavior] [-l language] [-o output_file] [-P "
+            "Usage: %s [-cdDirsv] [-e eof_behavior] [-l language] [-o output_file] [-P "
             "precision] [-t tape_size] [file]\n",
             argv0);
 }

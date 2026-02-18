@@ -37,8 +37,10 @@ bfx [options...] [file]
 
 ### Compiler Options
 
+Note that the `bfx` library must be installed to your `PATH` in order to use
+these options. Compiled code may be run without the `bfx` library.
+
 - `-c`: Compile to native binary.
-- `-C`: Compile to C.
 - `-o output_file`: Specify the output file (default: './a.out' for binaries,
   './a.out.c' for C source)
 
