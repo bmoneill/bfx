@@ -151,7 +151,7 @@ Extending</h1>
 <ol type="1">
 <li>Create a new source and header file for the language in <a href="libbfx/src/langs">libbfx/src/langs</a>.</li>
 <li>Implement the language using the conventional init and run functions and operations array (see <a href="libbfx/src/langs/brainfuck.c">libbfx/src/langs/brainfuck.c</a> and <a href="libbfx/src/langs/brainfuck.h">libbfx/src/langs/brainfuck.h</a>).</li>
-<li>Add the source file to <a href="libbfx/src/CMakeLists.txt">libbfx/src/CMakeLists.txt</a>.</li>
+<li>Add the source file to <a href="libbfx/CMakeLists.txt">libbfx/CMakeLists.txt</a>.</li>
 <li>Add the language to the <code>BFX_Languages</code> enum in <a href="libbfx/src/bfx.h">libbfx/src/bfx.h</a>.</li>
 <li>Add a <code><a class="el" href="interpret_8c.html#a5cf63d3c91e21979d39014e3d68c4245">BFX_LANG(NAME)</a></code> macro to the list in <a href="libbfx/src/interpret.c">libbfx/src/interpret.c</a>.</li>
 <li>Update <code>get_language()</code> in <a href="bfx/src/main.c">bfx/src/main.c</a>.</li>
