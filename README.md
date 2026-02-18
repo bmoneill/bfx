@@ -78,6 +78,7 @@ steps:
 3. Add the source file to [libbfx/src/CMakeLists.txt](libbfx/src/CMakeLists.txt).
 4. Add the language to the BFX_Languages enum in [libbfx/src/bfx.h](libbfx/src/bfx.h).
 5. Add a BFX_LANG(NAME) macro to the list in [libbfx/src/interpret.c](libbfx/src/interpret.c).
+6. Update get_language() in [bfx/src/main.c](bfx/src/main.c).
 
 ## Screenshots
 
