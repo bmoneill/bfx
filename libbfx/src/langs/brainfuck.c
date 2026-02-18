@@ -32,7 +32,7 @@ void bfx_brainfuck_run(BFX* bfx) {
  */
 int bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
     bfx->tp++;
-    if ((size_t) bfx->tp > bfx->tape_size) {
+    if ((size_t) bfx->tp >= bfx->tape_size) {
         fprintf(stderr,
                 "Warning (%d,%d): Tape pointer overflow. Tape pointer set to zero.\n",
                 index->line,

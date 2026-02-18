@@ -25,7 +25,11 @@ void bfx_grin_init(BFX* bfx) {
         free(bfx->tape);
     }
 
-    bfx->lang_data     = calloc(1, sizeof(BFX_GrinData));
+    bfx->lang_data = calloc(1, sizeof(BFX_GrinData));
+    if (!bfx->lang_data) {
+        fprintf(stderr, "Failed to allocate memory for Grin data\n");
+        exit(EXIT_FAILURE);
+    }
     BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
     data->unit         = bfx->flags & BFX_FLAG_DEGREES ? BFX_GRIN_DEG : BFX_GRIN_RAD;
     data->precision    = BFX_GRIN_DEFAULT_PRECISION;
@@ -36,7 +40,6 @@ void bfx_grin_init(BFX* bfx) {
  * @brief Run the Grin interpreter
  *
  * This function initializes and runs the Grin interpreter.
- * It frees all language-specific data.
  *
  * @param bfx Pointer to the interpreter struct
  */
@@ -91,10 +94,6 @@ void bfx_grin_run(BFX* bfx) {
                                               ['`']  = bfx_op_grin_exit };
 
     bfx_parse_ops(bfx, ops);
-
-    // Free language-specific data
-    BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
-    free(data);
 }
 
 /**

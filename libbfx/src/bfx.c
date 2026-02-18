@@ -82,7 +82,7 @@ void bfx_run_repl(BFX* bfx) {
         }
 
         snprintf(bfx->program + prog_len_old, bfx->program_size - prog_len_old, "%s", input);
-        bfx_interpret(bfx);
+        bfx_interpret(bfx); // TODO prevent lang_data from being freed each time for relevant langs
     }
 
     free(input);
