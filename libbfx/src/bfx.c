@@ -64,6 +64,7 @@ void bfx_run_repl(BFX* bfx) {
     if (!(bfx->program = (char*) malloc(bfx->program_size + 1))
         || !(input = (char*) malloc(bfx->program_size + 1))) {
         BFX_ERROR("Cannot allocate memory for program storage.");
+        return;
     }
 
     while (1) {
@@ -82,7 +83,7 @@ void bfx_run_repl(BFX* bfx) {
         }
 
         snprintf(bfx->program + prog_len_old, bfx->program_size - prog_len_old, "%s", input);
-        bfx_interpret(bfx); // TODO prevent lang_data from being freed each time for relevant langs
+        bfx_interpret(bfx);
     }
 
     free(input);

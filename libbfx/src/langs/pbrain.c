@@ -16,10 +16,12 @@
  * @param bfx Pointer to the already-allocated interpreter struct
  */
 BFX_Error bfx_pbrain_init(BFX* bfx) {
-    bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
-    BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
-    data->procedures_len = 0;
-    data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
+    if (!bfx->lang_data) {
+        bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
+        BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
+        data->procedures_len = 0;
+        data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
+    }
     return bfx_build_loops(bfx);
 }
 

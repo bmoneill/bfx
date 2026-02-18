@@ -19,7 +19,9 @@ static BFX_Error (*bfx_brainfork_ops[128])(BFX*, BFX_FileIndex*) = {
  * @param bfx Pointer to the already-allocated interpreter struct
  */
 BFX_Error bfx_brainfork_init(BFX* bfx) {
-    bfx->lang_data = calloc(1, sizeof(BFX_BrainforkData));
+    if (!bfx->lang_data) {
+        bfx->lang_data = calloc(1, sizeof(BFX_BrainforkData));
+    }
     return bfx_build_loops(bfx);
 }
 

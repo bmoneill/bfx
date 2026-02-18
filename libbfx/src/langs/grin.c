@@ -26,14 +26,13 @@ BFX_Error bfx_grin_init(BFX* bfx) {
         free(bfx->tape);
     }
 
-    bfx->lang_data = calloc(1, sizeof(BFX_GrinData));
     if (!bfx->lang_data) {
-        fprintf(stderr, "Failed to allocate memory for Grin data\n");
-        return BFX_RUNTIME_ERROR;
+        bfx->lang_data     = calloc(1, sizeof(BFX_GrinData));
+        BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
+        data->unit         = bfx->flags & BFX_FLAG_DEGREES ? BFX_GRIN_DEG : BFX_GRIN_RAD;
+        data->precision    = BFX_GRIN_DEFAULT_PRECISION;
     }
-    BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
-    data->unit         = bfx->flags & BFX_FLAG_DEGREES ? BFX_GRIN_DEG : BFX_GRIN_RAD;
-    data->precision    = BFX_GRIN_DEFAULT_PRECISION;
+
     bfx_build_loops(bfx);
     return BFX_SUCCESS;
 }
