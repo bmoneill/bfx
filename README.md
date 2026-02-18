@@ -4,10 +4,14 @@
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
 [![Doxygen status](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml)
 
-This is an interpreter, compiler, and REPL for the Turing-complete esoteric
-programming languages [brainfuck](https://esolangs.org/wiki/Brainfuck),
-[Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://esolangs.org/wiki/Weave),
-[Grin](https://esolangs.org/wiki/Grin), and [Brainfork](https://esolangs.org/wiki/Brainfork)).
+This is an interpreter, compiler, and REPL for the following Turing-complete esoteric
+programming languages:
+
+- [Brainfork](https://esolangs.org/wiki/Brainfork).
+- [Brainfuck](https://esolangs.org/wiki/Brainfuck),
+- [Grin](https://esolangs.org/wiki/Grin)
+- [Pbrain](https://esolangs.org/wiki/Pbrain)
+- [Weave](https://esolangs.org/wiki/Weave),
 
 ## Building
 
