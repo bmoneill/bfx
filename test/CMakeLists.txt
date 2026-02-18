@@ -18,5 +18,6 @@ function(add_bfx_test name)
     add_test(NAME ${name} COMMAND ${name}_tests)
 endfunction()
 
+add_bfx_test(brainfork)
 add_bfx_test(brainfuck)
 add_bfx_test(grin)
