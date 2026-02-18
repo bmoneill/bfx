@@ -73,12 +73,12 @@ steps:
 
 1. Create a new source and header file for the language in [libbfx/src/langs](libbfx/src/langs).
 2. Implement the language using the conventional init and run functions and
-   operations array (see [libbfx/src/langs/brainfuck.c](libbfx/src/langs/brainfuck.c) and
-   [libbfx/src/langs/brainfuck.h](libbfx/src/langs/brainfuck.h)).
+   operations array (see [libbfx/src/langs/brainfuck.c](libbfx/src/langs/brainfuck.c)
+   and [libbfx/src/langs/brainfuck.h](libbfx/src/langs/brainfuck.h)).
 3. Add the source file to [libbfx/src/CMakeLists.txt](libbfx/src/CMakeLists.txt).
-4. Add the language to the BFX_Languages enum in [libbfx/src/bfx.h](libbfx/src/bfx.h).
-5. Add a BFX_LANG(NAME) macro to the list in [libbfx/src/interpret.c](libbfx/src/interpret.c).
-6. Update get_language() in [bfx/src/main.c](bfx/src/main.c).
+4. Add the language to the `BFX_Languages` enum in [libbfx/src/bfx.h](libbfx/src/bfx.h).
+5. Add a `BFX_LANG(NAME)` macro to the list in [libbfx/src/interpret.c](libbfx/src/interpret.c).
+6. Update `get_language()` in [bfx/src/main.c](bfx/src/main.c).
 
 ## Screenshots
 
