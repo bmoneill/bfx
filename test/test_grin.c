@@ -6,11 +6,15 @@
 
 #define GRIN_DATA ((BFX_GrinData*) bfx.lang_data)
 
+BFX_GrinData data;
+
 #define INITIALIZE(s)                                                                              \
     bfx.tape = NULL;                                                                               \
     initialize(s);                                                                                 \
-    bfx.lang = BFX_LANG_GRIN;                                                                      \
-    bfx_grin_init(&bfx);
+    bfx.lang       = BFX_LANG_GRIN;                                                                \
+    bfx.lang_data  = &data;                                                                        \
+    data.unit      = BFX_GRIN_RAD;                                                                 \
+    data.precision = BFX_GRIN_DEFAULT_PRECISION;
 
 #define EXECUTE(s)                                                                                 \
     INITIALIZE(s);                                                                                 \
