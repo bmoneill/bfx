@@ -66,6 +66,18 @@ these options. Compiled code may be run without the `bfx` library.
 
 If `file` is not specified, `bfx` will read source code from standard input.
 
+## Extending
+
+It is possible to add support for new languages pretty easily by following these
+steps:
+
+1. Create a new source and header file for the language in [libbfx/src/langs].
+2. Implement the language using the conventional init and run functions and
+   operations array (see [libbfx/src/langs/brainfuck.c]).
+3. Add the source file to [libbfx/src/langs/CMakeLists.txt].
+4. Add the language to the BFX_Languages enum in [libbfx/src/bfx.h].
+5. Add a BFX_LANG(NAME) macro to the list in [libbfx/src/interpret.c].
+
 ## Screenshots
 
 `bfx` running [sierpinski.b](https://brainfuck.org/sierpinski.b)

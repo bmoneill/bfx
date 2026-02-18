@@ -6,11 +6,6 @@
 
 #include "interpret.h"
 #include "bfx.h"
-#include "langs/brainfork.h"
-#include "langs/brainfuck.h"
-#include "langs/grin.h"
-#include "langs/pbrain.h"
-#include "langs/weave.h"
 
 #define BFX_LANG(s)                                                                                \
     case BFX_LANG_##s:                                                                             \
