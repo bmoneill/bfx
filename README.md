@@ -1,12 +1,12 @@
-# bfx: an interpreter, compiler, and REPL for brainfuck
+# bfx: an interpreter, compiler, and REPL for brainfuck-like languages
 
 [![CI status](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml).
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
 [![Doxygen status](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml)
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
-programming language brainfuck, as well as an interpreter and REPL for some of
-its derivatives ([Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://esolangs.org/wiki/Weave),
+programming languages [brainfuck](https://esolangs.org/wiki/Brainfuck),
+[Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://esolangs.org/wiki/Weave),
 [Grin](https://esolangs.org/wiki/Grin), and [Brainfork](https://esolangs.org/wiki/Brainfork)).
 
 ## Building
@@ -16,6 +16,7 @@ its derivatives ([Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://eso
 ```shell
 cmake . -B build
 cmake --build build
+sudo cmake --install build
 ```
 
 ## Usage
