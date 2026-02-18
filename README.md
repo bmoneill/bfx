@@ -33,7 +33,7 @@ bfx [options...] [file]
   "unchanged" (do not change the current cell).
 - `-i`: Separate code from input using `!`.
 - `-l language`: Specify the language to use (Default: brainfuck).
-- `-r`: Run in interactive REPL mode.
+- `-r`: Run in interactive REPL mode (Note: Weave is not supported here).
 - `-t tape_size`: Specify the size of the tape (default: 30000)
 
 ### Compiler Options
