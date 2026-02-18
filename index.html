@@ -94,7 +94,14 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> <a href="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main" alt="CI status" style="pointer-events: none;" class="inline"/></a>. <a href="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main" alt="clang-format status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main" alt="Doxygen status" style="pointer-events: none;" class="inline"/></a></p>
-<p>This is an interpreter, compiler, and REPL for the Turing-complete esoteric programming languages <a href="https://esolangs.org/wiki/Brainfuck">brainfuck</a>, <a href="https://esolangs.org/wiki/Pbrain">Pbrain</a>, <a href="https://esolangs.org/wiki/Weave">Weave</a>, <a href="https://esolangs.org/wiki/Grin">Grin</a>, and <a href="https://esolangs.org/wiki/Brainfork">Brainfork</a>).</p>
+<p>This is an interpreter, compiler, and REPL for the following Turing-complete esoteric programming languages:</p>
+<ul>
+<li><a href="https://esolangs.org/wiki/Brainfork">Brainfork</a>.</li>
+<li><a href="https://esolangs.org/wiki/Brainfuck">Brainfuck</a>,</li>
+<li><a href="https://esolangs.org/wiki/Grin">Grin</a></li>
+<li><a href="https://esolangs.org/wiki/Pbrain">Pbrain</a></li>
+<li><a href="https://esolangs.org/wiki/Weave">Weave</a>,</li>
+</ul>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Building</h1>
 <h2><a class="anchor" id="autotoc_md2"></a>
@@ -139,19 +146,29 @@ Languages</h2>
 </ul>
 <p>If <code>file</code> is not specified, <code>bfx</code> will read source code from standard input.</p>
 <h1><a class="anchor" id="autotoc_md8"></a>
+Extending</h1>
+<p>It is possible to add support for new languages pretty easily by following these steps:</p>
+<ol type="1">
+<li>Create a new source and header file for the language in [libbfx/src/langs].</li>
+<li>Implement the language using the conventional init and run functions and operations array (see [<a class="el" href="brainfuck_8c.html">libbfx/src/langs/brainfuck.c</a>]).</li>
+<li>Add the source file to [libbfx/src/langs/CMakeLists.txt].</li>
+<li>Add the language to the BFX_Languages enum in [<a class="el" href="bfx_8h.html">libbfx/src/bfx.h</a>].</li>
+<li>Add a <a class="el" href="interpret_8c.html#a5cf63d3c91e21979d39014e3d68c4245">BFX_LANG(NAME)</a> macro to the list in [<a class="el" href="interpret_8c.html">libbfx/src/interpret.c</a>].</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Screenshots</h1>
 <p><code>bfx</code> running <a href="https://brainfuck.org/sierpinski.b">sierpinski.b</a></p>
 <p><img src="https://oneill.sh/img/bfx-sierpinski.png" alt="bfx sierpinski" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Further Reading</h1>
 <ul>
 <li><a href="https://esolangs.org/wiki/Brainfuck">Esolang Wiki</a></li>
 <li><a href="https://brainfuck.org/">brainfuck.org</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md10"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Bugs</h1>
 <p>If you find a bug, submit an issue, PR, or email me with a description and/or patch.</p>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 License</h1>
 <p>Copyright (c) 2022-2026 Ben O'Neill <a href="#" onclick="location.href='mai'+'lto:'+'ben'+'@o'+'nei'+'ll'+'.sh'; return false;">ben@o<span class="obfuscator">.nosp@m.</span>neil<span class="obfuscator">.nosp@m.</span>l.sh</a>. This work is released under the terms of the MIT License. See [LICENSE](LICENSE) for the license terms. </p>
 </div></div><!-- PageDoc -->

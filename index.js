@@ -9,8 +9,9 @@ var index =
       [ "Other Options", "index.html#autotoc_md6", null ],
       [ "Languages", "index.html#autotoc_md7", null ]
     ] ],
-    [ "Screenshots", "index.html#autotoc_md8", null ],
-    [ "Further Reading", "index.html#autotoc_md9", null ],
-    [ "Bugs", "index.html#autotoc_md10", null ],
-    [ "License", "index.html#autotoc_md11", null ]
+    [ "Extending", "index.html#autotoc_md8", null ],
+    [ "Screenshots", "index.html#autotoc_md9", null ],
+    [ "Further Reading", "index.html#autotoc_md10", null ],
+    [ "Bugs", "index.html#autotoc_md11", null ],
+    [ "License", "index.html#autotoc_md12", null ]
 ];

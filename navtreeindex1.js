@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"structBFX.html":[1,0,0],
 "structBFX.html#a091cde5ad19dbc06ffb9ac21812cbd3b":[1,0,0,16],
 "structBFX.html#a158fe1171e8c041fdb1fefd882032c24":[1,0,0,10],
 "structBFX.html#a168aaf70f797157e1e8c96519786e068":[1,0,0,2],
