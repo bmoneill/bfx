@@ -120,12 +120,6 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a2066076a7ff90b509be0beba7a38df38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#a2066076a7ff90b509be0beba7a38df38">BFX_DEFAULT_COMPILER</a>&#160;&#160;&#160;&quot;gcc&quot;</td></tr>
-<tr class="memdesc:a2066076a7ff90b509be0beba7a38df38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default compiler to use when compiling generated C code.  <br /></td></tr>
-<tr class="separator:a2066076a7ff90b509be0beba7a38df38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfc3ee1c1a81837ba3d13b1508423e8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#adfc3ee1c1a81837ba3d13b1508423e8b">BFX_DEFAULT_COMPILE_FLAGS</a>&#160;&#160;&#160;&quot;-O3 -s -ffast-math&quot;</td></tr>
-<tr class="memdesc:adfc3ee1c1a81837ba3d13b1508423e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default compile flags to use when compiling generated C code.  <br /></td></tr>
-<tr class="separator:adfc3ee1c1a81837ba3d13b1508423e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae775508914f3f6bc513ffa0750f4e73d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#ae775508914f3f6bc513ffa0750f4e73d">BFX_DEFAULT_INPUT_MAX</a>&#160;&#160;&#160;1024</td></tr>
 <tr class="memdesc:ae775508914f3f6bc513ffa0750f4e73d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default maximum input size for the interpreter.  <br /></td></tr>
 <tr class="separator:ae775508914f3f6bc513ffa0750f4e73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,9 +150,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ab52d6c1c0f777826ae80be4fbc4c0c9d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#ab52d6c1c0f777826ae80be4fbc4c0c9d">BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS</a>&#160;&#160;&#160;4</td></tr>
 <tr class="memdesc:ab52d6c1c0f777826ae80be4fbc4c0c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpreter: Disable special instructions.  <br /></td></tr>
 <tr class="separator:ab52d6c1c0f777826ae80be4fbc4c0c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9e034083dd56f96ade68d41f4df47ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#ac9e034083dd56f96ade68d41f4df47ce">BFX_FLAG_ONLY_GENERATE_C_SOURCE</a>&#160;&#160;&#160;8</td></tr>
-<tr class="memdesc:ac9e034083dd56f96ade68d41f4df47ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compiler: Only generate C source code.  <br /></td></tr>
-<tr class="separator:ac9e034083dd56f96ade68d41f4df47ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60636234cdd08ac038b40a3851bc2c81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#a60636234cdd08ac038b40a3851bc2c81">BFX_FLAG_LANG_DATA_FLAGS</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memdesc:a60636234cdd08ac038b40a3851bc2c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">lang_data contains flags for the given language  <br /></td></tr>
+<tr class="separator:a60636234cdd08ac038b40a3851bc2c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6feea2061be990aec6acfe17cf1598c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bfx_8h.html#ac6feea2061be990aec6acfe17cf1598c">BFX_FLAG_GRAPHICS</a>&#160;&#160;&#160;16</td></tr>
 <tr class="memdesc:ac6feea2061be990aec6acfe17cf1598c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpreter: Enable graphics mode.  <br /></td></tr>
 <tr class="separator:ac6feea2061be990aec6acfe17cf1598c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,38 +220,6 @@ Functions</h2></td></tr>
 <tr class="separator:a8810ac35b7b24959bfd454134977580c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="adfc3ee1c1a81837ba3d13b1508423e8b" name="adfc3ee1c1a81837ba3d13b1508423e8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adfc3ee1c1a81837ba3d13b1508423e8b">&#9670;&#160;</a></span>BFX_DEFAULT_COMPILE_FLAGS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BFX_DEFAULT_COMPILE_FLAGS&#160;&#160;&#160;&quot;-O3 -s -ffast-math&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Default compile flags to use when compiling generated C code. </p>
-
-</div>
-</div>
-<a id="a2066076a7ff90b509be0beba7a38df38" name="a2066076a7ff90b509be0beba7a38df38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2066076a7ff90b509be0beba7a38df38">&#9670;&#160;</a></span>BFX_DEFAULT_COMPILER</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BFX_DEFAULT_COMPILER&#160;&#160;&#160;&quot;gcc&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Default compiler to use when compiling generated C code. </p>
-
-</div>
-</div>
 <a id="a3201dfe8e9581521ed7bc34e7272c3c5" name="a3201dfe8e9581521ed7bc34e7272c3c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3201dfe8e9581521ed7bc34e7272c3c5">&#9670;&#160;</a></span>BFX_DEFAULT_EOF_BEHAVIOR</h2>
 
@@ -406,19 +368,19 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac9e034083dd56f96ade68d41f4df47ce" name="ac9e034083dd56f96ade68d41f4df47ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9e034083dd56f96ade68d41f4df47ce">&#9670;&#160;</a></span>BFX_FLAG_ONLY_GENERATE_C_SOURCE</h2>
+<a id="a60636234cdd08ac038b40a3851bc2c81" name="a60636234cdd08ac038b40a3851bc2c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60636234cdd08ac038b40a3851bc2c81">&#9670;&#160;</a></span>BFX_FLAG_LANG_DATA_FLAGS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BFX_FLAG_ONLY_GENERATE_C_SOURCE&#160;&#160;&#160;8</td>
+          <td class="memname">#define BFX_FLAG_LANG_DATA_FLAGS&#160;&#160;&#160;8</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Compiler: Only generate C source code. </p>
+<p>lang_data contains flags for the given language </p>
 
 </div>
 </div>

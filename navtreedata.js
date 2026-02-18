@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "bfx", "index.html", [
-    [ "bfx: an interpreter, compiler, and REPL for brainfuck", "index.html", "index" ],
+    [ "bfx: an interpreter, compiler, and REPL for brainfuck-like languages", "index.html", "index" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -50,7 +50,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structBFX.html#a3264ca17406556a54abe56667f2c8611"
+"structBFX.html#a091cde5ad19dbc06ffb9ac21812cbd3b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

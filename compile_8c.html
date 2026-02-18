@@ -91,13 +91,30 @@ $(document).ready(function(){initNavTree('compile_8c.html',''); initResizable();
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">compile.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="compile_8h_source.html">compile.h</a>&quot;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="bfx_8h_source.html">bfx.h</a>&quot;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a57e4cea35dc94e2a95d410401abf2dad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8c.html#a57e4cea35dc94e2a95d410401abf2dad">BFX_SET_PROPERTY_BOOL</a>(property,  value)</td></tr>
+<tr class="separator:a57e4cea35dc94e2a95d410401abf2dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5270163103a5ff404f70ce38193c705c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8c.html#a5270163103a5ff404f70ce38193c705c">BFX_SET_PROPERTY_INT</a>(property,  value)&#160;&#160;&#160;fprintf(output, &quot;bfx.%s = %d;&quot;, property, value)</td></tr>
+<tr class="separator:a5270163103a5ff404f70ce38193c705c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0d0a90245966db7f7522d234a2e1813"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8c.html#ac0d0a90245966db7f7522d234a2e1813">BFX_SET_PROPERTY_SIZE_T</a>(property,  value)&#160;&#160;&#160;fprintf(output, &quot;bfx.%s = %ld;&quot;, property, value)</td></tr>
+<tr class="separator:ac0d0a90245966db7f7522d234a2e1813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0092fe675ee327b0b5ebec94333abaef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8c.html#a0092fe675ee327b0b5ebec94333abaef">BFX_SET_PROPERTY_UINT16_T</a>(property,  value)&#160;&#160;&#160;fprintf(output, &quot;bfx.%s = %d;&quot;, property, value)</td></tr>
+<tr class="separator:a0092fe675ee327b0b5ebec94333abaef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a75d9b7be22eb676c56635e9ef60c3e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8c.html#a0a75d9b7be22eb676c56635e9ef60c3e">BFX_SET_PROPERTY_CONST_CHAR</a>(property,  value)&#160;&#160;&#160;    fprintf(output, &quot;bfx.%s = \&quot;%s\&quot;;&quot;, property, value)</td></tr>
+<tr class="separator:a0a75d9b7be22eb676c56635e9ef60c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8b21bf034230c02f0ca97b159df1444c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8c.html#a8b21bf034230c02f0ca97b159df1444c">bfx_compile</a> (const char *input_path, const char *output_path, <a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
@@ -106,7 +123,153 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the implementation of the Brainfuck-like language compiler. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a57e4cea35dc94e2a95d410401abf2dad" name="a57e4cea35dc94e2a95d410401abf2dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57e4cea35dc94e2a95d410401abf2dad">&#9670;&#160;</a></span>BFX_SET_PROPERTY_BOOL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_SET_PROPERTY_BOOL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">property, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">if</span> (value) {                                                                                   \</div>
+<div class="line">        fprintf(output, <span class="stringliteral">&quot;bfx.%s = true;&quot;</span>, property);                                               \</div>
+<div class="line">    } <span class="keywordflow">else</span> {                                                                                       \</div>
+<div class="line">        fprintf(output, <span class="stringliteral">&quot;bfx.%s = false;&quot;</span>, property);                                              \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0a75d9b7be22eb676c56635e9ef60c3e" name="a0a75d9b7be22eb676c56635e9ef60c3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a75d9b7be22eb676c56635e9ef60c3e">&#9670;&#160;</a></span>BFX_SET_PROPERTY_CONST_CHAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_SET_PROPERTY_CONST_CHAR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">property, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;    fprintf(output, &quot;bfx.%s = \&quot;%s\&quot;;&quot;, property, value)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5270163103a5ff404f70ce38193c705c" name="a5270163103a5ff404f70ce38193c705c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5270163103a5ff404f70ce38193c705c">&#9670;&#160;</a></span>BFX_SET_PROPERTY_INT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_SET_PROPERTY_INT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">property, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;fprintf(output, &quot;bfx.%s = %d;&quot;, property, value)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0d0a90245966db7f7522d234a2e1813" name="ac0d0a90245966db7f7522d234a2e1813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0d0a90245966db7f7522d234a2e1813">&#9670;&#160;</a></span>BFX_SET_PROPERTY_SIZE_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_SET_PROPERTY_SIZE_T</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">property, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;fprintf(output, &quot;bfx.%s = %ld;&quot;, property, value)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0092fe675ee327b0b5ebec94333abaef" name="a0092fe675ee327b0b5ebec94333abaef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0092fe675ee327b0b5ebec94333abaef">&#9670;&#160;</a></span>BFX_SET_PROPERTY_UINT16_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_SET_PROPERTY_UINT16_T</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">property, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;fprintf(output, &quot;bfx.%s = %d;&quot;, property, value)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a8b21bf034230c02f0ca97b159df1444c" name="a8b21bf034230c02f0ca97b159df1444c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b21bf034230c02f0ca97b159df1444c">&#9670;&#160;</a></span>bfx_compile()</h2>
 
@@ -140,12 +303,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compile Brainfuck code from input_path to output_path. </p>
-<p>This function takes a Brainfuck source code file specified by input_path, compiles it into a C program, compiles the C program, and writes the resulting code to the file specified by output_path. If input_path is NULL, the function will read from stdin. If output_path is NULL, the function will write to ./a.out(.c).</p>
+<p>This function takes a Brainfuck source code file specified by input_path, compiles it into a C program, compiles the C program, and writes the resulting code to the file specified by output_path. If input_path is NULL, the function will read from stdin. If output_path is NULL, the function will write to ./a.out.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input_path</td><td>Path to the input Brainfuck source code file. </td></tr>
     <tr><td class="paramname">output_path</td><td>Path to the output binary or C file. </td></tr>
-    <tr><td class="paramname">params</td><td>Compilation parameters </td></tr>
+    <tr><td class="paramname">bfx</td><td><a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> configuration to use for compilation. </td></tr>
   </table>
   </dd>
 </dl>

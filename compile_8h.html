@@ -102,7 +102,16 @@ $(document).ready(function(){initNavTree('compile_8h.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a5ff79b44755d21bce7ae9d1690adbc21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8h.html#a5ff79b44755d21bce7ae9d1690adbc21">BFX_COMPILE_HEAD</a>&#160;&#160;&#160;&quot;#include &lt;stdio.h&gt;\nint main(void) {unsigned char t[%ld];int p=0;&quot;</td></tr>
+<tr class="memitem:a2066076a7ff90b509be0beba7a38df38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8h.html#a2066076a7ff90b509be0beba7a38df38">BFX_DEFAULT_COMPILER</a>&#160;&#160;&#160;&quot;gcc&quot;</td></tr>
+<tr class="memdesc:a2066076a7ff90b509be0beba7a38df38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default compiler to use when compiling generated C code.  <br /></td></tr>
+<tr class="separator:a2066076a7ff90b509be0beba7a38df38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfc3ee1c1a81837ba3d13b1508423e8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8h.html#adfc3ee1c1a81837ba3d13b1508423e8b">BFX_DEFAULT_COMPILE_FLAGS</a>&#160;&#160;&#160;&quot;-O3 -s -ffast-math -static&quot;</td></tr>
+<tr class="memdesc:adfc3ee1c1a81837ba3d13b1508423e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default compile flags to use when compiling generated C code.  <br /></td></tr>
+<tr class="separator:adfc3ee1c1a81837ba3d13b1508423e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a871fc1f204a9b8398e09f1acf258d777"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8h.html#a871fc1f204a9b8398e09f1acf258d777">BFX_COMPILER_LDFLAGS</a>&#160;&#160;&#160;&quot;-lbfx -lm&quot;</td></tr>
+<tr class="memdesc:a871fc1f204a9b8398e09f1acf258d777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default linker flags to use when compiling generated C code.  <br /></td></tr>
+<tr class="separator:a871fc1f204a9b8398e09f1acf258d777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff79b44755d21bce7ae9d1690adbc21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8h.html#a5ff79b44755d21bce7ae9d1690adbc21">BFX_COMPILE_HEAD</a>&#160;&#160;&#160;&quot;#include &lt;bfx/interpret.h&gt;\nint main(void) {<a class="el" href="structBFX.html">BFX</a> bfx;&quot;</td></tr>
 <tr class="memdesc:a5ff79b44755d21bce7ae9d1690adbc21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Head of the compiled program.  <br /></td></tr>
 <tr class="separator:a5ff79b44755d21bce7ae9d1690adbc21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7adb547072d9bbb0b27da80b460d573b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compile_8h.html#a7adb547072d9bbb0b27da80b460d573b">BFX_TMP_FILE_PATH</a>&#160;&#160;&#160;&quot;/tmp/bfx.c&quot;</td></tr>
@@ -125,12 +134,60 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BFX_COMPILE_HEAD&#160;&#160;&#160;&quot;#include &lt;stdio.h&gt;\nint main(void) {unsigned char t[%ld];int p=0;&quot;</td>
+          <td class="memname">#define BFX_COMPILE_HEAD&#160;&#160;&#160;&quot;#include &lt;bfx/interpret.h&gt;\nint main(void) {<a class="el" href="structBFX.html">BFX</a> bfx;&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Head of the compiled program. </p>
+
+</div>
+</div>
+<a id="a871fc1f204a9b8398e09f1acf258d777" name="a871fc1f204a9b8398e09f1acf258d777"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871fc1f204a9b8398e09f1acf258d777">&#9670;&#160;</a></span>BFX_COMPILER_LDFLAGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_COMPILER_LDFLAGS&#160;&#160;&#160;&quot;-lbfx -lm&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default linker flags to use when compiling generated C code. </p>
+
+</div>
+</div>
+<a id="adfc3ee1c1a81837ba3d13b1508423e8b" name="adfc3ee1c1a81837ba3d13b1508423e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfc3ee1c1a81837ba3d13b1508423e8b">&#9670;&#160;</a></span>BFX_DEFAULT_COMPILE_FLAGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_DEFAULT_COMPILE_FLAGS&#160;&#160;&#160;&quot;-O3 -s -ffast-math -static&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default compile flags to use when compiling generated C code. </p>
+
+</div>
+</div>
+<a id="a2066076a7ff90b509be0beba7a38df38" name="a2066076a7ff90b509be0beba7a38df38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2066076a7ff90b509be0beba7a38df38">&#9670;&#160;</a></span>BFX_DEFAULT_COMPILER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BFX_DEFAULT_COMPILER&#160;&#160;&#160;&quot;gcc&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default compiler to use when compiling generated C code. </p>
 
 </div>
 </div>
@@ -184,12 +241,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compile Brainfuck code from input_path to output_path. </p>
-<p>This function takes a Brainfuck source code file specified by input_path, compiles it into a C program, compiles the C program, and writes the resulting code to the file specified by output_path. If input_path is NULL, the function will read from stdin. If output_path is NULL, the function will write to ./a.out(.c).</p>
+<p>This function takes a Brainfuck source code file specified by input_path, compiles it into a C program, compiles the C program, and writes the resulting code to the file specified by output_path. If input_path is NULL, the function will read from stdin. If output_path is NULL, the function will write to ./a.out.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input_path</td><td>Path to the input Brainfuck source code file. </td></tr>
     <tr><td class="paramname">output_path</td><td>Path to the output binary or C file. </td></tr>
-    <tr><td class="paramname">params</td><td>Compilation parameters </td></tr>
+    <tr><td class="paramname">bfx</td><td><a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> configuration to use for compilation. </td></tr>
   </table>
   </dd>
 </dl>

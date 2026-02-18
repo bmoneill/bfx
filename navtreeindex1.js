@@ -1,5 +1,11 @@
 var NAVTREEINDEX1 =
 {
+"structBFX.html#a091cde5ad19dbc06ffb9ac21812cbd3b":[1,0,0,16],
+"structBFX.html#a158fe1171e8c041fdb1fefd882032c24":[1,0,0,10],
+"structBFX.html#a168aaf70f797157e1e8c96519786e068":[1,0,0,2],
+"structBFX.html#a1e87af3c18a2fd36c61faf89949bdc3f":[1,0,0,1],
+"structBFX.html#a24bffa4be3efba394b2090a77170e3d1":[1,0,0,12],
+"structBFX.html#a2d3c5d77b0a43468369592cb23a0c1ed":[1,0,0,7],
 "structBFX.html#a3264ca17406556a54abe56667f2c8611":[1,0,0,15],
 "structBFX.html#a46db5e1264b2fbf868939151b629dbbc":[1,0,0,0],
 "structBFX.html#a4dc5da2af669cea4516fbe88da105298":[1,0,0,9],

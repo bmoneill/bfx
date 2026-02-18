@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>bfx: bfx: an interpreter, compiler, and REPL for brainfuck</title>
+<title>bfx: bfx: an interpreter, compiler, and REPL for brainfuck-like languages</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,17 +90,18 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">bfx: an interpreter, compiler, and REPL for brainfuck </div></div>
+  <div class="headertitle"><div class="title">bfx: an interpreter, compiler, and REPL for brainfuck-like languages </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> <a href="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main" alt="CI status" style="pointer-events: none;" class="inline"/></a>. <a href="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main" alt="clang-format status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main" alt="Doxygen status" style="pointer-events: none;" class="inline"/></a></p>
-<p>This is an interpreter, compiler, and REPL for the Turing-complete esoteric programming language brainfuck, as well as an interpreter and REPL for some of its derivatives (<a href="https://esolangs.org/wiki/Pbrain">Pbrain</a>, <a href="https://esolangs.org/wiki/Weave">Weave</a>, <a href="https://esolangs.org/wiki/Grin">Grin</a>, and <a href="https://esolangs.org/wiki/Brainfork">Brainfork</a>).</p>
+<p>This is an interpreter, compiler, and REPL for the Turing-complete esoteric programming languages <a href="https://esolangs.org/wiki/Brainfuck">brainfuck</a>, <a href="https://esolangs.org/wiki/Pbrain">Pbrain</a>, <a href="https://esolangs.org/wiki/Weave">Weave</a>, <a href="https://esolangs.org/wiki/Grin">Grin</a>, and <a href="https://esolangs.org/wiki/Brainfork">Brainfork</a>).</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Building</h1>
 <h2><a class="anchor" id="autotoc_md2"></a>
 Linux</h2>
 <div class="fragment"><div class="line">cmake . -B build</div>
 <div class="line">cmake --build build</div>
+<div class="line">sudo cmake --install build</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
 Usage</h1>
 <div class="fragment"><div class="line">bfx [options...] [file]</div>
@@ -108,16 +109,16 @@ Usage</h1>
 General Interpreter Options</h2>
 <ul>
 <li><code>-e eof_behavior</code>: Specify behavior when encountering EOF. Valid values are "zero" (the default, sets the current cell to zero), "decrement" (subtract one from the current cell), and "unchanged" (do not change the current cell).</li>
-<li><code>-i</code>: Separate code from input using <code>!</code>.</li>
+<li><code>-i</code>: Separate code from input using <code>!</code> (Note: Grin is not supported here).</li>
 <li><code>-l language</code>: Specify the language to use (Default: brainfuck).</li>
-<li><code>-r</code>: Run in interactive REPL mode.</li>
+<li><code>-r</code>: Run in interactive REPL mode (Note: Weave is not supported here).</li>
 <li><code>-t tape_size</code>: Specify the size of the tape (default: 30000)</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Compiler Options</h2>
+<p>Note that the <code>bfx</code> library must be installed to your <code>PATH</code> in order to use these options. Compiled code may be run without the <code>bfx</code> library.</p>
 <ul>
 <li><code>-c</code>: Compile to native binary.</li>
-<li><code>-C</code>: Compile to C.</li>
 <li><code>-o output_file</code>: Specify the output file (default: './a.out' for binaries, './a.out.c' for C source)</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md6"></a>

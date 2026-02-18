@@ -99,20 +99,32 @@ $(document).ready(function(){initNavTree('compile_8h_source.html',''); initResiz
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="bfx_8h.html">bfx.h</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef BFX_COMPILE_HEAD</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="compile_8h.html#a5ff79b44755d21bce7ae9d1690adbc21">   16</a></span><span class="preprocessor">#define BFX_COMPILE_HEAD &quot;#include &lt;stdio.h&gt;\nint main(void) {unsigned char t[%ld];int p=0;&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef BFX_DEFAULT_COMPILER</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="compile_8h.html#a2066076a7ff90b509be0beba7a38df38">   16</a></span><span class="preprocessor">#define BFX_DEFAULT_COMPILER &quot;gcc&quot;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef BFX_TMP_FILE_PATH</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="compile_8h.html#a7adb547072d9bbb0b27da80b460d573b">   23</a></span><span class="preprocessor">#define BFX_TMP_FILE_PATH &quot;/tmp/bfx.c&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef BFX_DEFAULT_COMPILE_FLAGS</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="compile_8h.html#adfc3ee1c1a81837ba3d13b1508423e8b">   23</a></span><span class="preprocessor">#define BFX_DEFAULT_COMPILE_FLAGS &quot;-O3 -s -ffast-math -static&quot;</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keywordtype">void</span> <a class="code hl_function" href="compile_8h.html#aac5904e7ac2d0d5f266e0efb4863da0c">bfx_compile</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*, <a class="code hl_struct" href="structBFX.html">BFX</a>*);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifndef BFX_COMPILER_LDFLAGS</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="compile_8h.html#a871fc1f204a9b8398e09f1acf258d777">   30</a></span><span class="preprocessor">#define BFX_COMPILER_LDFLAGS &quot;-lbfx -lm&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#ifndef BFX_COMPILE_HEAD</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="compile_8h.html#a5ff79b44755d21bce7ae9d1690adbc21">   37</a></span><span class="preprocessor">#define BFX_COMPILE_HEAD &quot;#include &lt;bfx/interpret.h&gt;\nint main(void) {BFX bfx;&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#ifndef BFX_TMP_FILE_PATH</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="compile_8h.html#a7adb547072d9bbb0b27da80b460d573b">   44</a></span><span class="preprocessor">#define BFX_TMP_FILE_PATH &quot;/tmp/bfx.c&quot;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">void</span> <a class="code hl_function" href="compile_8h.html#aac5904e7ac2d0d5f266e0efb4863da0c">bfx_compile</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*, <span class="keyword">const</span> <span class="keywordtype">char</span>*, <a class="code hl_struct" href="structBFX.html">BFX</a>*);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="abfx_8h_html"><div class="ttname"><a href="bfx_8h.html">bfx.h</a></div></div>
-<div class="ttc" id="acompile_8h_html_aac5904e7ac2d0d5f266e0efb4863da0c"><div class="ttname"><a href="compile_8h.html#aac5904e7ac2d0d5f266e0efb4863da0c">bfx_compile</a></div><div class="ttdeci">void bfx_compile(const char *, const char *, BFX *)</div><div class="ttdoc">Compile Brainfuck code from input_path to output_path.</div><div class="ttdef"><b>Definition:</b> compile.c:28</div></div>
-<div class="ttc" id="astructBFX_html"><div class="ttname"><a href="structBFX.html">BFX</a></div><div class="ttdoc">Structure to store generic data for a brainfuck-like esolang interpreter.</div><div class="ttdef"><b>Definition:</b> bfx.h:163</div></div>
+<div class="ttc" id="acompile_8h_html_aac5904e7ac2d0d5f266e0efb4863da0c"><div class="ttname"><a href="compile_8h.html#aac5904e7ac2d0d5f266e0efb4863da0c">bfx_compile</a></div><div class="ttdeci">void bfx_compile(const char *, const char *, BFX *)</div><div class="ttdoc">Compile Brainfuck code from input_path to output_path.</div><div class="ttdef"><b>Definition:</b> compile.c:39</div></div>
+<div class="ttc" id="astructBFX_html"><div class="ttname"><a href="structBFX.html">BFX</a></div><div class="ttdoc">Structure to store generic data for a brainfuck-like esolang interpreter.</div><div class="ttdef"><b>Definition:</b> bfx.h:149</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
