@@ -38,16 +38,15 @@ bfx [options...] [file]
 - `-i`: Separate code from input using `!` (Note: Grin is not supported here).
 - `-l language`: Specify the language to use (Default: brainfuck).
 - `-r`: Run in interactive REPL mode (Note: Weave is not supported here).
-- `-t tape_size`: Specify the size of the tape (default: 30000)
+- `-t tape_size`: Specify the size of the tape (default: 30000).
 
 ### Compiler Options
 
 Note that the `bfx` library must be installed to your `PATH` in order to use
 these options. Compiled code may be run without the `bfx` library.
 
-- `-c`: Compile to native binary.
-- `-o output_file`: Specify the output file (default: './a.out' for binaries,
-  './a.out.c' for C source)
+- `-c`: Compile the given program to a native binary.
+- `-o output_file`: Specify the output file (default: '`./a.out`')
 
 ### Other Options
 
