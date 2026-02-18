@@ -88,10 +88,6 @@ void test_bfx_op_brainfuck_loops_WhereCellIsNonZero(void) {
     TEST_ASSERT_EQUAL_INT(1, bfx.tape[1]);
 }
 
-void test_bfx_op_getchar_WhereInputIsIntegrated(void) {
-    // TODO implement
-}
-
 void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsTrue(void) {
     INITIALIZE(",!A");
     bfx.input_start = 2;
