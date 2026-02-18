@@ -11,7 +11,7 @@ BFX_GrinData data;
 #define INITIALIZE(s)                                                                              \
     bfx.tape = NULL;                                                                               \
     initialize(s);                                                                                 \
-    memset(&data, 0, sizeof(BFX_GrinData));                                                         \
+    memset(&data, 0, sizeof(BFX_GrinData));                                                        \
     bfx.lang       = BFX_LANG_GRIN;                                                                \
     bfx.lang_data  = (BFX_GrinData*) &data;                                                        \
     data.unit      = BFX_GRIN_RAD;                                                                 \
