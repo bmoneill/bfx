@@ -27,9 +27,9 @@ bfx [options...] [file]
 ### General Interpreter Options
 
 - `-e eof_behavior`: Specify behavior when encountering EOF. Valid values are
-                     "zero" (the default, sets the current cell to zero),
-                     "decrement" (subtract one from the current cell), and
-                     "unchanged" (do not change the current cell).
+  "zero" (the default, sets the current cell to zero),
+  "decrement" (subtract one from the current cell), and
+  "unchanged" (do not change the current cell).
 - `-i`: Separate code from input using `!`.
 - `-l language`: Specify the language to use (Default: brainfuck).
 - `-r`: Run in interactive REPL mode.
@@ -63,7 +63,7 @@ If `file` is not specified, `bfx` will read source code from standard input.
 
 `bfx` running [sierpinski.b](https://brainfuck.org/sierpinski.b)
 
-![bfx sierpinski](https://oneill.sh/img/bfi-sierpinski.png)
+![bfx sierpinski](https://oneill.sh/img/bfx-sierpinski.png)
 
 ## Further Reading
 
