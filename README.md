@@ -1,12 +1,12 @@
-# bfx: an interpreter, compiler, and REPL for brainfuck
+# bfx: an interpreter, compiler, and REPL for brainfuck-like languages
 
 [![CI status](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml).
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
 [![Doxygen status](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml)
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
-programming language brainfuck, as well as an interpreter and REPL for some of
-its derivatives ([Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://esolangs.org/wiki/Weave),
+programming languages [brainfuck](https://esolangs.org/wiki/Brainfuck),
+[Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://esolangs.org/wiki/Weave),
 [Grin](https://esolangs.org/wiki/Grin), and [Brainfork](https://esolangs.org/wiki/Brainfork)).
 
 ## Building
@@ -16,6 +16,7 @@ its derivatives ([Pbrain](https://esolangs.org/wiki/Pbrain), [Weave](https://eso
 ```shell
 cmake . -B build
 cmake --build build
+sudo cmake --install build
 ```
 
 ## Usage
@@ -30,15 +31,17 @@ bfx [options...] [file]
   "zero" (the default, sets the current cell to zero),
   "decrement" (subtract one from the current cell), and
   "unchanged" (do not change the current cell).
-- `-i`: Separate code from input using `!`.
+- `-i`: Separate code from input using `!` (Note: Grin is not supported here).
 - `-l language`: Specify the language to use (Default: brainfuck).
-- `-r`: Run in interactive REPL mode.
+- `-r`: Run in interactive REPL mode (Note: Weave is not supported here).
 - `-t tape_size`: Specify the size of the tape (default: 30000)
 
 ### Compiler Options
 
+Note that the `bfx` library must be installed to your `PATH` in order to use
+these options. Compiled code may be run without the `bfx` library.
+
 - `-c`: Compile to native binary.
-- `-C`: Compile to C.
 - `-o output_file`: Specify the output file (default: './a.out' for binaries,
   './a.out.c' for C source)
 

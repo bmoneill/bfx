@@ -11,20 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef BFX_DEFAULT_COMPILER
-/**
- * @brief Default compiler to use when compiling generated C code.
- */
-#define BFX_DEFAULT_COMPILER "gcc"
-#endif
-
-#ifndef BFX_DEFAULT_COMPILE_FLAGS
-/**
- * @brief Default compile flags to use when compiling generated C code.
- */
-#define BFX_DEFAULT_COMPILE_FLAGS "-O3 -s -ffast-math"
-#endif
-
 #ifndef BFX_DEFAULT_INPUT_MAX
 /**
  * @brief Default maximum input size for the interpreter.
@@ -86,7 +72,7 @@ typedef enum {
 #define BFX_FLAG_DEBUG                        1 //!< Interpreter: Debug mode
 #define BFX_FLAG_REPL                         2 //!< Interpreter: REPL mode
 #define BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS 4 //!< Interpreter: Disable special instructions
-#define BFX_FLAG_ONLY_GENERATE_C_SOURCE       8 //!< Compiler: Only generate C source code
+#define BFX_FLAG_LANG_DATA_FLAGS              8 //!< lang_data contains flags for the given language
 #define BFX_FLAG_GRAPHICS                     16 //!< Interpreter: Enable graphics mode
 #define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE                                                         \
     32 //!< Interpreter: Use input in source file separated by '!'

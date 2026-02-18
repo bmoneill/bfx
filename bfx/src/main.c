@@ -52,14 +52,10 @@ int main(int argc, char* argv[]) {
     bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
     bfx.lang         = BFX_LANG_brainfuck;
 
-    while ((opt = getopt(argc, argv, "cCde:il:o:Prst:v")) != -1) {
+    while ((opt = getopt(argc, argv, "cde:il:o:Prst:v")) != -1) {
         switch (opt) {
         case 'c':
             compile = true;
-            break;
-        case 'C':
-            compile = true;
-            bfx.flags |= BFX_FLAG_ONLY_GENERATE_C_SOURCE;
             break;
         case 'd':
             bfx.flags |= BFX_FLAG_DEBUG;
@@ -87,6 +83,11 @@ int main(int argc, char* argv[]) {
             break;
         case 'p':
             bfx.lang = BFX_LANG_pbrain;
+            break;
+        case 'P':
+            bfx.lang_data             = malloc(sizeof(int));
+            ((int*) bfx.lang_data)[0] = atoi(optarg);
+            bfx.flags |= BFX_FLAG_LANG_DATA_FLAGS;
             break;
         case 'r':
             bfx.flags |= BFX_FLAG_REPL;
@@ -116,17 +117,25 @@ int main(int argc, char* argv[]) {
         path = argv[optind];
     }
 
+    /**** Error checking *****/
     if (bfx.lang == BFX_LANG_UNKNOWN) {
-        fprintf(stderr, "Unknown language specified.\n");
+        fprintf(stderr, "Error: Unknown language specified.\n");
         print_usage(argv[0]);
         return EXIT_FAILURE;
     }
 
+    if (bfx.lang == BFX_LANG_weave && bfx.flags & BFX_FLAG_REPL) {
+        fprintf(stderr, "Error: Weave language does not support REPL mode.\n");
+        return EXIT_FAILURE;
+    }
+
+    if (bfx.lang == BFX_LANG_grin && bfx.flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
+        fprintf(stderr, "Error: Grin language does not support separate input and source mode.\n");
+        return EXIT_FAILURE;
+    }
+
+    /*** Run ****/
     if (compile) {
-        if (bfx.lang != BFX_LANG_brainfuck) {
-            fprintf(stderr, "Brainfuck is the only language supported for compilation.\n");
-            return EXIT_FAILURE;
-        }
         bfx_compile(path, output_path, &bfx);
         return EXIT_SUCCESS;
     }
@@ -134,6 +143,7 @@ int main(int argc, char* argv[]) {
     if (bfx.lang != BFX_LANG_grin) {
         bfx.tape = calloc(bfx.tape_size, sizeof(uint8_t));
     }
+
     if (!(bfx.flags & BFX_FLAG_REPL) && path) {
         bfx_run_file(path, &bfx);
     } else if ((bfx.flags & BFX_FLAG_REPL) && !path) {
@@ -187,7 +197,7 @@ static int get_eof_behavior(const char* s) {
  */
 static void print_usage(const char* argv0) {
     fprintf(stderr,
-            "Usage: %s [-cCdDirsv] [-e eof_behavior] [-l language] [-o output_file] [-P "
+            "Usage: %s [-cdDirsv] [-e eof_behavior] [-l language] [-o output_file] [-P "
             "precision] [-t tape_size] [file]\n",
             argv0);
 }
