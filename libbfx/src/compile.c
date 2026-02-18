@@ -5,6 +5,7 @@
  */
 
 #include "compile.h"
+#include "bfx.h"
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -29,16 +30,15 @@
  * compiles it into a C program, compiles the C program, and writes the resulting code to the file
  * specified by output_path.
  * If input_path is NULL, the function will read from stdin. If output_path is NULL, the function
- * will write to ./a.out(.c).
+ * will write to ./a.out.
  *
  * @param input_path Path to the input Brainfuck source code file.
  * @param output_path Path to the output binary or C file.
- * @param params Compilation parameters
+ * @param bfx BFX configuration to use for compilation.
  */
 void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
     FILE* input;
     FILE* output;
-    bool  binary_output = !(bfx->flags & BFX_FLAG_ONLY_GENERATE_C_SOURCE);
 
     /**** Set up files ****/
     if (!input_path) {
@@ -47,7 +47,7 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
         BFX_ERROR("Failed to open input file");
     }
     if (!output_path) {
-        output_path = binary_output ? "./a.out" : "./a.out.c";
+        output_path = "./a.out";
     }
     if (!(output = fopen(BFX_TMP_FILE_PATH, "w"))) {
         BFX_ERROR("Failed to create temporary file");
@@ -87,6 +87,13 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
     /*** Actual compilation ***/
     fprintf(output, BFX_COMPILE_HEAD);
     fprintf(output, "bfx.tape = malloc(%ld * sizeof(char));\n", bfx->tape_size);
+
+    if (bfx->lang == BFX_LANG_grin && bfx->flags & BFX_FLAG_LANG_DATA_FLAGS) {
+        fprintf(output,
+                "bfx.lang_data = malloc(sizeof(int)); ((int*) bfx.lang_data)[0] = %d;\n",
+                ((int*) bfx->lang_data)[0]);
+    }
+
     BFX_SET_PROPERTY_UINT16_T("flags", bfx->flags);
     BFX_SET_PROPERTY_BOOL("receiving", bfx->receiving);
     BFX_SET_PROPERTY_SIZE_T("program_len", i);

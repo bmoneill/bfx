@@ -26,12 +26,20 @@ BFX_Error bfx_grin_init(BFX* bfx) {
         free(bfx->tape);
         bfx->tape = NULL;
     }
+    int precision = BFX_GRIN_DEFAULT_PRECISION;
+
+    if (bfx->flags & BFX_FLAG_LANG_DATA_FLAGS) {
+        precision = ((int*) bfx->lang_data)[0];
+        free(bfx->lang_data);
+        bfx->lang_data = NULL;
+        bfx->flags &= ~BFX_FLAG_LANG_DATA_FLAGS;
+    }
 
     if (!bfx->lang_data) {
         bfx->lang_data     = calloc(1, sizeof(BFX_GrinData));
         BFX_GrinData* data = (BFX_GrinData*) bfx->lang_data;
         data->unit         = bfx->flags & BFX_FLAG_DEGREES ? BFX_GRIN_DEG : BFX_GRIN_RAD;
-        data->precision    = BFX_GRIN_DEFAULT_PRECISION;
+        data->precision    = precision;
     }
 
     bfx_build_loops(bfx);

@@ -72,7 +72,7 @@ typedef enum {
 #define BFX_FLAG_DEBUG                        1 //!< Interpreter: Debug mode
 #define BFX_FLAG_REPL                         2 //!< Interpreter: REPL mode
 #define BFX_FLAG_DISABLE_SPECIAL_INSTRUCTIONS 4 //!< Interpreter: Disable special instructions
-#define BFX_FLAG_ONLY_GENERATE_C_SOURCE       8 //!< Compiler: Only generate C source code
+#define BFX_FLAG_LANG_DATA_FLAGS              8 //!< lang_data contains flags for the given language
 #define BFX_FLAG_GRAPHICS                     16 //!< Interpreter: Enable graphics mode
 #define BFX_FLAG_SEPARATE_INPUT_AND_SOURCE                                                         \
     32 //!< Interpreter: Use input in source file separated by '!'

@@ -84,6 +84,11 @@ int main(int argc, char* argv[]) {
         case 'p':
             bfx.lang = BFX_LANG_pbrain;
             break;
+        case 'P':
+            bfx.lang_data             = malloc(sizeof(int));
+            ((int*) bfx.lang_data)[0] = atoi(optarg);
+            bfx.flags |= BFX_FLAG_LANG_DATA_FLAGS;
+            break;
         case 'r':
             bfx.flags |= BFX_FLAG_REPL;
             break;
