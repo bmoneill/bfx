@@ -4,7 +4,7 @@ var searchData=
   ['bfx_1',['bfx',['../structBFX__WeaveWrapper.html#ab1d64f52863a631c7f689f0ad444184d',1,'BFX_WeaveWrapper']]],
   ['bfx_2ec_2',['bfx.c',['../bfx_8c.html',1,'']]],
   ['bfx_2eh_3',['bfx.h',['../bfx_8h.html',1,'']]],
-  ['bfx_3a_20an_20interpreter_2c_20compiler_2c_20and_20repl_20for_20brainfuck_2dlike_20languages_4',['bfx: an interpreter, compiler, and REPL for brainfuck-like languages',['../index.html',1,'']]],
+  ['bfx_3a_20an_20extensible_20interpreter_2c_20compiler_2c_20and_20repl_20for_20brainfuck_2dlike_20languages_4',['bfx: an extensible interpreter, compiler, and REPL for brainfuck-like languages',['../index.html',1,'']]],
   ['bfx_5fblock_5',['BFX_Block',['../structBFX__Block.html',1,'']]],
   ['bfx_5fbrainfork_5finit_6',['bfx_brainfork_init',['../brainfork_8c.html#aeca26e4cc09e8f0141303590a00f7459',1,'bfx_brainfork_init(BFX *bfx):&#160;brainfork.c'],['../brainfork_8h.html#a5a1d3980e034b9f0cfc27b576bafe704',1,'bfx_brainfork_init(BFX *):&#160;brainfork.c']]],
   ['bfx_5fbrainfork_5frun_7',['bfx_brainfork_run',['../brainfork_8c.html#a9e51f52f48dddc782060fc53868aa19c',1,'bfx_brainfork_run(BFX *bfx):&#160;brainfork.c'],['../brainfork_8h.html#af81311e7cbc8987a7ac51ddd6e3bc783',1,'bfx_brainfork_run(BFX *):&#160;brainfork.c']]],
