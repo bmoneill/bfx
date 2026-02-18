@@ -155,3 +155,5 @@ void test_bfx_op_putchar(void) {
     RESTORE_STDOUT;
     TEST_ASSERT_EQUAL_STRING("A", stdout_buffer);
 }
+
+// TODO: Loop error tests
