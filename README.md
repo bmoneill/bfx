@@ -49,7 +49,7 @@ these options. Compiled code may be run without the `bfx` library.
 
 - `-D`: Default to degrees instead of radians (Grin).
 - `-P precision`: Specify the number of decimal places to print (Grin). Default
-  is 6.
+  is 4.
 - `-v`: Print version information.
 
 ### Languages
