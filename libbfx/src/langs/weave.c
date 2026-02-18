@@ -66,13 +66,14 @@ void bfx_weave_init(BFX* bfx) {
         threadBFX->program_size = threadLengths[i];
 
         memcpy(threadBFX->program, bfx->program + progIdx, threadLengths[i]);
-        progIdx += threadLengths[i];
+        threadBFX->program[threadLengths[i]]     = ';';
+        threadBFX->program[threadLengths[i] + 1] = '\0';
+        progIdx += threadLengths[i] + 1;
 
         // Thread lang_data is a pointer to the main tape (switched with bfx_op_toggle)
         threadBFX->tape      = calloc(1, BFX_DEFAULT_TAPE_SIZE);
         threadBFX->tape_size = BFX_DEFAULT_TAPE_SIZE;
         threadBFX->lang_data = bfx->tape;
-
         bfx_build_loops(threadBFX);
     }
 }
@@ -91,7 +92,7 @@ void bfx_weave_run(BFX* bfx) {
         ['+'] = bfx_op_brainfuck_inc_t,    ['-'] = bfx_op_brainfuck_dec_t,
         ['>'] = bfx_op_brainfuck_inc_tp,   ['<'] = bfx_op_brainfuck_dec_tp,
         [','] = bfx_op_brainfuck_getchar,  ['.'] = bfx_op_brainfuck_putchar,
-        ['~'] = bfx_op_weave_toggle,
+        ['~'] = bfx_op_weave_toggle,       [';'] = bfx_op_weave_exit,
     };
 
     BFX_WeaveData* data    = (BFX_WeaveData*) bfx->lang_data;
@@ -133,6 +134,14 @@ static void* bfx_weave_create(void* data) {
     BFX*              bfx     = wrapper->bfx;
     bfx_parse_ops(bfx, wrapper->ops);
     return NULL;
+}
+
+/**
+ * @brief Terminate current thread (weave).
+ */
+int bfx_op_weave_exit(BFX* bfx, BFX_FileIndex* index) {
+    bfx->ip = bfx->program_len;
+    return 0;
 }
 
 /**
