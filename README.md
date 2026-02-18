@@ -13,7 +13,8 @@ programming languages:
 - [Pbrain](https://esolangs.org/wiki/Pbrain)
 - [Weave](https://esolangs.org/wiki/Weave)
 
-More languages can be easily implemented (see [Extending](#Extending)).
+Most tape-based single-character instruction languages can be incorporated into
+`libbfx` with relative ease (see [Extending](#Extending)).
 
 ## Building
 
