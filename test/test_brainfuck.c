@@ -14,7 +14,7 @@
 
 BFX  bfx;
 
-void setUp(void) { memset(stdout_buffer, 0, 1024); }
+void setUp(void) { memset(stdout_buffer, 0, BUFFER_LENGTH); }
 void tearDown(void) {}
 
 void test_bfx_op_brainfuck_inc_tp(void) {

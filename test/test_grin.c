@@ -21,7 +21,7 @@ BFX_GrinData data;
     INITIALIZE(s);                                                                                 \
     bfx_grin_run(&bfx);
 
-void setUp(void) { memset(stdout_buffer, 0, 1024); }
+void setUp(void) { memset(stdout_buffer, 0, BUFFER_LENGTH); }
 
 void tearDown(void) {}
 
