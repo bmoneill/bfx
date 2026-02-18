@@ -7,11 +7,13 @@
 This is an interpreter, compiler, and REPL for the following Turing-complete esoteric
 programming languages:
 
-- [Brainfork](https://esolangs.org/wiki/Brainfork).
-- [Brainfuck](https://esolangs.org/wiki/Brainfuck),
+- [Brainfork](https://esolangs.org/wiki/Brainfork)
+- [Brainfuck](https://esolangs.org/wiki/Brainfuck)
 - [Grin](https://esolangs.org/wiki/Grin)
 - [Pbrain](https://esolangs.org/wiki/Pbrain)
-- [Weave](https://esolangs.org/wiki/Weave),
+- [Weave](https://esolangs.org/wiki/Weave)
+
+More languages can be easily implemented (see [Extending](#Extending)).
 
 ## Building
 
