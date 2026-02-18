@@ -45,9 +45,10 @@ void bfx_diagnose(BFX* bfx, BFX_FileIndex* idx) {
  * This function builds the loop structure for the BFX instance,
  * then iterates through the program instructions, interpreting each one
  * until the end of the program is reached.
+ * @return BFX_Error The error code indicating the result of the operation.
  */
 BFX_Error bfx_run_file(const char* path, BFX* bfx) {
-    if (!bfx_load_file(bfx, path)) {
+    if (bfx_load_file(bfx, path)) {
         return BFX_RUNTIME_ERROR;
     }
     return bfx_interpret(bfx);
