@@ -1,18 +1,27 @@
-#include <string.h>
-
 #include "bfx.h"
+
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
 
 #define REDIRECT_STDOUT                                                                            \
     freopen("/dev/null", "a", stdout);                                                             \
-    setbuf(stdout, out);
-
+    setbuf(stdout, stdout_buffer);
 #define RESTORE_STDOUT freopen("/dev/tty", "w", stdout);
+
+#define WRITE_TO_STDIN(s)                                                                          \
+    int fds[2];                                                                                    \
+    pipe(fds);                                                                                     \
+    write(fds[1], s, strlen(s));                                                                   \
+    close(fds[1]);                                                                                 \
+    dup2(fds[0], STDIN_FILENO);                                                                    \
+    close(fds[0]);
 
 BFX       bfx;
 char      program[1024];
 uint8_t   tape[BFX_DEFAULT_TAPE_SIZE];
 BFX_Block loops[1024];
-char      out[1024];
+char      stdout_buffer[1024];
 
 void      initialize(const char*);
 

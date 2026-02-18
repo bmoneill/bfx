@@ -14,7 +14,7 @@
 
 BFX  bfx;
 
-void setUp(void) {}
+void setUp(void) { memset(stdout_buffer, 0, 1024); }
 void tearDown(void) {}
 
 void test_bfx_op_brainfuck_inc_tp(void) {
@@ -65,28 +65,16 @@ void test_bfx_op_brainfuck_dec_t_WhereCellIsUnderflowed(void) {
     TEST_ASSERT_EQUAL_INT(255, bfx.tape[bfx.tp]);
 }
 
-void test_bfx_op_brainfuck_loop_start_WhereCellIsZero(void) {
-    // TODO implement
+void test_bfx_op_brainfuck_loops_WhereCellIsZero(void) {
+    EXECUTE("[+>]");
+    TEST_ASSERT_EQUAL_INT(0, bfx.tape[0]);
+    TEST_ASSERT_EQUAL_INT(0, bfx.tape[1]);
 }
 
-void test_bfx_op_brainfuck_loop_start_WhereCellIsNonZero(void) {
-    // TODO implement
-}
-
-void test_bfx_op_brainfuck_loop_start_WhereMatchingBracketIsMissing(void) {
-    // TODO implement
-}
-
-void test_bfx_op_brainfuck_loop_end_WhereCellIsZero(void) {
-    // TODO implement
-}
-
-void test_bfx_op_brainfuck_loop_end_WhereCellIsNonZero(void) {
-    // TODO implement
-}
-
-void test_bfx_op_brainfuck_loop_end_WhereMatchingBracketIsMissing(void) {
-    // TODO implement
+void test_bfx_op_brainfuck_loops_WhereCellIsNonZero(void) {
+    EXECUTE("+[>+<-]");
+    TEST_ASSERT_EQUAL_INT(0, bfx.tape[0]);
+    TEST_ASSERT_EQUAL_INT(1, bfx.tape[1]);
 }
 
 void test_bfx_op_getchar_WhereInputIsIntegrated(void) {
@@ -94,27 +82,76 @@ void test_bfx_op_getchar_WhereInputIsIntegrated(void) {
 }
 
 void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsTrue(void) {
-    // TODO implement
+    INITIALIZE(",!A");
+    bfx.input_start = 2;
+    bfx.input_len   = bfx.input_start + 1;
+    bfx.input_ptr   = bfx.input_start;
+    bfx.receiving   = true;
+    bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
+    bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT('A', bfx.tape[bfx.tp]);
 }
 
-void test_bfx_op_getchar_WhereInputIsNotIntegrated(void) {
-    // TODO implement
+void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsFalse(void) {
+    INITIALIZE(",!A");
+    bfx.input_start = 2;
+    bfx.input_len   = bfx.input_start + 1;
+    bfx.input_ptr   = bfx.input_start;
+    bfx.receiving   = false;
+    bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
+    bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
+}
+
+void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsTrue(void) {
+    INITIALIZE(",");
+    bfx.receiving = true;
+
+    WRITE_TO_STDIN("A");
+    bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT('A', bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithZeroEOFBehavior(void) {
-    // TODO implement
+    INITIALIZE(",");
+    bfx.eof_behavior = BFX_EOF_BEHAVIOR_ZERO;
+    bfx.receiving    = false;
+
+    WRITE_TO_STDIN("A");
+    bfx.tape[bfx.tp] = 1;
+    bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithDecrementEOFBehavior(
     void) {
-    // TODO implement
+    INITIALIZE(",");
+    bfx.eof_behavior = BFX_EOF_BEHAVIOR_DECREMENT;
+    bfx.receiving    = false;
+
+    WRITE_TO_STDIN("A");
+    bfx.tape[bfx.tp] = 2;
+    bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(1, bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithUnchangedEOFBehavior(
     void) {
-    // TODO implement
+    INITIALIZE(",");
+    bfx.eof_behavior = BFX_EOF_BEHAVIOR_UNCHANGED;
+    bfx.receiving    = false;
+
+    WRITE_TO_STDIN("A");
+    bfx.tape[bfx.tp] = 2;
+    bfx_interpret(&bfx);
+    TEST_ASSERT_EQUAL_INT(2, bfx.tape[bfx.tp]);
 }
 
 void test_bfx_op_putchar(void) {
-    // TODO implement
+    INITIALIZE(".");
+    bfx.tape[bfx.tp] = 'A';
+    REDIRECT_STDOUT;
+    bfx_interpret(&bfx);
+    RESTORE_STDOUT;
+    TEST_ASSERT_EQUAL_STRING("A", stdout_buffer);
 }

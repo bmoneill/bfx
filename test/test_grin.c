@@ -21,7 +21,7 @@ BFX_GrinData data;
     INITIALIZE(s);                                                                                 \
     bfx_grin_run(&bfx);
 
-void setUp(void) { memset(out, 0, 1024); }
+void setUp(void) { memset(stdout_buffer, 0, 1024); }
 
 void tearDown(void) {}
 
@@ -31,7 +31,7 @@ void test_bfx_op_grin_putchar_ascii(void) {
     REDIRECT_STDOUT;
     bfx_grin_run(&bfx);
     RESTORE_STDOUT;
-    TEST_ASSERT_EQUAL_STRING("A", out);
+    TEST_ASSERT_EQUAL_STRING("A", stdout_buffer);
 }
 
 void test_bfx_op_grin_putchar_number(void) {
@@ -40,7 +40,7 @@ void test_bfx_op_grin_putchar_number(void) {
     REDIRECT_STDOUT;
     bfx_grin_run(&bfx);
     RESTORE_STDOUT;
-    TEST_ASSERT_EQUAL_STRING("42.0000", out);
+    TEST_ASSERT_EQUAL_STRING("42.0000", stdout_buffer);
 }
 
 void test_bfx_op_grin_getchar_ascii(void) {
@@ -59,7 +59,7 @@ void test_bfx_op_grin_putchar_register_ascii(void) {
     REDIRECT_STDOUT;
     bfx_grin_run(&bfx);
     RESTORE_STDOUT;
-    TEST_ASSERT_EQUAL_STRING("A", out);
+    TEST_ASSERT_EQUAL_STRING("A", stdout_buffer);
 }
 
 void test_bfx_op_grin_putchar_register_number(void) {
@@ -68,7 +68,7 @@ void test_bfx_op_grin_putchar_register_number(void) {
     REDIRECT_STDOUT;
     bfx_grin_run(&bfx);
     RESTORE_STDOUT;
-    TEST_ASSERT_EQUAL_STRING("42.0000", out);
+    TEST_ASSERT_EQUAL_STRING("42.0000", stdout_buffer);
 }
 
 void test_bfx_op_grin_add(void) {
@@ -266,7 +266,7 @@ void test_bfx_op_grin_print(void) {
     REDIRECT_STDOUT;
     bfx_grin_run(&bfx);
     RESTORE_STDOUT;
-    TEST_ASSERT_EQUAL_STRING("HELLO WORLD\n", out);
+    TEST_ASSERT_EQUAL_STRING("HELLO WORLD\n", stdout_buffer);
 }
 
 void test_bfx_op_grin_newline(void) {
@@ -274,7 +274,7 @@ void test_bfx_op_grin_newline(void) {
     REDIRECT_STDOUT;
     bfx_grin_run(&bfx);
     RESTORE_STDOUT;
-    TEST_ASSERT_EQUAL_STRING("\n", out);
+    TEST_ASSERT_EQUAL_STRING("\n", stdout_buffer);
 }
 
 void test_bfx_op_grin_sin(void) {
