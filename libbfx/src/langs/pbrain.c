@@ -6,24 +6,22 @@
 
 #include "pbrain.h"
 
+#include "bfx.h"
 #include "brainfuck.h"
 #include "util.h"
-
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * @brief Initialize the P-Brain interpreter
  *
  * @param bfx Pointer to the already-allocated interpreter struct
  */
-void bfx_pbrain_init(BFX* bfx) {
-    bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
-    BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
-    data->procedures_len = 0;
-    data->procedures     = malloc(sizeof(BFX_PBrainProcedure) * BFX_PBRAIN_MAX_PROCEDURES);
-    data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
-    bfx_build_loops(bfx);
+BFX_Error bfx_pbrain_init(BFX* bfx) {
+    if (!bfx->lang_data) {
+        bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
+        BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
+        data->procedures_len = 0;
+    }
+    return bfx_build_loops(bfx);
 }
 
 /**
@@ -34,8 +32,8 @@ void bfx_pbrain_init(BFX* bfx) {
  *
  * @param bfx Pointer to the interpreter struct
  */
-void bfx_pbrain_run(BFX* bfx) {
-    void (*ops[128])(BFX*, BFX_FileIndex*) = {
+BFX_Error bfx_pbrain_run(BFX* bfx) {
+    BFX_Error (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_brainfuck_loop_end,
         ['['] = bfx_op_brainfuck_loop_start,
         ['+'] = bfx_op_brainfuck_inc_t,
@@ -49,13 +47,13 @@ void bfx_pbrain_run(BFX* bfx) {
         [')'] = bfx_op_pbrain_ret,
     };
 
-    bfx_parse_ops(bfx, ops);
+    int ret = bfx_parse_ops(bfx, ops);
 
     // Free language-specific data
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
-    free(data->procedures);
-    free(data->stack);
     free(data);
+
+    return ret;
 }
 
 /**
@@ -64,45 +62,55 @@ void bfx_pbrain_run(BFX* bfx) {
  * @param bf Pointer to the interpreter struct
  * @param idx Pointer to the file index struct
  */
-void bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
+BFX_Error bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
     size_t          i;
     BFX_PBrainData* data                              = (BFX_PBrainData*) bfx->lang_data;
 
-    data->procedures[data->procedures_len].start_idx  = bfx->ip + 1;
+    data->procedures[data->procedures_len].start_idx  = bfx->ip;
     data->procedures[data->procedures_len].identifier = bfx->tape[bfx->tp];
     for (i = bfx->ip; i < bfx->program_len; i++) {
         if (bfx->program[i] == ')') {
             data->procedures[data->procedures_len].end_idx = i;
-            bfx->ip                                        = i + 1;
+            bfx->ip                                        = i;
             data->procedures_len++;
-            return;
+            return BFX_SUCCESS;
         }
     }
     BFX_ERROR("Expected ')'");
+    return BFX_SYNTAX_ERROR;
 }
 
 /**
  * @brief Call a procedure by its identifier (pbrain).
  */
-void bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_pbrain_call(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     for (size_t i = 0; i < data->procedures_len; i++) {
         if (data->procedures[i].identifier == bfx->tape[bfx->tp]) {
             data->stack_top++;
+            if (data->stack_top > BFX_PBRAIN_STACK_SIZE) {
+                BFX_ERROR("Stack overflow.");
+                return BFX_STACK_OVERFLOW_ERROR;
+            }
             data->stack[data->stack_top] = bfx->ip;
             bfx->ip                      = data->procedures[i].start_idx;
-            return;
+            return BFX_SUCCESS;
         }
     }
+    BFX_ERROR("Procedure not found.");
+    return BFX_RUNTIME_ERROR;
 }
 
 /**
  * @brief Return from a procedure (pbrain).
  */
-void bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_pbrain_ret(BFX* bfx, BFX_FileIndex* index) {
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     if (data->stack_top > 0) {
         bfx->ip = data->stack[data->stack_top];
         data->stack_top--;
+        return BFX_SUCCESS;
     }
+    BFX_ERROR("Stack underflow.");
+    return BFX_STACK_UNDERFLOW_ERROR;
 }

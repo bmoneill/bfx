@@ -10,8 +10,6 @@
 #include "util.h"
 
 #include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 /**
@@ -29,7 +27,7 @@ typedef struct {
  */
 typedef struct {
     BFX* bfx; //!< Pointer to the main BFX interpreter structure
-    void (*ops[128])(BFX*, BFX_FileIndex*); //!< Pointer to the array of operations
+    BFX_Error (*ops[128])(BFX*, BFX_FileIndex*); //!< Pointer to the array of operations
 } BFX_WeaveWrapper;
 
 static void* bfx_weave_create(void*);
@@ -38,7 +36,7 @@ static void* bfx_weave_create(void*);
  * @brief Initialize the Weave interpreter
  * @param bfx Pointer to the already-allocated interpreter struct
  */
-void bfx_weave_init(BFX* bfx) {
+BFX_Error bfx_weave_init(BFX* bfx) {
     int    threadCount = 0;
     size_t threadLengths[BFX_MAX_THREADS];
 
@@ -68,15 +66,21 @@ void bfx_weave_init(BFX* bfx) {
         threadBFX->program_size = threadLengths[i];
 
         memcpy(threadBFX->program, bfx->program + progIdx, threadLengths[i]);
-        progIdx += threadLengths[i];
+        threadBFX->program[threadLengths[i]]     = ';';
+        threadBFX->program[threadLengths[i] + 1] = '\0';
+        progIdx += threadLengths[i] + 1;
 
         // Thread lang_data is a pointer to the main tape (switched with bfx_op_toggle)
         threadBFX->tape      = calloc(1, BFX_DEFAULT_TAPE_SIZE);
         threadBFX->tape_size = BFX_DEFAULT_TAPE_SIZE;
         threadBFX->lang_data = bfx->tape;
-
-        bfx_build_loops(threadBFX);
+        int ret              = bfx_build_loops(threadBFX);
+        if (ret) {
+            return ret;
+        }
     }
+
+    return BFX_SUCCESS;
 }
 
 /**
@@ -87,13 +91,13 @@ void bfx_weave_init(BFX* bfx) {
  *
  * @param bfx Pointer to the interpreter struct
  */
-void bfx_weave_run(BFX* bfx) {
-    void (*ops[128])(BFX*, BFX_FileIndex*) = {
+BFX_Error bfx_weave_run(BFX* bfx) {
+    BFX_Error (*ops[128])(BFX*, BFX_FileIndex*) = {
         [']'] = bfx_op_brainfuck_loop_end, ['['] = bfx_op_brainfuck_loop_start,
         ['+'] = bfx_op_brainfuck_inc_t,    ['-'] = bfx_op_brainfuck_dec_t,
         ['>'] = bfx_op_brainfuck_inc_tp,   ['<'] = bfx_op_brainfuck_dec_tp,
         [','] = bfx_op_brainfuck_getchar,  ['.'] = bfx_op_brainfuck_putchar,
-        ['~'] = bfx_op_weave_toggle,
+        ['~'] = bfx_op_weave_toggle,       [';'] = bfx_op_weave_exit,
     };
 
     BFX_WeaveData* data    = (BFX_WeaveData*) bfx->lang_data;
@@ -122,6 +126,8 @@ void bfx_weave_run(BFX* bfx) {
         free(data->threads[i].loops);
     }
     free(data);
+
+    return BFX_SUCCESS;
 }
 
 /**
@@ -138,10 +144,19 @@ static void* bfx_weave_create(void* data) {
 }
 
 /**
+ * @brief Terminate current thread (weave).
+ */
+BFX_Error bfx_op_weave_exit(BFX* bfx, BFX_FileIndex* index) {
+    bfx->ip = bfx->program_len;
+    return 0;
+}
+
+/**
  * @brief Toggle between thread and global tape (weave).
  */
-void bfx_op_weave_toggle(BFX* bfx, BFX_FileIndex* index) {
+BFX_Error bfx_op_weave_toggle(BFX* bfx, BFX_FileIndex* index) {
     uint8_t* old_tape = bfx->tape;
     bfx->tape         = bfx->lang_data;
     bfx->lang_data    = old_tape;
+    return 0;
 }

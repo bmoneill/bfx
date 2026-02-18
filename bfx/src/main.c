@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
     bfx.input_max    = BFX_DEFAULT_INPUT_MAX;
     bfx.tape_size    = BFX_DEFAULT_TAPE_SIZE;
     bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
-    bfx.lang         = BFX_LANG_BRAINFUCK;
+    bfx.lang         = BFX_LANG_brainfuck;
 
     while ((opt = getopt(argc, argv, "cCde:il:o:Prst:v")) != -1) {
         switch (opt) {
@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
             }
             break;
         case 'G':
-            bfx.lang = BFX_LANG_GRIN;
+            bfx.lang = BFX_LANG_grin;
             break;
         case 'i':
             bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
@@ -86,7 +86,7 @@ int main(int argc, char* argv[]) {
             output_path = optarg;
             break;
         case 'p':
-            bfx.lang = BFX_LANG_PBRAIN;
+            bfx.lang = BFX_LANG_pbrain;
             break;
         case 'r':
             bfx.flags |= BFX_FLAG_REPL;
@@ -101,10 +101,10 @@ int main(int argc, char* argv[]) {
             print_version(argv[0]);
             return EXIT_SUCCESS;
         case 'w':
-            bfx.lang = BFX_LANG_WEAVE;
+            bfx.lang = BFX_LANG_weave;
             break;
         case 'Y':
-            bfx.lang = BFX_LANG_BRAINFORK;
+            bfx.lang = BFX_LANG_brainfork;
             break;
         default:
             print_usage(argv[0]);
@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (compile) {
-        if (bfx.lang != BFX_LANG_BRAINFUCK) {
+        if (bfx.lang != BFX_LANG_brainfuck) {
             fprintf(stderr, "Brainfuck is the only language supported for compilation.\n");
             return EXIT_FAILURE;
         }
@@ -131,7 +131,12 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
     }
 
-    if (bfx.lang != BFX_LANG_GRIN) {
+    if (bfx.lang == BFX_LANG_weave && bfx.flags & BFX_FLAG_REPL) {
+        fprintf(stderr, "Weave language does not support REPL mode.\n");
+        return EXIT_FAILURE;
+    }
+
+    if (bfx.lang != BFX_LANG_grin) {
         bfx.tape = calloc(bfx.tape_size, sizeof(uint8_t));
     }
     if (!(bfx.flags & BFX_FLAG_REPL) && path) {
@@ -150,15 +155,15 @@ int main(int argc, char* argv[]) {
 
 static BFX_Language get_language(const char* s) {
     if (!strcmp(s, BRAINFORK_S)) {
-        return BFX_LANG_BRAINFORK;
+        return BFX_LANG_brainfork;
     } else if (!strcmp(s, BRAINFUCK_S)) {
-        return BFX_LANG_BRAINFUCK;
+        return BFX_LANG_brainfuck;
     } else if (!strcmp(s, GRIN_S)) {
-        return BFX_LANG_GRIN;
+        return BFX_LANG_grin;
     } else if (!strcmp(s, PBRAIN_S)) {
-        return BFX_LANG_PBRAIN;
+        return BFX_LANG_pbrain;
     } else if (!strcmp(s, WEAVE_S)) {
-        return BFX_LANG_WEAVE;
+        return BFX_LANG_weave;
     }
 
     return BFX_LANG_UNKNOWN;

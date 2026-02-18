@@ -9,6 +9,6 @@
 
 #include "bfx.h"
 
-void bfx_interpret(BFX*);
+BFX_Error bfx_interpret(BFX*);
 
 #endif

@@ -2,6 +2,7 @@
 
 [![CI status](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml).
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
+[![Doxygen status](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml)
 
 This is an interpreter, compiler, and REPL for the Turing-complete esoteric
 programming language brainfuck, as well as an interpreter and REPL for some of
@@ -26,9 +27,9 @@ bfx [options...] [file]
 ### General Interpreter Options
 
 - `-e eof_behavior`: Specify behavior when encountering EOF. Valid values are
-                     "zero" (the default, sets the current cell to zero),
-                     "decrement" (subtract one from the current cell), and
-                     "unchanged" (do not change the current cell).
+  "zero" (the default, sets the current cell to zero),
+  "decrement" (subtract one from the current cell), and
+  "unchanged" (do not change the current cell).
 - `-i`: Separate code from input using `!`.
 - `-l language`: Specify the language to use (Default: brainfuck).
 - `-r`: Run in interactive REPL mode.
@@ -62,7 +63,7 @@ If `file` is not specified, `bfx` will read source code from standard input.
 
 `bfx` running [sierpinski.b](https://brainfuck.org/sierpinski.b)
 
-![bfx sierpinski](https://oneill.sh/img/bfi-sierpinski.png)
+![bfx sierpinski](https://oneill.sh/img/bfx-sierpinski.png)
 
 ## Further Reading
 

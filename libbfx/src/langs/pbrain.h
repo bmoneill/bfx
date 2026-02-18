@@ -7,7 +7,7 @@
 #ifndef BFX_LANGS_PBRAIN_H
 #define BFX_LANGS_PBRAIN_H
 
-#include "../bfx.h"
+#include "bfx.h"
 
 #ifndef BFX_PBRAIN_MAX_PROCEDURES
 /**
@@ -17,6 +17,10 @@
  * designated by 8-bit identifiers.
  */
 #define BFX_PBRAIN_MAX_PROCEDURES 256
+#endif
+
+#ifndef BFX_PBRAIN_STACK_SIZE
+#define BFX_PBRAIN_STACK_SIZE 16
 #endif
 
 /**
@@ -34,18 +38,18 @@ typedef struct {
  * This populates the lang_data field in a BFX instance.
  */
 typedef struct {
-    BFX_PBrainProcedure* procedures; //!< Array of procedures
-    size_t               procedures_len; //!< Length of the procedures array
-    size_t*              stack; //!< Array of stack elements
-    size_t               stack_top; //!< Top index of the stack
+    BFX_PBrainProcedure procedures[BFX_PBRAIN_MAX_PROCEDURES]; //!< Array of procedures
+    size_t              procedures_len; //!< Length of the procedures array
+    size_t              stack[BFX_PBRAIN_STACK_SIZE]; //!< Array of stack elements
+    size_t              stack_top; //!< Top index of the stack
 } BFX_PBrainData;
 
-void bfx_pbrain_init(BFX* bfx);
-void bfx_pbrain_run(BFX* bf);
+BFX_Error bfx_pbrain_init(BFX*);
+BFX_Error bfx_pbrain_run(BFX*);
 
 /* ops */
-void bfx_op_pbrain_start_procedure(BFX*, BFX_FileIndex*);
-void bfx_op_pbrain_call(BFX*, BFX_FileIndex*);
-void bfx_op_pbrain_ret(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_pbrain_start_procedure(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_pbrain_call(BFX*, BFX_FileIndex*);
+BFX_Error bfx_op_pbrain_ret(BFX*, BFX_FileIndex*);
 
 #endif

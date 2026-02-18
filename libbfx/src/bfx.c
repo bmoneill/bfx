@@ -21,6 +21,9 @@ static void bfx_reset_loops(BFX*);
  *
  * This function prints the current state of the BFX instance, including the line number,
  * tape pointer, instruction pointer, and memory map.
+ *
+ * @param bfx The BFX instance to diagnose.
+ * @param idx The file index to use for line information.
  */
 void bfx_diagnose(BFX* bfx, BFX_FileIndex* idx) {
     fprintf(stderr,
@@ -42,10 +45,13 @@ void bfx_diagnose(BFX* bfx, BFX_FileIndex* idx) {
  * This function builds the loop structure for the BFX instance,
  * then iterates through the program instructions, interpreting each one
  * until the end of the program is reached.
+ * @return BFX_Error The error code indicating the result of the operation.
  */
-void bfx_run_file(const char* path, BFX* bfx) {
-    bfx_load_file(bfx, path);
-    bfx_interpret(bfx);
+BFX_Error bfx_run_file(const char* path, BFX* bfx) {
+    if (bfx_load_file(bfx, path)) {
+        return BFX_RUNTIME_ERROR;
+    }
+    return bfx_interpret(bfx);
 }
 
 /**
@@ -54,13 +60,15 @@ void bfx_run_file(const char* path, BFX* bfx) {
  * This function continuously reads input from the user, appends it to the program,
  * and interprets the instructions until the user terminates the program.
  */
-void bfx_run_repl(BFX* bfx) {
+BFX_Error bfx_run_repl(BFX* bfx) {
     char* input;
     bfx->program_size = bfx->input_max;
+    int ret           = BFX_SUCCESS;
 
     if (!(bfx->program = (char*) malloc(bfx->program_size + 1))
         || !(input = (char*) malloc(bfx->program_size + 1))) {
         BFX_ERROR("Cannot allocate memory for program storage.");
+        return BFX_RUNTIME_ERROR;
     }
 
     while (1) {
@@ -75,96 +83,45 @@ void bfx_run_repl(BFX* bfx) {
             bfx->program_size *= 2;
             if (!(bfx->program = realloc(bfx->program, bfx->program_size))) {
                 BFX_ERROR("Cannot reallocate memory for program storage.");
+                return BFX_RUNTIME_ERROR;
             }
         }
 
         snprintf(bfx->program + prog_len_old, bfx->program_size - prog_len_old, "%s", input);
-        bfx_reset_loops(bfx);
 
-        for (; (size_t) bfx->ip < bfx->program_len; bfx->ip++) {
-            bfx_interpret(bfx);
+        ret = bfx_interpret(bfx);
+        if (ret) {
+            break;
         }
     }
 
     free(input);
+    input = NULL;
     bfx_free(bfx);
-}
-
-/**
- * @brief Builds the loop structure for the BFX instance.
- *
- * This function scans the BFX program and constructs the necessary
- * data structures to efficiently handle loop constructs ('[' and ']').
- * It ensures that matching brackets are correctly paired, allowing for
- * proper execution flow during interpretation.
- *
- * @note This function does not return a value. If an error occurs (such as exceeding MAX_LOOPS),
- *       it prints an error message and terminates the program using exit(EXIT_FAILURE).
- */
-void bfx_build_loops(BFX* bfx) {
-    BFX_FileIndex* stack      = malloc(sizeof(BFX_FileIndex) * BFX_INITIAL_LOOP_SIZE);
-    int            stack_top  = 0;
-    int            stack_size = BFX_INITIAL_LOOP_SIZE;
-    int            line       = 1;
-    int            line_idx   = 0;
-    bfx->loops_len            = 0;
-    bfx->loops_size           = BFX_INITIAL_LOOP_SIZE;
-    bfx->loops                = malloc(sizeof(BFX_Block) * BFX_INITIAL_LOOP_SIZE);
-
-    for (size_t i = 0; i < bfx->program_len; i++) {
-        line_idx++;
-        if (bfx->program[i] == '[') {
-            if (stack_top >= stack_size) {
-                stack_size *= 2;
-                stack = realloc(stack, sizeof(BFX_FileIndex) * stack_size);
-            }
-            stack[stack_top].idx      = i;
-            stack[stack_top].line     = line;
-            stack[stack_top].line_idx = line_idx;
-            stack_top++;
-        } else if (bfx->program[i] == ']') {
-            if (stack_top <= 0) {
-                fprintf(stderr,
-                        "libbfx: Error (%d,%d): Unmatched closing bracket ']'.\n",
-                        line,
-                        line_idx);
-                free(stack);
-                exit(EXIT_FAILURE);
-            }
-            BFX_FileIndex start                     = stack[--stack_top];
-            bfx->loops[bfx->loops_len].start        = start;
-            bfx->loops[bfx->loops_len].end.idx      = i;
-            bfx->loops[bfx->loops_len].end.line     = line;
-            bfx->loops[bfx->loops_len].end.line_idx = line_idx;
-            bfx->loops_len++;
-        } else if (bfx->program[i] == '\n') {
-            line++;
-            line_idx = 0;
-        }
-    }
-
-    free(stack);
-
-    if (stack_top != 0) {
-        fprintf(stderr, "libbfx: Error (%d,%d): Unmatched opening bracket '['.\n", line, line_idx);
-        exit(EXIT_FAILURE);
-    }
+    return ret;
 }
 
 /**
  * @brief Frees the memory allocated for the BFX instance.
- * @param bf Pointer to the BFX instance.
+ *
+ * This function frees the memory allocated for the BFX instance, including the program buffer,
+ * tape buffer, and loop buffer. It does not free the BFX instance itself.
+ *
+ * @param bfx Pointer to the BFX instance.
  */
-void bfx_free(BFX* bf) {
-    if (bf) {
-        if (bf->program) {
-            free(bf->program);
+void bfx_free(BFX* bfx) {
+    if (bfx) {
+        if (bfx->program) {
+            free(bfx->program);
+            bfx->program = NULL;
         }
-        if (bf->tape) {
-            free(bf->tape);
+        if (bfx->tape) {
+            free(bfx->tape);
+            bfx->tape = NULL;
         }
-        if (bf->loops) {
-            free(bf->loops);
+        if (bfx->loops) {
+            free(bfx->loops);
+            bfx->loops = NULL;
         }
     }
 }
@@ -196,6 +153,7 @@ static int bfx_load_file(BFX* bfx, const char* path) {
             if (fread(bfx->program, 1, bfx->program_len, f) != (unsigned long) bfx->program_len) {
                 fprintf(stderr, "Error: Cannot read file %s.\n", path);
                 free(bfx->program);
+                bfx->program = NULL;
                 fclose(f);
                 return 1;
             }
@@ -223,14 +181,4 @@ static int bfx_load_file(BFX* bfx, const char* path) {
     }
 
     return 0;
-}
-
-/**
- * @brief Resets the loop structure.
- *
- * This function resets the loop structure by clearing the loop buffer.
- */
-static void bfx_reset_loops(BFX* bfx) {
-    memset(bfx->loops, 0, bfx->loops_len);
-    bfx->loops_len = 0;
 }
