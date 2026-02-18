@@ -6,6 +6,8 @@
     freopen("/dev/null", "a", stdout);                                                             \
     setbuf(stdout, out);
 
+#define RESTORE_STDOUT freopen("/dev/tty", "w", stdout);
+
 BFX       bfx;
 char      program[1024];
 uint8_t   tape[BFX_DEFAULT_TAPE_SIZE];
@@ -28,5 +30,5 @@ void      initialize(const char* program_str) {
     bfx.program_size = 1024;
     bfx.program_len  = program_len;
     bfx.loops_size   = 1024;
-    memcpy(program, program_str, program_len);
+    memcpy(program, program_str, strlen(program_str));
 }
