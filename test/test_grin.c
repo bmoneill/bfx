@@ -47,13 +47,19 @@ void test_bfx_op_grin_putchar_number(void) {
 }
 
 void test_bfx_op_grin_getchar_ascii(void) {
-    // TODO
-    TEST_ASSERT_EQUAL(1, 1);
+    INITIALIZE(",");
+    WRITE_TO_STDIN("A");
+    ret = bfx_grin_run(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
+    TEST_ASSERT_EQUAL_INT('A', GRIN_DATA->tape[0]);
 }
 
 void test_bfx_op_grin_getchar_number(void) {
-    // TODO
-    TEST_ASSERT_EQUAL(1, 1);
+    INITIALIZE(";");
+    WRITE_TO_STDIN("42.5");
+    ret = bfx_grin_run(&bfx);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
+    TEST_ASSERT_EQUAL_INT(42.5, GRIN_DATA->tape[0]);
 }
 
 void test_bfx_op_grin_putchar_register_ascii(void) {

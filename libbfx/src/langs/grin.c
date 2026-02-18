@@ -190,7 +190,7 @@ BFX_Error bfx_op_grin_getchar_number(BFX* bfx, BFX_FileIndex* index) {
     char s[64];
     int  c, i = 0;
     while ((c = fgetc(stdin)) != EOF) {
-        if (isdigit(c) && c == '.') {
+        if (isdigit(c) || c == '.') {
             s[i++] = c;
         } else {
             break;
