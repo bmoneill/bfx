@@ -131,6 +131,11 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
     }
 
+    if (bfx.lang == BFX_LANG_weave && bfx.flags & BFX_FLAG_REPL) {
+        fprintf(stderr, "Weave language does not support REPL mode.\n");
+        return EXIT_FAILURE;
+    }
+
     if (bfx.lang != BFX_LANG_grin) {
         bfx.tape = calloc(bfx.tape_size, sizeof(uint8_t));
     }
