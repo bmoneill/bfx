@@ -28,15 +28,23 @@ var bfx_8h =
       [ "BFX_EOF_BEHAVIOR_DECREMENT", "bfx_8h.html#a81b641ae8b5b4fd3386b8a9a602e002fa7029b279c50e1bd177f3b4eec931e00a", null ],
       [ "BFX_EOF_BEHAVIOR_UNCHANGED", "bfx_8h.html#a81b641ae8b5b4fd3386b8a9a602e002faf1b7f1eb1865f548b2e796f665b6aa78", null ]
     ] ],
+    [ "BFX_Error", "bfx_8h.html#a61145585bc31fa07ef43caaabca078cd", [
+      [ "BFX_SUCCESS", "bfx_8h.html#a61145585bc31fa07ef43caaabca078cda995816ee0d1fecdec1d1f622e03f3edf", null ],
+      [ "BFX_STACK_OVERFLOW_ERROR", "bfx_8h.html#a61145585bc31fa07ef43caaabca078cda533da05cf7247b1b68d137e8480f0727", null ],
+      [ "BFX_STACK_UNDERFLOW_ERROR", "bfx_8h.html#a61145585bc31fa07ef43caaabca078cdac86f0d12076b5ce86bbe227bc3c47ab8", null ],
+      [ "BFX_SYNTAX_ERROR", "bfx_8h.html#a61145585bc31fa07ef43caaabca078cda3b0fc7fa12a5f47156bb52a70579faf2", null ],
+      [ "BFX_OUT_OF_MEMORY_ERROR", "bfx_8h.html#a61145585bc31fa07ef43caaabca078cdaba38652d40f05b71f785a6fa2788519f", null ],
+      [ "BFX_RUNTIME_ERROR", "bfx_8h.html#a61145585bc31fa07ef43caaabca078cdae79daa629e391a9b0fc14bd4aa916317", null ]
+    ] ],
     [ "BFX_Language", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21f", [
       [ "BFX_LANG_UNKNOWN", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21faac961c41e0292da33b3ae4bb35a8cbad", null ],
-      [ "BFX_LANG_BRAINFUCK", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa091da9b98dbd9fb410c41dbda9c0d9a3", null ],
-      [ "BFX_LANG_BRAINFORK", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fac2eb7178d0db2879c04b8a049872bb4b", null ],
-      [ "BFX_LANG_PBRAIN", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa27cfa315bf58ad8075e898d89f147ca0", null ],
-      [ "BFX_LANG_GRIN", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa8ebdcfb4120f4ded081cb3fcb1534e15", null ],
-      [ "BFX_LANG_WEAVE", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa7de93b4362021619db45827bf452f361", null ]
+      [ "BFX_LANG_brainfuck", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa841ea9530eb0c2bbb1f4edec4c60a7b9", null ],
+      [ "BFX_LANG_brainfork", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fab43963c98956f0d4fbf405125a6297c6", null ],
+      [ "BFX_LANG_pbrain", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa1b5066a951043b0159f073ccce1992d3", null ],
+      [ "BFX_LANG_grin", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa4ddb18f38de0d76448c5777ba49828dd", null ],
+      [ "BFX_LANG_weave", "bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa5620884256f3d4f5ee759fd8e8a2ff38", null ]
     ] ],
     [ "bfx_free", "bfx_8h.html#a28ce396c4e6fda1189680109a32c5db4", null ],
-    [ "bfx_run_file", "bfx_8h.html#ae87752fa022fc85bfc6f7ec7a42508ad", null ],
-    [ "bfx_run_repl", "bfx_8h.html#aad42be1c5378097fcea488601647def4", null ]
+    [ "bfx_run_file", "bfx_8h.html#a87ad7261f0afa37c36156330d2f52cc4", null ],
+    [ "bfx_run_repl", "bfx_8h.html#a8810ac35b7b24959bfd454134977580c", null ]
 ];

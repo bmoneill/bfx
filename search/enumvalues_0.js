@@ -5,10 +5,16 @@ var searchData=
   ['bfx_5feof_5fbehavior_5fzero_2',['BFX_EOF_BEHAVIOR_ZERO',['../bfx_8h.html#a81b641ae8b5b4fd3386b8a9a602e002fa3a0cda7e12a0d67b0ffa8ec9defaac66',1,'bfx.h']]],
   ['bfx_5fgrin_5fdeg_3',['BFX_GRIN_DEG',['../grin_8h.html#adc03533c66574e4a3ac43bf342c10db2a13736619f9dcf2250b910394cced5c9e',1,'grin.h']]],
   ['bfx_5fgrin_5frad_4',['BFX_GRIN_RAD',['../grin_8h.html#adc03533c66574e4a3ac43bf342c10db2a75e572f54879456e7d313fa4bcb5a04b',1,'grin.h']]],
-  ['bfx_5flang_5fbrainfork_5',['BFX_LANG_BRAINFORK',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fac2eb7178d0db2879c04b8a049872bb4b',1,'bfx.h']]],
-  ['bfx_5flang_5fbrainfuck_6',['BFX_LANG_BRAINFUCK',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa091da9b98dbd9fb410c41dbda9c0d9a3',1,'bfx.h']]],
-  ['bfx_5flang_5fgrin_7',['BFX_LANG_GRIN',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa8ebdcfb4120f4ded081cb3fcb1534e15',1,'bfx.h']]],
-  ['bfx_5flang_5fpbrain_8',['BFX_LANG_PBRAIN',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa27cfa315bf58ad8075e898d89f147ca0',1,'bfx.h']]],
+  ['bfx_5flang_5fbrainfork_5',['BFX_LANG_brainfork',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fab43963c98956f0d4fbf405125a6297c6',1,'bfx.h']]],
+  ['bfx_5flang_5fbrainfuck_6',['BFX_LANG_brainfuck',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa841ea9530eb0c2bbb1f4edec4c60a7b9',1,'bfx.h']]],
+  ['bfx_5flang_5fgrin_7',['BFX_LANG_grin',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa4ddb18f38de0d76448c5777ba49828dd',1,'bfx.h']]],
+  ['bfx_5flang_5fpbrain_8',['BFX_LANG_pbrain',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa1b5066a951043b0159f073ccce1992d3',1,'bfx.h']]],
   ['bfx_5flang_5funknown_9',['BFX_LANG_UNKNOWN',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21faac961c41e0292da33b3ae4bb35a8cbad',1,'bfx.h']]],
-  ['bfx_5flang_5fweave_10',['BFX_LANG_WEAVE',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa7de93b4362021619db45827bf452f361',1,'bfx.h']]]
+  ['bfx_5flang_5fweave_10',['BFX_LANG_weave',['../bfx_8h.html#a2cbcf93f96b238fc242fa06f7f83e21fa5620884256f3d4f5ee759fd8e8a2ff38',1,'bfx.h']]],
+  ['bfx_5fout_5fof_5fmemory_5ferror_11',['BFX_OUT_OF_MEMORY_ERROR',['../bfx_8h.html#a61145585bc31fa07ef43caaabca078cdaba38652d40f05b71f785a6fa2788519f',1,'bfx.h']]],
+  ['bfx_5fruntime_5ferror_12',['BFX_RUNTIME_ERROR',['../bfx_8h.html#a61145585bc31fa07ef43caaabca078cdae79daa629e391a9b0fc14bd4aa916317',1,'bfx.h']]],
+  ['bfx_5fstack_5foverflow_5ferror_13',['BFX_STACK_OVERFLOW_ERROR',['../bfx_8h.html#a61145585bc31fa07ef43caaabca078cda533da05cf7247b1b68d137e8480f0727',1,'bfx.h']]],
+  ['bfx_5fstack_5funderflow_5ferror_14',['BFX_STACK_UNDERFLOW_ERROR',['../bfx_8h.html#a61145585bc31fa07ef43caaabca078cdac86f0d12076b5ce86bbe227bc3c47ab8',1,'bfx.h']]],
+  ['bfx_5fsuccess_15',['BFX_SUCCESS',['../bfx_8h.html#a61145585bc31fa07ef43caaabca078cda995816ee0d1fecdec1d1f622e03f3edf',1,'bfx.h']]],
+  ['bfx_5fsyntax_5ferror_16',['BFX_SYNTAX_ERROR',['../bfx_8h.html#a61145585bc31fa07ef43caaabca078cda3b0fc7fa12a5f47156bb52a70579faf2',1,'bfx.h']]]
 ];

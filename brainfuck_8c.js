@@ -1,13 +1,13 @@
 var brainfuck_8c =
 [
-    [ "bfx_brainfuck_init", "brainfuck_8c.html#a20e2b2e5a401a06561cc44ec61406b5d", null ],
-    [ "bfx_brainfuck_run", "brainfuck_8c.html#a74350e8058cea2df77f8f98e3de67c91", null ],
-    [ "bfx_op_brainfuck_dec_t", "brainfuck_8c.html#af89d110c5d1cdb3a1cba2162140076aa", null ],
-    [ "bfx_op_brainfuck_dec_tp", "brainfuck_8c.html#a3a57cd93230010f0665fbc6e203ac702", null ],
-    [ "bfx_op_brainfuck_getchar", "brainfuck_8c.html#ae58365874166c2d932feeff00f04544d", null ],
-    [ "bfx_op_brainfuck_inc_t", "brainfuck_8c.html#aa092c422f32a8d8ea77f1b7cafb49ba3", null ],
-    [ "bfx_op_brainfuck_inc_tp", "brainfuck_8c.html#a093fbc15a420254298abdf382d373b3b", null ],
-    [ "bfx_op_brainfuck_loop_end", "brainfuck_8c.html#a23006d8a989641fbc66f2af7d2a0e1b8", null ],
-    [ "bfx_op_brainfuck_loop_start", "brainfuck_8c.html#ac769d66c18a9b3fa817c2054a3578acc", null ],
-    [ "bfx_op_brainfuck_putchar", "brainfuck_8c.html#a34322a9e985b4b06c4a3c12eceebed99", null ]
+    [ "bfx_brainfuck_init", "brainfuck_8c.html#ae25cd880af051103a68a89ef3b8b933d", null ],
+    [ "bfx_brainfuck_run", "brainfuck_8c.html#a2f20de02d2413c5aa4ca9d488fb92f8c", null ],
+    [ "bfx_op_brainfuck_dec_t", "brainfuck_8c.html#a6775aef913fcb2aa95187fc3beec6db9", null ],
+    [ "bfx_op_brainfuck_dec_tp", "brainfuck_8c.html#af31ba833384b5a29c9c3e64dd6a7817e", null ],
+    [ "bfx_op_brainfuck_getchar", "brainfuck_8c.html#a8279822bf2ecd92b5c6ad087a2b28ecb", null ],
+    [ "bfx_op_brainfuck_inc_t", "brainfuck_8c.html#aab23ae413555de51e592e4ecbfc9caa2", null ],
+    [ "bfx_op_brainfuck_inc_tp", "brainfuck_8c.html#a54d70802ae09f5e34baa20428e08e956", null ],
+    [ "bfx_op_brainfuck_loop_end", "brainfuck_8c.html#a734f7e7663cf5f8d6a66165d8cbc72f3", null ],
+    [ "bfx_op_brainfuck_loop_start", "brainfuck_8c.html#aaa3be76cddc7e79da68a72dd568916dd", null ],
+    [ "bfx_op_brainfuck_putchar", "brainfuck_8c.html#a94f2502184c18bcb2589a51a7b0190c5", null ]
 ];

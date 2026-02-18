@@ -21,10 +21,12 @@ var searchData=
   ['bfx_5fin_5fdebug_5fmode_18',['BFX_IN_DEBUG_MODE',['../bfx_8h.html#abcba5e34d3b51a7c8c763d583cb14885',1,'bfx.h']]],
   ['bfx_5fin_5frepl_5fmode_19',['BFX_IN_REPL_MODE',['../bfx_8h.html#afb1362e0925e3acf2fc7ed2fa3d81f16',1,'bfx.h']]],
   ['bfx_5finitial_5floop_5fsize_20',['BFX_INITIAL_LOOP_SIZE',['../bfx_8h.html#aa03e0f1560c0fcbfe298c9ceac30b046',1,'bfx.h']]],
-  ['bfx_5fmax_5fthreads_21',['BFX_MAX_THREADS',['../util_8h.html#a93b5f8b29a468db19af2c903de14f25c',1,'util.h']]],
-  ['bfx_5fpbrain_5fmax_5fprocedures_22',['BFX_PBRAIN_MAX_PROCEDURES',['../pbrain_8h.html#a9e65b27108cfc6cc924b8fd4ae25bd80',1,'pbrain.h']]],
-  ['bfx_5fprocedure_5fsize_23',['BFX_PROCEDURE_SIZE',['../bfx_8h.html#aa12c70cba362402b3575d5dd33a930c3',1,'bfx.h']]],
-  ['bfx_5fspecial_5finstructions_5fenabled_24',['BFX_SPECIAL_INSTRUCTIONS_ENABLED',['../bfx_8h.html#a57631ce9e474028fb4024d947476ae57',1,'bfx.h']]],
-  ['bfx_5ftmp_5ffile_5fpath_25',['BFX_TMP_FILE_PATH',['../compile_8h.html#a7adb547072d9bbb0b27da80b460d573b',1,'compile.h']]],
-  ['bfx_5fversion_26',['BFX_VERSION',['../bfx_8h.html#afdfecde2aa5a8ceef14d3ac4c84b394a',1,'bfx.h']]]
+  ['bfx_5flang_21',['BFX_LANG',['../interpret_8c.html#a5cf63d3c91e21979d39014e3d68c4245',1,'interpret.c']]],
+  ['bfx_5fmax_5fthreads_22',['BFX_MAX_THREADS',['../util_8h.html#a93b5f8b29a468db19af2c903de14f25c',1,'util.h']]],
+  ['bfx_5fpbrain_5fmax_5fprocedures_23',['BFX_PBRAIN_MAX_PROCEDURES',['../pbrain_8h.html#a9e65b27108cfc6cc924b8fd4ae25bd80',1,'pbrain.h']]],
+  ['bfx_5fpbrain_5fstack_5fsize_24',['BFX_PBRAIN_STACK_SIZE',['../pbrain_8h.html#a88d810e83737081711d1f1680ed69f11',1,'pbrain.h']]],
+  ['bfx_5fprocedure_5fsize_25',['BFX_PROCEDURE_SIZE',['../bfx_8h.html#aa12c70cba362402b3575d5dd33a930c3',1,'bfx.h']]],
+  ['bfx_5fspecial_5finstructions_5fenabled_26',['BFX_SPECIAL_INSTRUCTIONS_ENABLED',['../bfx_8h.html#a57631ce9e474028fb4024d947476ae57',1,'bfx.h']]],
+  ['bfx_5ftmp_5ffile_5fpath_27',['BFX_TMP_FILE_PATH',['../compile_8h.html#a7adb547072d9bbb0b27da80b460d573b',1,'compile.h']]],
+  ['bfx_5fversion_28',['BFX_VERSION',['../bfx_8h.html#afdfecde2aa5a8ceef14d3ac4c84b394a',1,'bfx.h']]]
 ];

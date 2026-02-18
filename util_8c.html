@@ -99,27 +99,28 @@ $(document).ready(function(){initNavTree('util_8c.html',''); initResizable(); })
 <p>Language-independent utility functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bfx_8h_source.html">bfx.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ada4f0f1d7ea8110e746c2c5cfb98581b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ada4f0f1d7ea8110e746c2c5cfb98581b">bfx_build_loops</a> (<a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
-<tr class="memdesc:ada4f0f1d7ea8110e746c2c5cfb98581b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the loop structure for the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance.  <br /></td></tr>
-<tr class="separator:ada4f0f1d7ea8110e746c2c5cfb98581b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec8a2382126dc752478138f1c4edc3be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#aec8a2382126dc752478138f1c4edc3be">bfx_parse_ops</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, int(*ops[128])(<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *))</td></tr>
-<tr class="memdesc:aec8a2382126dc752478138f1c4edc3be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes operations on the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance.  <br /></td></tr>
-<tr class="separator:aec8a2382126dc752478138f1c4edc3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af370719ed647bdb02157fe2ff8a1bda8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#af370719ed647bdb02157fe2ff8a1bda8">bfx_build_loops</a> (<a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
+<tr class="memdesc:af370719ed647bdb02157fe2ff8a1bda8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the loop structure for the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance.  <br /></td></tr>
+<tr class="separator:af370719ed647bdb02157fe2ff8a1bda8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad450b1c805a341035b100a81b607d4d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8c.html#ad450b1c805a341035b100a81b607d4d9">bfx_parse_ops</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>(*ops[128])(<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *))</td></tr>
+<tr class="memdesc:ad450b1c805a341035b100a81b607d4d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes operations on the <a class="el" href="structBFX.html" title="Structure to store generic data for a brainfuck-like esolang interpreter.">BFX</a> instance.  <br /></td></tr>
+<tr class="separator:ad450b1c805a341035b100a81b607d4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Language-independent utility functions. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ada4f0f1d7ea8110e746c2c5cfb98581b" name="ada4f0f1d7ea8110e746c2c5cfb98581b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada4f0f1d7ea8110e746c2c5cfb98581b">&#9670;&#160;</a></span>bfx_build_loops()</h2>
+<a id="af370719ed647bdb02157fe2ff8a1bda8" name="af370719ed647bdb02157fe2ff8a1bda8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af370719ed647bdb02157fe2ff8a1bda8">&#9670;&#160;</a></span>bfx_build_loops()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_build_loops </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_build_loops </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em></td><td>)</td>
@@ -140,14 +141,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aec8a2382126dc752478138f1c4edc3be" name="aec8a2382126dc752478138f1c4edc3be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec8a2382126dc752478138f1c4edc3be">&#9670;&#160;</a></span>bfx_parse_ops()</h2>
+<a id="ad450b1c805a341035b100a81b607d4d9" name="ad450b1c805a341035b100a81b607d4d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad450b1c805a341035b100a81b607d4d9">&#9670;&#160;</a></span>bfx_parse_ops()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_parse_ops </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_parse_ops </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -155,7 +156,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int(*[128])(<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)&#160;</td>
+          <td class="paramtype"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>(*[128])(<a class="el" href="structBFX.html">BFX</a> *, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *)&#160;</td>
           <td class="paramname"><em>ops</em>&#160;</td>
         </tr>
         <tr>
@@ -174,6 +175,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Error code </dd></dl>
 
 </div>
 </div>

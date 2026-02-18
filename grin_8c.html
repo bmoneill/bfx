@@ -97,6 +97,7 @@ $(document).ready(function(){initNavTree('grin_8c.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="grin_8h_source.html">grin.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bfx_8h_source.html">bfx.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="brainfuck_8h_source.html">brainfuck.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 <code>#include &lt;ctype.h&gt;</code><br />
@@ -111,150 +112,150 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:adbe824805fef7f042e94ca54a55e4267"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#adbe824805fef7f042e94ca54a55e4267">bfx_grin_init</a> (<a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
-<tr class="memdesc:adbe824805fef7f042e94ca54a55e4267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Grin interpreter.  <br /></td></tr>
-<tr class="separator:adbe824805fef7f042e94ca54a55e4267"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a0ea5b179d9224bd335538eb17382c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a6a0ea5b179d9224bd335538eb17382c9">bfx_grin_run</a> (<a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
-<tr class="memdesc:a6a0ea5b179d9224bd335538eb17382c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the Grin interpreter.  <br /></td></tr>
-<tr class="separator:a6a0ea5b179d9224bd335538eb17382c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ba6632a2e0b032090ca12ff8084f15"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a05ba6632a2e0b032090ca12ff8084f15">bfx_op_grin_inc_t</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a05ba6632a2e0b032090ca12ff8084f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment value at tape pointer (Grin).  <br /></td></tr>
-<tr class="separator:a05ba6632a2e0b032090ca12ff8084f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2c67db4a6c7cf73b47748faf1ed9b21"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ab2c67db4a6c7cf73b47748faf1ed9b21">bfx_op_grin_dec_t</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ab2c67db4a6c7cf73b47748faf1ed9b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement value at tape pointer (Grin).  <br /></td></tr>
-<tr class="separator:ab2c67db4a6c7cf73b47748faf1ed9b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a530c4122671a56033bca79b862dd36e5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a530c4122671a56033bca79b862dd36e5">bfx_op_grin_loop_start</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a530c4122671a56033bca79b862dd36e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start of loop (Grin).  <br /></td></tr>
-<tr class="separator:a530c4122671a56033bca79b862dd36e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82b36c4d914132da83d33d072d0a28b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a82b36c4d914132da83d33d072d0a28b3">bfx_op_grin_loop_end</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a82b36c4d914132da83d33d072d0a28b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">End of loop (Grin).  <br /></td></tr>
-<tr class="separator:a82b36c4d914132da83d33d072d0a28b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef9711adc12e5884213231d86051e091"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aef9711adc12e5884213231d86051e091">bfx_op_grin_putchar_ascii</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:aef9711adc12e5884213231d86051e091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output current cell as ASCII character (Grin)  <br /></td></tr>
-<tr class="separator:aef9711adc12e5884213231d86051e091"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c73c59fa8f8c79a6931d80228fe6839"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a1c73c59fa8f8c79a6931d80228fe6839">bfx_op_grin_putchar_number</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a1c73c59fa8f8c79a6931d80228fe6839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output current cell as a number (Grin)  <br /></td></tr>
-<tr class="separator:a1c73c59fa8f8c79a6931d80228fe6839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba1594f105f5000a7367337e029bb271"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aba1594f105f5000a7367337e029bb271">bfx_op_grin_getchar_ascii</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:aba1594f105f5000a7367337e029bb271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to inputted ASCII character (Grin)  <br /></td></tr>
-<tr class="separator:aba1594f105f5000a7367337e029bb271"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb1060d59c92e7b9fa58abdb33b724f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#abb1060d59c92e7b9fa58abdb33b724f6">bfx_op_grin_getchar_number</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:abb1060d59c92e7b9fa58abdb33b724f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to inputted number (Grin)  <br /></td></tr>
-<tr class="separator:abb1060d59c92e7b9fa58abdb33b724f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35b5d76112bc0221894f540d389ae862"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a35b5d76112bc0221894f540d389ae862">bfx_op_grin_putchar_register_ascii</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a35b5d76112bc0221894f540d389ae862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register as ASCII character (Grin)  <br /></td></tr>
-<tr class="separator:a35b5d76112bc0221894f540d389ae862"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7e835fa811192a1aa2f52be2d026222"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ae7e835fa811192a1aa2f52be2d026222">bfx_op_grin_putchar_register_number</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ae7e835fa811192a1aa2f52be2d026222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register as number (Grin)  <br /></td></tr>
-<tr class="separator:ae7e835fa811192a1aa2f52be2d026222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd756a921ecd90696e7f90c34c4bc6b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#acd756a921ecd90696e7f90c34c4bc6b1">bfx_op_grin_add</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:acd756a921ecd90696e7f90c34c4bc6b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add register to current cell (Grin)  <br /></td></tr>
-<tr class="separator:acd756a921ecd90696e7f90c34c4bc6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2f2aaf95cf7e5dad71ca6798e804dc1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aa2f2aaf95cf7e5dad71ca6798e804dc1">bfx_op_grin_sub</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:aa2f2aaf95cf7e5dad71ca6798e804dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract register from current cell (Grin)  <br /></td></tr>
-<tr class="separator:aa2f2aaf95cf7e5dad71ca6798e804dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a191170023db168d28eb301cacd4feff2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a191170023db168d28eb301cacd4feff2">bfx_op_grin_mul</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a191170023db168d28eb301cacd4feff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply current cell by register (Grin)  <br /></td></tr>
-<tr class="separator:a191170023db168d28eb301cacd4feff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a442c56f806f275930968eeb60f5a36dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a442c56f806f275930968eeb60f5a36dc">bfx_op_grin_div</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a442c56f806f275930968eeb60f5a36dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide current cell by register (Grin)  <br /></td></tr>
-<tr class="separator:a442c56f806f275930968eeb60f5a36dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad84aa51e5c36f0d583fcbcccf2b1f507"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ad84aa51e5c36f0d583fcbcccf2b1f507">bfx_op_grin_exp</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ad84aa51e5c36f0d583fcbcccf2b1f507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise current cell to the power of register (Grin)  <br /></td></tr>
-<tr class="separator:ad84aa51e5c36f0d583fcbcccf2b1f507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc3254bc50e9deafb62d54c41a4fb653"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#abc3254bc50e9deafb62d54c41a4fb653">bfx_op_grin_store</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:abc3254bc50e9deafb62d54c41a4fb653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store current cell value in register (Grin)  <br /></td></tr>
-<tr class="separator:abc3254bc50e9deafb62d54c41a4fb653"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9baa993f52b66f29799311648b32831"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aa9baa993f52b66f29799311648b32831">bfx_op_grin_load</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:aa9baa993f52b66f29799311648b32831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store register value in current cell (Grin)  <br /></td></tr>
-<tr class="separator:aa9baa993f52b66f29799311648b32831"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0eefd744c1d0a2b551ac11b33f175d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ac0eefd744c1d0a2b551ac11b33f175d0">bfx_op_grin_swap</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ac0eefd744c1d0a2b551ac11b33f175d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap current cell value with register value (Grin)  <br /></td></tr>
-<tr class="separator:ac0eefd744c1d0a2b551ac11b33f175d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a349790f8946aceb216d705a5f7121990"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a349790f8946aceb216d705a5f7121990">bfx_op_grin_zero</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a349790f8946aceb216d705a5f7121990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a349790f8946aceb216d705a5f7121990"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a654ca1fd594c292e4fb9231d78c703ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a654ca1fd594c292e4fb9231d78c703ad">bfx_op_grin_zero_ptr</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a654ca1fd594c292e4fb9231d78c703ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero cell at register value (Grin)  <br /></td></tr>
-<tr class="separator:a654ca1fd594c292e4fb9231d78c703ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeec51af38989d888c1c2153546eb9a85"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aeec51af38989d888c1c2153546eb9a85">bfx_op_grin_mod</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:aeec51af38989d888c1c2153546eb9a85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modulo (Grin)  <br /></td></tr>
-<tr class="separator:aeec51af38989d888c1c2153546eb9a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5b0dcc744858ee770b5844cb2e13bde"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ab5b0dcc744858ee770b5844cb2e13bde">bfx_op_grin_round</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ab5b0dcc744858ee770b5844cb2e13bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Round current cell value (Grin)  <br /></td></tr>
-<tr class="separator:ab5b0dcc744858ee770b5844cb2e13bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f42f1468f51685b31a87ca59e542cd3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a5f42f1468f51685b31a87ca59e542cd3">bfx_op_grin_nand</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a5f42f1468f51685b31a87ca59e542cd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">NAND current cell value with register value (Grin)  <br /></td></tr>
-<tr class="separator:a5f42f1468f51685b31a87ca59e542cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17dd7ab2126b10ddcbce455809fb06ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a17dd7ab2126b10ddcbce455809fb06ed">bfx_op_grin_or</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a17dd7ab2126b10ddcbce455809fb06ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">OR current cell value with register value (Grin)  <br /></td></tr>
-<tr class="separator:a17dd7ab2126b10ddcbce455809fb06ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d5ebf658d73cb30cd1f74a2f4460671"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a9d5ebf658d73cb30cd1f74a2f4460671">bfx_op_grin_not</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a9d5ebf658d73cb30cd1f74a2f4460671"><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a9d5ebf658d73cb30cd1f74a2f4460671"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62dce706a15d79a1600239ae8f45c47d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a62dce706a15d79a1600239ae8f45c47d">bfx_op_grin_negate</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a62dce706a15d79a1600239ae8f45c47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Negate current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a62dce706a15d79a1600239ae8f45c47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16191ed121a45b74fd63acd4861427be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a16191ed121a45b74fd63acd4861427be">bfx_op_grin_simplify</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a16191ed121a45b74fd63acd4861427be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simplify current cell value (set to -1.0 if &lt; -1.0, 1.0 if &gt; 1.0, 0.0 otherwise) (Grin)  <br /></td></tr>
-<tr class="separator:a16191ed121a45b74fd63acd4861427be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa1f6ae028e0a790c3080eea9f656955"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#afa1f6ae028e0a790c3080eea9f656955">bfx_op_grin_print</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:afa1f6ae028e0a790c3080eea9f656955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print from instruction pointer to next ')' (Grin)  <br /></td></tr>
-<tr class="separator:afa1f6ae028e0a790c3080eea9f656955"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad66dfd85ae970273610e24ae94d145a6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ad66dfd85ae970273610e24ae94d145a6">bfx_op_grin_newline</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ad66dfd85ae970273610e24ae94d145a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a newline (Grin)  <br /></td></tr>
-<tr class="separator:ad66dfd85ae970273610e24ae94d145a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a157ec14e5e31a3ae6c128d7cb6b1d2a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a157ec14e5e31a3ae6c128d7cb6b1d2a4">bfx_op_grin_sin</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a157ec14e5e31a3ae6c128d7cb6b1d2a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sine of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a157ec14e5e31a3ae6c128d7cb6b1d2a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24a001092f8256d6811249dea2047ab7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a24a001092f8256d6811249dea2047ab7">bfx_op_grin_cos</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a24a001092f8256d6811249dea2047ab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cosine of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a24a001092f8256d6811249dea2047ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f2d32ffbfa7e8b6bbdea3ed509b610a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a6f2d32ffbfa7e8b6bbdea3ed509b610a">bfx_op_grin_tan</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a6f2d32ffbfa7e8b6bbdea3ed509b610a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tangent of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a6f2d32ffbfa7e8b6bbdea3ed509b610a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36a57b1993cb17173336870d17526568"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a36a57b1993cb17173336870d17526568">bfx_op_grin_arcsin</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a36a57b1993cb17173336870d17526568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arcsine of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a36a57b1993cb17173336870d17526568"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefc4f5925089170e04c5f518b8ced3be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aefc4f5925089170e04c5f518b8ced3be">bfx_op_grin_arccos</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:aefc4f5925089170e04c5f518b8ced3be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arccosine of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:aefc4f5925089170e04c5f518b8ced3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51c9125c47b8a455c4b111344d738324"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a51c9125c47b8a455c4b111344d738324">bfx_op_grin_arctan</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a51c9125c47b8a455c4b111344d738324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arctangent of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a51c9125c47b8a455c4b111344d738324"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab97e3d712345ee925c539af1deb82331"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ab97e3d712345ee925c539af1deb82331">bfx_op_grin_inv</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ab97e3d712345ee925c539af1deb82331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:ab97e3d712345ee925c539af1deb82331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8c1b946027d0ead7ddce6b9462f001b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#af8c1b946027d0ead7ddce6b9462f001b">bfx_op_grin_mod2</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:af8c1b946027d0ead7ddce6b9462f001b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modulo of current cell value by 2 (Grin)  <br /></td></tr>
-<tr class="separator:af8c1b946027d0ead7ddce6b9462f001b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77111240820e8c4e9f1b5c417640fae1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a77111240820e8c4e9f1b5c417640fae1">bfx_op_grin_e</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a77111240820e8c4e9f1b5c417640fae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to Euler's number (Grin)  <br /></td></tr>
-<tr class="separator:a77111240820e8c4e9f1b5c417640fae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae9dcfbf9a652e6079857daffa02f2e9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aae9dcfbf9a652e6079857daffa02f2e9">bfx_op_grin_pi</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:aae9dcfbf9a652e6079857daffa02f2e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to Pi (Grin)  <br /></td></tr>
-<tr class="separator:aae9dcfbf9a652e6079857daffa02f2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a1d0f7828797e57626947640403b8ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a5a1d0f7828797e57626947640403b8ac">bfx_op_grin_ln</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a5a1d0f7828797e57626947640403b8ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Natural logarithm of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a5a1d0f7828797e57626947640403b8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad196ef23693128409ae475643e8aed85"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ad196ef23693128409ae475643e8aed85">bfx_op_grin_mean</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ad196ef23693128409ae475643e8aed85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean of current cell value and register value (Grin)  <br /></td></tr>
-<tr class="separator:ad196ef23693128409ae475643e8aed85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ef07857d0f581a75fd51921eec1aab7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a8ef07857d0f581a75fd51921eec1aab7">bfx_op_grin_sqrt</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a8ef07857d0f581a75fd51921eec1aab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Square root of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a8ef07857d0f581a75fd51921eec1aab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fd6c9b71cd6cd8e639480effc482d88"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a1fd6c9b71cd6cd8e639480effc482d88">bfx_op_grin_log</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a1fd6c9b71cd6cd8e639480effc482d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base-10 logarithm of current cell value (Grin)  <br /></td></tr>
-<tr class="separator:a1fd6c9b71cd6cd8e639480effc482d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a9a5ce258e480eeec9967f469b0e34e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a7a9a5ce258e480eeec9967f469b0e34e">bfx_op_grin_jump</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a7a9a5ce258e480eeec9967f469b0e34e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump n instructions, n=register value (Grin)  <br /></td></tr>
-<tr class="separator:a7a9a5ce258e480eeec9967f469b0e34e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0591cfe267a525a0a800e59ab2e43121"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a0591cfe267a525a0a800e59ab2e43121">bfx_op_grin_toggle_deg_rad</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:a0591cfe267a525a0a800e59ab2e43121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle between degrees and radians (Grin)  <br /></td></tr>
-<tr class="separator:a0591cfe267a525a0a800e59ab2e43121"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab39b4a932375f0f1083545374750bb4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ab39b4a932375f0f1083545374750bb4e">bfx_op_grin_exit</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
-<tr class="memdesc:ab39b4a932375f0f1083545374750bb4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the program (Grin)  <br /></td></tr>
-<tr class="separator:ab39b4a932375f0f1083545374750bb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e4625ceaad5036644c42fd8c9ddf1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a03e4625ceaad5036644c42fd8c9ddf1a">bfx_grin_init</a> (<a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
+<tr class="memdesc:a03e4625ceaad5036644c42fd8c9ddf1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Grin interpreter.  <br /></td></tr>
+<tr class="separator:a03e4625ceaad5036644c42fd8c9ddf1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac89a492005ebb1943430e5350b213a33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ac89a492005ebb1943430e5350b213a33">bfx_grin_run</a> (<a class="el" href="structBFX.html">BFX</a> *bfx)</td></tr>
+<tr class="memdesc:ac89a492005ebb1943430e5350b213a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the Grin interpreter.  <br /></td></tr>
+<tr class="separator:ac89a492005ebb1943430e5350b213a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc9e69ee5e64813b2c10e70ef2e826d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#acc9e69ee5e64813b2c10e70ef2e826d7">bfx_op_grin_inc_t</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:acc9e69ee5e64813b2c10e70ef2e826d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment value at tape pointer (Grin).  <br /></td></tr>
+<tr class="separator:acc9e69ee5e64813b2c10e70ef2e826d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16ed57403896f6f39b5830fb4530cca8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a16ed57403896f6f39b5830fb4530cca8">bfx_op_grin_dec_t</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a16ed57403896f6f39b5830fb4530cca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement value at tape pointer (Grin).  <br /></td></tr>
+<tr class="separator:a16ed57403896f6f39b5830fb4530cca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a66ae70e787cbc4fd26385b8678560"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#af1a66ae70e787cbc4fd26385b8678560">bfx_op_grin_loop_start</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:af1a66ae70e787cbc4fd26385b8678560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start of loop (Grin).  <br /></td></tr>
+<tr class="separator:af1a66ae70e787cbc4fd26385b8678560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5c06358e9651f9fe882b66c73d2425"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#afe5c06358e9651f9fe882b66c73d2425">bfx_op_grin_loop_end</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:afe5c06358e9651f9fe882b66c73d2425"><td class="mdescLeft">&#160;</td><td class="mdescRight">End of loop (Grin).  <br /></td></tr>
+<tr class="separator:afe5c06358e9651f9fe882b66c73d2425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe7e2da76d9b14de23ced0927ddc8994"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#afe7e2da76d9b14de23ced0927ddc8994">bfx_op_grin_putchar_ascii</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:afe7e2da76d9b14de23ced0927ddc8994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output current cell as ASCII character (Grin)  <br /></td></tr>
+<tr class="separator:afe7e2da76d9b14de23ced0927ddc8994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3395df32d4758b05a03d4057b5bd8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a0c3395df32d4758b05a03d4057b5bd8f">bfx_op_grin_putchar_number</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a0c3395df32d4758b05a03d4057b5bd8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output current cell as a number (Grin)  <br /></td></tr>
+<tr class="separator:a0c3395df32d4758b05a03d4057b5bd8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1d9daacae934dd59126e942650119aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aa1d9daacae934dd59126e942650119aa">bfx_op_grin_getchar_ascii</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:aa1d9daacae934dd59126e942650119aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to inputted ASCII character (Grin)  <br /></td></tr>
+<tr class="separator:aa1d9daacae934dd59126e942650119aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb5659a20fa73c57ae6a6c5d305075d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#adb5659a20fa73c57ae6a6c5d305075d9">bfx_op_grin_getchar_number</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:adb5659a20fa73c57ae6a6c5d305075d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to inputted number (Grin)  <br /></td></tr>
+<tr class="separator:adb5659a20fa73c57ae6a6c5d305075d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1179460ac000a4667fdfe0abc6da53e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a1179460ac000a4667fdfe0abc6da53e8">bfx_op_grin_putchar_register_ascii</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a1179460ac000a4667fdfe0abc6da53e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register as ASCII character (Grin)  <br /></td></tr>
+<tr class="separator:a1179460ac000a4667fdfe0abc6da53e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af669aec1851f89b370fc62e96e161795"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#af669aec1851f89b370fc62e96e161795">bfx_op_grin_putchar_register_number</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:af669aec1851f89b370fc62e96e161795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print register as number (Grin)  <br /></td></tr>
+<tr class="separator:af669aec1851f89b370fc62e96e161795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a877217973115c492b115b9ab7ae01e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a2a877217973115c492b115b9ab7ae01e">bfx_op_grin_add</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a2a877217973115c492b115b9ab7ae01e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add register to current cell (Grin)  <br /></td></tr>
+<tr class="separator:a2a877217973115c492b115b9ab7ae01e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe02a0a401acf3c7e81d1f81a4dff1a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#afe02a0a401acf3c7e81d1f81a4dff1a9">bfx_op_grin_sub</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:afe02a0a401acf3c7e81d1f81a4dff1a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtract register from current cell (Grin)  <br /></td></tr>
+<tr class="separator:afe02a0a401acf3c7e81d1f81a4dff1a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dc081d28830cfd70a534425128392ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a3dc081d28830cfd70a534425128392ff">bfx_op_grin_mul</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a3dc081d28830cfd70a534425128392ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply current cell by register (Grin)  <br /></td></tr>
+<tr class="separator:a3dc081d28830cfd70a534425128392ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30fdd8fc828f85cf89fa6a3b9ac9deda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a30fdd8fc828f85cf89fa6a3b9ac9deda">bfx_op_grin_div</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a30fdd8fc828f85cf89fa6a3b9ac9deda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide current cell by register (Grin)  <br /></td></tr>
+<tr class="separator:a30fdd8fc828f85cf89fa6a3b9ac9deda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a574023e45f4fbef07c3f1d5f12b68b6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a574023e45f4fbef07c3f1d5f12b68b6d">bfx_op_grin_exp</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a574023e45f4fbef07c3f1d5f12b68b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise current cell to the power of register (Grin)  <br /></td></tr>
+<tr class="separator:a574023e45f4fbef07c3f1d5f12b68b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ef1abbe2999f4dafcc2d14b02986fe8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a6ef1abbe2999f4dafcc2d14b02986fe8">bfx_op_grin_store</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a6ef1abbe2999f4dafcc2d14b02986fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store current cell value in register (Grin)  <br /></td></tr>
+<tr class="separator:a6ef1abbe2999f4dafcc2d14b02986fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a664c78bfef113b23fae886a582218ecf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a664c78bfef113b23fae886a582218ecf">bfx_op_grin_load</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a664c78bfef113b23fae886a582218ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store register value in current cell (Grin)  <br /></td></tr>
+<tr class="separator:a664c78bfef113b23fae886a582218ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198dabbb2be3d8271a59b83f7609aa28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a198dabbb2be3d8271a59b83f7609aa28">bfx_op_grin_swap</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a198dabbb2be3d8271a59b83f7609aa28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap current cell value with register value (Grin)  <br /></td></tr>
+<tr class="separator:a198dabbb2be3d8271a59b83f7609aa28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59c6f130dd5a315e15d471cccc1454b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a59c6f130dd5a315e15d471cccc1454b6">bfx_op_grin_zero</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a59c6f130dd5a315e15d471cccc1454b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a59c6f130dd5a315e15d471cccc1454b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbd182f9a83b4513e6c4c52e50a48632"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#afbd182f9a83b4513e6c4c52e50a48632">bfx_op_grin_zero_ptr</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:afbd182f9a83b4513e6c4c52e50a48632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero cell at register value (Grin)  <br /></td></tr>
+<tr class="separator:afbd182f9a83b4513e6c4c52e50a48632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ca335cc4072cda2d1202c6d242a974"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a68ca335cc4072cda2d1202c6d242a974">bfx_op_grin_mod</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a68ca335cc4072cda2d1202c6d242a974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modulo (Grin)  <br /></td></tr>
+<tr class="separator:a68ca335cc4072cda2d1202c6d242a974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af164f524e307577e78bb757056e2ccb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#af164f524e307577e78bb757056e2ccb9">bfx_op_grin_round</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:af164f524e307577e78bb757056e2ccb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Round current cell value (Grin)  <br /></td></tr>
+<tr class="separator:af164f524e307577e78bb757056e2ccb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbfa29fb59a90e40809c38e86322cbb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#abbfa29fb59a90e40809c38e86322cbb7">bfx_op_grin_nand</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:abbfa29fb59a90e40809c38e86322cbb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">NAND current cell value with register value (Grin)  <br /></td></tr>
+<tr class="separator:abbfa29fb59a90e40809c38e86322cbb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa528a93c53e2e2f1f727ae49347e32f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#aa528a93c53e2e2f1f727ae49347e32f5">bfx_op_grin_or</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:aa528a93c53e2e2f1f727ae49347e32f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">OR current cell value with register value (Grin)  <br /></td></tr>
+<tr class="separator:aa528a93c53e2e2f1f727ae49347e32f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a607f61722b832ada34b6111f4732c2de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a607f61722b832ada34b6111f4732c2de">bfx_op_grin_not</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a607f61722b832ada34b6111f4732c2de"><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a607f61722b832ada34b6111f4732c2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b4cefbe74bce97c9dcf0840d1e669a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a6b4cefbe74bce97c9dcf0840d1e669a0">bfx_op_grin_negate</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a6b4cefbe74bce97c9dcf0840d1e669a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Negate current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a6b4cefbe74bce97c9dcf0840d1e669a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad10d6af17a292befcef82e512bd172f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ad10d6af17a292befcef82e512bd172f8">bfx_op_grin_simplify</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:ad10d6af17a292befcef82e512bd172f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simplify current cell value (set to -1.0 if &lt; -1.0, 1.0 if &gt; 1.0, 0.0 otherwise) (Grin)  <br /></td></tr>
+<tr class="separator:ad10d6af17a292befcef82e512bd172f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d1ecff0c16ce31366f40938ee98a38b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a0d1ecff0c16ce31366f40938ee98a38b">bfx_op_grin_print</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a0d1ecff0c16ce31366f40938ee98a38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print from instruction pointer to next ')' (Grin)  <br /></td></tr>
+<tr class="separator:a0d1ecff0c16ce31366f40938ee98a38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab63131721a15d77e4f164ce354e1c84c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ab63131721a15d77e4f164ce354e1c84c">bfx_op_grin_newline</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:ab63131721a15d77e4f164ce354e1c84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a newline (Grin)  <br /></td></tr>
+<tr class="separator:ab63131721a15d77e4f164ce354e1c84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9fd30adce5f5f22c9700fbc08aa8539"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#ab9fd30adce5f5f22c9700fbc08aa8539">bfx_op_grin_sin</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:ab9fd30adce5f5f22c9700fbc08aa8539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sine of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:ab9fd30adce5f5f22c9700fbc08aa8539"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17faa024c70bfdd8d5f1a60418440d31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a17faa024c70bfdd8d5f1a60418440d31">bfx_op_grin_cos</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a17faa024c70bfdd8d5f1a60418440d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cosine of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a17faa024c70bfdd8d5f1a60418440d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a881ee2a4d866dbf0d171d9beb0de9dc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a881ee2a4d866dbf0d171d9beb0de9dc1">bfx_op_grin_tan</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a881ee2a4d866dbf0d171d9beb0de9dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tangent of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a881ee2a4d866dbf0d171d9beb0de9dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2400796375f2facf642287cc125d5cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#af2400796375f2facf642287cc125d5cf">bfx_op_grin_arcsin</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:af2400796375f2facf642287cc125d5cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arcsine of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:af2400796375f2facf642287cc125d5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cf79e5db7518a7cd12a375c27ac07b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a0cf79e5db7518a7cd12a375c27ac07b7">bfx_op_grin_arccos</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a0cf79e5db7518a7cd12a375c27ac07b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arccosine of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a0cf79e5db7518a7cd12a375c27ac07b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a061f84bac355efebebc7f0c5948198e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a061f84bac355efebebc7f0c5948198e9">bfx_op_grin_arctan</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a061f84bac355efebebc7f0c5948198e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arctangent of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a061f84bac355efebebc7f0c5948198e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a532cc56b30b1b9f04045af05f5105819"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a532cc56b30b1b9f04045af05f5105819">bfx_op_grin_inv</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a532cc56b30b1b9f04045af05f5105819"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a532cc56b30b1b9f04045af05f5105819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dc14f706b0c8f89b26b2007a8962b68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a6dc14f706b0c8f89b26b2007a8962b68">bfx_op_grin_mod2</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a6dc14f706b0c8f89b26b2007a8962b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modulo of current cell value by 2 (Grin)  <br /></td></tr>
+<tr class="separator:a6dc14f706b0c8f89b26b2007a8962b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89bd9c28649f019c864cf5f2c87c9ec5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a89bd9c28649f019c864cf5f2c87c9ec5">bfx_op_grin_e</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a89bd9c28649f019c864cf5f2c87c9ec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to Euler's number (Grin)  <br /></td></tr>
+<tr class="separator:a89bd9c28649f019c864cf5f2c87c9ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61edcf21005cecbf7b287f4f88f6d048"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a61edcf21005cecbf7b287f4f88f6d048">bfx_op_grin_pi</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a61edcf21005cecbf7b287f4f88f6d048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current cell to Pi (Grin)  <br /></td></tr>
+<tr class="separator:a61edcf21005cecbf7b287f4f88f6d048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9631aea588f390644bca766d7a363cf1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a9631aea588f390644bca766d7a363cf1">bfx_op_grin_ln</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a9631aea588f390644bca766d7a363cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Natural logarithm of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a9631aea588f390644bca766d7a363cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65d9ea35a89513ebf556756d2e3989a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a65d9ea35a89513ebf556756d2e3989a0">bfx_op_grin_mean</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a65d9ea35a89513ebf556756d2e3989a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean of current cell value and register value (Grin)  <br /></td></tr>
+<tr class="separator:a65d9ea35a89513ebf556756d2e3989a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b6b4cbdb1891e247922d0a5350b50b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a7b6b4cbdb1891e247922d0a5350b50b2">bfx_op_grin_sqrt</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a7b6b4cbdb1891e247922d0a5350b50b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Square root of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a7b6b4cbdb1891e247922d0a5350b50b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179fc522b8ae14bd60a8fd8df2476d63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a179fc522b8ae14bd60a8fd8df2476d63">bfx_op_grin_log</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a179fc522b8ae14bd60a8fd8df2476d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base-10 logarithm of current cell value (Grin)  <br /></td></tr>
+<tr class="separator:a179fc522b8ae14bd60a8fd8df2476d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a915714872e5587336a6c8869439745b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a915714872e5587336a6c8869439745b9">bfx_op_grin_jump</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a915714872e5587336a6c8869439745b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump n instructions, n=register value (Grin)  <br /></td></tr>
+<tr class="separator:a915714872e5587336a6c8869439745b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a534aa973d13c2092312827b317035897"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a534aa973d13c2092312827b317035897">bfx_op_grin_toggle_deg_rad</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a534aa973d13c2092312827b317035897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle between degrees and radians (Grin)  <br /></td></tr>
+<tr class="separator:a534aa973d13c2092312827b317035897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447a8d1a56e515ba35e0c60c978803d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grin_8c.html#a447a8d1a56e515ba35e0c60c978803d7">bfx_op_grin_exit</a> (<a class="el" href="structBFX.html">BFX</a> *bfx, <a class="el" href="structBFX__FileIndex.html">BFX_FileIndex</a> *index)</td></tr>
+<tr class="memdesc:a447a8d1a56e515ba35e0c60c978803d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the program (Grin)  <br /></td></tr>
+<tr class="separator:a447a8d1a56e515ba35e0c60c978803d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the implementation of the Grin interpreter. </p>
@@ -292,14 +293,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="adbe824805fef7f042e94ca54a55e4267" name="adbe824805fef7f042e94ca54a55e4267"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbe824805fef7f042e94ca54a55e4267">&#9670;&#160;</a></span>bfx_grin_init()</h2>
+<a id="a03e4625ceaad5036644c42fd8c9ddf1a" name="a03e4625ceaad5036644c42fd8c9ddf1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e4625ceaad5036644c42fd8c9ddf1a">&#9670;&#160;</a></span>bfx_grin_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_grin_init </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_grin_init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em></td><td>)</td>
@@ -318,14 +319,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6a0ea5b179d9224bd335538eb17382c9" name="a6a0ea5b179d9224bd335538eb17382c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a0ea5b179d9224bd335538eb17382c9">&#9670;&#160;</a></span>bfx_grin_run()</h2>
+<a id="ac89a492005ebb1943430e5350b213a33" name="ac89a492005ebb1943430e5350b213a33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac89a492005ebb1943430e5350b213a33">&#9670;&#160;</a></span>bfx_grin_run()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void bfx_grin_run </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_grin_run </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em></td><td>)</td>
@@ -342,17 +343,18 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Error code </dd></dl>
 
 </div>
 </div>
-<a id="acd756a921ecd90696e7f90c34c4bc6b1" name="acd756a921ecd90696e7f90c34c4bc6b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd756a921ecd90696e7f90c34c4bc6b1">&#9670;&#160;</a></span>bfx_op_grin_add()</h2>
+<a id="a2a877217973115c492b115b9ab7ae01e" name="a2a877217973115c492b115b9ab7ae01e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a877217973115c492b115b9ab7ae01e">&#9670;&#160;</a></span>bfx_op_grin_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_add </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_add </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -375,14 +377,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aefc4f5925089170e04c5f518b8ced3be" name="aefc4f5925089170e04c5f518b8ced3be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefc4f5925089170e04c5f518b8ced3be">&#9670;&#160;</a></span>bfx_op_grin_arccos()</h2>
+<a id="a0cf79e5db7518a7cd12a375c27ac07b7" name="a0cf79e5db7518a7cd12a375c27ac07b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf79e5db7518a7cd12a375c27ac07b7">&#9670;&#160;</a></span>bfx_op_grin_arccos()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_arccos </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_arccos </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -405,14 +407,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a36a57b1993cb17173336870d17526568" name="a36a57b1993cb17173336870d17526568"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36a57b1993cb17173336870d17526568">&#9670;&#160;</a></span>bfx_op_grin_arcsin()</h2>
+<a id="af2400796375f2facf642287cc125d5cf" name="af2400796375f2facf642287cc125d5cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2400796375f2facf642287cc125d5cf">&#9670;&#160;</a></span>bfx_op_grin_arcsin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_arcsin </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_arcsin </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -435,14 +437,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a51c9125c47b8a455c4b111344d738324" name="a51c9125c47b8a455c4b111344d738324"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51c9125c47b8a455c4b111344d738324">&#9670;&#160;</a></span>bfx_op_grin_arctan()</h2>
+<a id="a061f84bac355efebebc7f0c5948198e9" name="a061f84bac355efebebc7f0c5948198e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a061f84bac355efebebc7f0c5948198e9">&#9670;&#160;</a></span>bfx_op_grin_arctan()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_arctan </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_arctan </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -465,14 +467,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a24a001092f8256d6811249dea2047ab7" name="a24a001092f8256d6811249dea2047ab7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24a001092f8256d6811249dea2047ab7">&#9670;&#160;</a></span>bfx_op_grin_cos()</h2>
+<a id="a17faa024c70bfdd8d5f1a60418440d31" name="a17faa024c70bfdd8d5f1a60418440d31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17faa024c70bfdd8d5f1a60418440d31">&#9670;&#160;</a></span>bfx_op_grin_cos()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_cos </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_cos </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -495,14 +497,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab2c67db4a6c7cf73b47748faf1ed9b21" name="ab2c67db4a6c7cf73b47748faf1ed9b21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2c67db4a6c7cf73b47748faf1ed9b21">&#9670;&#160;</a></span>bfx_op_grin_dec_t()</h2>
+<a id="a16ed57403896f6f39b5830fb4530cca8" name="a16ed57403896f6f39b5830fb4530cca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16ed57403896f6f39b5830fb4530cca8">&#9670;&#160;</a></span>bfx_op_grin_dec_t()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_dec_t </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_dec_t </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -525,14 +527,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a442c56f806f275930968eeb60f5a36dc" name="a442c56f806f275930968eeb60f5a36dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a442c56f806f275930968eeb60f5a36dc">&#9670;&#160;</a></span>bfx_op_grin_div()</h2>
+<a id="a30fdd8fc828f85cf89fa6a3b9ac9deda" name="a30fdd8fc828f85cf89fa6a3b9ac9deda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30fdd8fc828f85cf89fa6a3b9ac9deda">&#9670;&#160;</a></span>bfx_op_grin_div()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_div </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_div </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -555,14 +557,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a77111240820e8c4e9f1b5c417640fae1" name="a77111240820e8c4e9f1b5c417640fae1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77111240820e8c4e9f1b5c417640fae1">&#9670;&#160;</a></span>bfx_op_grin_e()</h2>
+<a id="a89bd9c28649f019c864cf5f2c87c9ec5" name="a89bd9c28649f019c864cf5f2c87c9ec5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89bd9c28649f019c864cf5f2c87c9ec5">&#9670;&#160;</a></span>bfx_op_grin_e()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_e </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_e </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -585,14 +587,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab39b4a932375f0f1083545374750bb4e" name="ab39b4a932375f0f1083545374750bb4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab39b4a932375f0f1083545374750bb4e">&#9670;&#160;</a></span>bfx_op_grin_exit()</h2>
+<a id="a447a8d1a56e515ba35e0c60c978803d7" name="a447a8d1a56e515ba35e0c60c978803d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a447a8d1a56e515ba35e0c60c978803d7">&#9670;&#160;</a></span>bfx_op_grin_exit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_exit </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_exit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -615,14 +617,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad84aa51e5c36f0d583fcbcccf2b1f507" name="ad84aa51e5c36f0d583fcbcccf2b1f507"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad84aa51e5c36f0d583fcbcccf2b1f507">&#9670;&#160;</a></span>bfx_op_grin_exp()</h2>
+<a id="a574023e45f4fbef07c3f1d5f12b68b6d" name="a574023e45f4fbef07c3f1d5f12b68b6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a574023e45f4fbef07c3f1d5f12b68b6d">&#9670;&#160;</a></span>bfx_op_grin_exp()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_exp </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_exp </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -645,14 +647,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aba1594f105f5000a7367337e029bb271" name="aba1594f105f5000a7367337e029bb271"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba1594f105f5000a7367337e029bb271">&#9670;&#160;</a></span>bfx_op_grin_getchar_ascii()</h2>
+<a id="aa1d9daacae934dd59126e942650119aa" name="aa1d9daacae934dd59126e942650119aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1d9daacae934dd59126e942650119aa">&#9670;&#160;</a></span>bfx_op_grin_getchar_ascii()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_getchar_ascii </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_getchar_ascii </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -675,14 +677,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abb1060d59c92e7b9fa58abdb33b724f6" name="abb1060d59c92e7b9fa58abdb33b724f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb1060d59c92e7b9fa58abdb33b724f6">&#9670;&#160;</a></span>bfx_op_grin_getchar_number()</h2>
+<a id="adb5659a20fa73c57ae6a6c5d305075d9" name="adb5659a20fa73c57ae6a6c5d305075d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb5659a20fa73c57ae6a6c5d305075d9">&#9670;&#160;</a></span>bfx_op_grin_getchar_number()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_getchar_number </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_getchar_number </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -705,14 +707,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a05ba6632a2e0b032090ca12ff8084f15" name="a05ba6632a2e0b032090ca12ff8084f15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05ba6632a2e0b032090ca12ff8084f15">&#9670;&#160;</a></span>bfx_op_grin_inc_t()</h2>
+<a id="acc9e69ee5e64813b2c10e70ef2e826d7" name="acc9e69ee5e64813b2c10e70ef2e826d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc9e69ee5e64813b2c10e70ef2e826d7">&#9670;&#160;</a></span>bfx_op_grin_inc_t()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_inc_t </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_inc_t </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -735,14 +737,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab97e3d712345ee925c539af1deb82331" name="ab97e3d712345ee925c539af1deb82331"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab97e3d712345ee925c539af1deb82331">&#9670;&#160;</a></span>bfx_op_grin_inv()</h2>
+<a id="a532cc56b30b1b9f04045af05f5105819" name="a532cc56b30b1b9f04045af05f5105819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a532cc56b30b1b9f04045af05f5105819">&#9670;&#160;</a></span>bfx_op_grin_inv()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_inv </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_inv </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -765,14 +767,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7a9a5ce258e480eeec9967f469b0e34e" name="a7a9a5ce258e480eeec9967f469b0e34e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a9a5ce258e480eeec9967f469b0e34e">&#9670;&#160;</a></span>bfx_op_grin_jump()</h2>
+<a id="a915714872e5587336a6c8869439745b9" name="a915714872e5587336a6c8869439745b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a915714872e5587336a6c8869439745b9">&#9670;&#160;</a></span>bfx_op_grin_jump()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_jump </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_jump </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -795,14 +797,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5a1d0f7828797e57626947640403b8ac" name="a5a1d0f7828797e57626947640403b8ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a1d0f7828797e57626947640403b8ac">&#9670;&#160;</a></span>bfx_op_grin_ln()</h2>
+<a id="a9631aea588f390644bca766d7a363cf1" name="a9631aea588f390644bca766d7a363cf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9631aea588f390644bca766d7a363cf1">&#9670;&#160;</a></span>bfx_op_grin_ln()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_ln </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_ln </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -825,14 +827,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa9baa993f52b66f29799311648b32831" name="aa9baa993f52b66f29799311648b32831"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9baa993f52b66f29799311648b32831">&#9670;&#160;</a></span>bfx_op_grin_load()</h2>
+<a id="a664c78bfef113b23fae886a582218ecf" name="a664c78bfef113b23fae886a582218ecf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a664c78bfef113b23fae886a582218ecf">&#9670;&#160;</a></span>bfx_op_grin_load()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_load </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_load </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -855,14 +857,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1fd6c9b71cd6cd8e639480effc482d88" name="a1fd6c9b71cd6cd8e639480effc482d88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fd6c9b71cd6cd8e639480effc482d88">&#9670;&#160;</a></span>bfx_op_grin_log()</h2>
+<a id="a179fc522b8ae14bd60a8fd8df2476d63" name="a179fc522b8ae14bd60a8fd8df2476d63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a179fc522b8ae14bd60a8fd8df2476d63">&#9670;&#160;</a></span>bfx_op_grin_log()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_log </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_log </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -885,14 +887,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a82b36c4d914132da83d33d072d0a28b3" name="a82b36c4d914132da83d33d072d0a28b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82b36c4d914132da83d33d072d0a28b3">&#9670;&#160;</a></span>bfx_op_grin_loop_end()</h2>
+<a id="afe5c06358e9651f9fe882b66c73d2425" name="afe5c06358e9651f9fe882b66c73d2425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe5c06358e9651f9fe882b66c73d2425">&#9670;&#160;</a></span>bfx_op_grin_loop_end()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_loop_end </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_loop_end </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -915,14 +917,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a530c4122671a56033bca79b862dd36e5" name="a530c4122671a56033bca79b862dd36e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a530c4122671a56033bca79b862dd36e5">&#9670;&#160;</a></span>bfx_op_grin_loop_start()</h2>
+<a id="af1a66ae70e787cbc4fd26385b8678560" name="af1a66ae70e787cbc4fd26385b8678560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a66ae70e787cbc4fd26385b8678560">&#9670;&#160;</a></span>bfx_op_grin_loop_start()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_loop_start </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_loop_start </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -945,14 +947,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad196ef23693128409ae475643e8aed85" name="ad196ef23693128409ae475643e8aed85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad196ef23693128409ae475643e8aed85">&#9670;&#160;</a></span>bfx_op_grin_mean()</h2>
+<a id="a65d9ea35a89513ebf556756d2e3989a0" name="a65d9ea35a89513ebf556756d2e3989a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d9ea35a89513ebf556756d2e3989a0">&#9670;&#160;</a></span>bfx_op_grin_mean()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_mean </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_mean </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -975,14 +977,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aeec51af38989d888c1c2153546eb9a85" name="aeec51af38989d888c1c2153546eb9a85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeec51af38989d888c1c2153546eb9a85">&#9670;&#160;</a></span>bfx_op_grin_mod()</h2>
+<a id="a68ca335cc4072cda2d1202c6d242a974" name="a68ca335cc4072cda2d1202c6d242a974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ca335cc4072cda2d1202c6d242a974">&#9670;&#160;</a></span>bfx_op_grin_mod()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_mod </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_mod </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1005,14 +1007,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af8c1b946027d0ead7ddce6b9462f001b" name="af8c1b946027d0ead7ddce6b9462f001b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8c1b946027d0ead7ddce6b9462f001b">&#9670;&#160;</a></span>bfx_op_grin_mod2()</h2>
+<a id="a6dc14f706b0c8f89b26b2007a8962b68" name="a6dc14f706b0c8f89b26b2007a8962b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dc14f706b0c8f89b26b2007a8962b68">&#9670;&#160;</a></span>bfx_op_grin_mod2()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_mod2 </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_mod2 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1035,14 +1037,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a191170023db168d28eb301cacd4feff2" name="a191170023db168d28eb301cacd4feff2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a191170023db168d28eb301cacd4feff2">&#9670;&#160;</a></span>bfx_op_grin_mul()</h2>
+<a id="a3dc081d28830cfd70a534425128392ff" name="a3dc081d28830cfd70a534425128392ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dc081d28830cfd70a534425128392ff">&#9670;&#160;</a></span>bfx_op_grin_mul()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_mul </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_mul </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1065,14 +1067,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5f42f1468f51685b31a87ca59e542cd3" name="a5f42f1468f51685b31a87ca59e542cd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f42f1468f51685b31a87ca59e542cd3">&#9670;&#160;</a></span>bfx_op_grin_nand()</h2>
+<a id="abbfa29fb59a90e40809c38e86322cbb7" name="abbfa29fb59a90e40809c38e86322cbb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbfa29fb59a90e40809c38e86322cbb7">&#9670;&#160;</a></span>bfx_op_grin_nand()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_nand </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_nand </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1095,14 +1097,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a62dce706a15d79a1600239ae8f45c47d" name="a62dce706a15d79a1600239ae8f45c47d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62dce706a15d79a1600239ae8f45c47d">&#9670;&#160;</a></span>bfx_op_grin_negate()</h2>
+<a id="a6b4cefbe74bce97c9dcf0840d1e669a0" name="a6b4cefbe74bce97c9dcf0840d1e669a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b4cefbe74bce97c9dcf0840d1e669a0">&#9670;&#160;</a></span>bfx_op_grin_negate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_negate </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_negate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1125,14 +1127,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad66dfd85ae970273610e24ae94d145a6" name="ad66dfd85ae970273610e24ae94d145a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad66dfd85ae970273610e24ae94d145a6">&#9670;&#160;</a></span>bfx_op_grin_newline()</h2>
+<a id="ab63131721a15d77e4f164ce354e1c84c" name="ab63131721a15d77e4f164ce354e1c84c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab63131721a15d77e4f164ce354e1c84c">&#9670;&#160;</a></span>bfx_op_grin_newline()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_newline </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_newline </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1155,14 +1157,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9d5ebf658d73cb30cd1f74a2f4460671" name="a9d5ebf658d73cb30cd1f74a2f4460671"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d5ebf658d73cb30cd1f74a2f4460671">&#9670;&#160;</a></span>bfx_op_grin_not()</h2>
+<a id="a607f61722b832ada34b6111f4732c2de" name="a607f61722b832ada34b6111f4732c2de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a607f61722b832ada34b6111f4732c2de">&#9670;&#160;</a></span>bfx_op_grin_not()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_not </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_not </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1185,14 +1187,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a17dd7ab2126b10ddcbce455809fb06ed" name="a17dd7ab2126b10ddcbce455809fb06ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17dd7ab2126b10ddcbce455809fb06ed">&#9670;&#160;</a></span>bfx_op_grin_or()</h2>
+<a id="aa528a93c53e2e2f1f727ae49347e32f5" name="aa528a93c53e2e2f1f727ae49347e32f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa528a93c53e2e2f1f727ae49347e32f5">&#9670;&#160;</a></span>bfx_op_grin_or()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_or </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_or </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1215,14 +1217,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aae9dcfbf9a652e6079857daffa02f2e9" name="aae9dcfbf9a652e6079857daffa02f2e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae9dcfbf9a652e6079857daffa02f2e9">&#9670;&#160;</a></span>bfx_op_grin_pi()</h2>
+<a id="a61edcf21005cecbf7b287f4f88f6d048" name="a61edcf21005cecbf7b287f4f88f6d048"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61edcf21005cecbf7b287f4f88f6d048">&#9670;&#160;</a></span>bfx_op_grin_pi()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_pi </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_pi </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1245,14 +1247,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afa1f6ae028e0a790c3080eea9f656955" name="afa1f6ae028e0a790c3080eea9f656955"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa1f6ae028e0a790c3080eea9f656955">&#9670;&#160;</a></span>bfx_op_grin_print()</h2>
+<a id="a0d1ecff0c16ce31366f40938ee98a38b" name="a0d1ecff0c16ce31366f40938ee98a38b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d1ecff0c16ce31366f40938ee98a38b">&#9670;&#160;</a></span>bfx_op_grin_print()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_print </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_print </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1275,14 +1277,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aef9711adc12e5884213231d86051e091" name="aef9711adc12e5884213231d86051e091"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef9711adc12e5884213231d86051e091">&#9670;&#160;</a></span>bfx_op_grin_putchar_ascii()</h2>
+<a id="afe7e2da76d9b14de23ced0927ddc8994" name="afe7e2da76d9b14de23ced0927ddc8994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe7e2da76d9b14de23ced0927ddc8994">&#9670;&#160;</a></span>bfx_op_grin_putchar_ascii()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_putchar_ascii </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_putchar_ascii </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1305,14 +1307,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1c73c59fa8f8c79a6931d80228fe6839" name="a1c73c59fa8f8c79a6931d80228fe6839"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c73c59fa8f8c79a6931d80228fe6839">&#9670;&#160;</a></span>bfx_op_grin_putchar_number()</h2>
+<a id="a0c3395df32d4758b05a03d4057b5bd8f" name="a0c3395df32d4758b05a03d4057b5bd8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3395df32d4758b05a03d4057b5bd8f">&#9670;&#160;</a></span>bfx_op_grin_putchar_number()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_putchar_number </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_putchar_number </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1335,14 +1337,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a35b5d76112bc0221894f540d389ae862" name="a35b5d76112bc0221894f540d389ae862"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35b5d76112bc0221894f540d389ae862">&#9670;&#160;</a></span>bfx_op_grin_putchar_register_ascii()</h2>
+<a id="a1179460ac000a4667fdfe0abc6da53e8" name="a1179460ac000a4667fdfe0abc6da53e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1179460ac000a4667fdfe0abc6da53e8">&#9670;&#160;</a></span>bfx_op_grin_putchar_register_ascii()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_putchar_register_ascii </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_putchar_register_ascii </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1365,14 +1367,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae7e835fa811192a1aa2f52be2d026222" name="ae7e835fa811192a1aa2f52be2d026222"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7e835fa811192a1aa2f52be2d026222">&#9670;&#160;</a></span>bfx_op_grin_putchar_register_number()</h2>
+<a id="af669aec1851f89b370fc62e96e161795" name="af669aec1851f89b370fc62e96e161795"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af669aec1851f89b370fc62e96e161795">&#9670;&#160;</a></span>bfx_op_grin_putchar_register_number()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_putchar_register_number </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_putchar_register_number </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1395,14 +1397,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab5b0dcc744858ee770b5844cb2e13bde" name="ab5b0dcc744858ee770b5844cb2e13bde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5b0dcc744858ee770b5844cb2e13bde">&#9670;&#160;</a></span>bfx_op_grin_round()</h2>
+<a id="af164f524e307577e78bb757056e2ccb9" name="af164f524e307577e78bb757056e2ccb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af164f524e307577e78bb757056e2ccb9">&#9670;&#160;</a></span>bfx_op_grin_round()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_round </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_round </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1425,14 +1427,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a16191ed121a45b74fd63acd4861427be" name="a16191ed121a45b74fd63acd4861427be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16191ed121a45b74fd63acd4861427be">&#9670;&#160;</a></span>bfx_op_grin_simplify()</h2>
+<a id="ad10d6af17a292befcef82e512bd172f8" name="ad10d6af17a292befcef82e512bd172f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad10d6af17a292befcef82e512bd172f8">&#9670;&#160;</a></span>bfx_op_grin_simplify()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_simplify </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_simplify </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1455,14 +1457,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a157ec14e5e31a3ae6c128d7cb6b1d2a4" name="a157ec14e5e31a3ae6c128d7cb6b1d2a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a157ec14e5e31a3ae6c128d7cb6b1d2a4">&#9670;&#160;</a></span>bfx_op_grin_sin()</h2>
+<a id="ab9fd30adce5f5f22c9700fbc08aa8539" name="ab9fd30adce5f5f22c9700fbc08aa8539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9fd30adce5f5f22c9700fbc08aa8539">&#9670;&#160;</a></span>bfx_op_grin_sin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_sin </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_sin </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1485,14 +1487,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8ef07857d0f581a75fd51921eec1aab7" name="a8ef07857d0f581a75fd51921eec1aab7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ef07857d0f581a75fd51921eec1aab7">&#9670;&#160;</a></span>bfx_op_grin_sqrt()</h2>
+<a id="a7b6b4cbdb1891e247922d0a5350b50b2" name="a7b6b4cbdb1891e247922d0a5350b50b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b6b4cbdb1891e247922d0a5350b50b2">&#9670;&#160;</a></span>bfx_op_grin_sqrt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_sqrt </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_sqrt </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1515,14 +1517,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abc3254bc50e9deafb62d54c41a4fb653" name="abc3254bc50e9deafb62d54c41a4fb653"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc3254bc50e9deafb62d54c41a4fb653">&#9670;&#160;</a></span>bfx_op_grin_store()</h2>
+<a id="a6ef1abbe2999f4dafcc2d14b02986fe8" name="a6ef1abbe2999f4dafcc2d14b02986fe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ef1abbe2999f4dafcc2d14b02986fe8">&#9670;&#160;</a></span>bfx_op_grin_store()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_store </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_store </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1545,14 +1547,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa2f2aaf95cf7e5dad71ca6798e804dc1" name="aa2f2aaf95cf7e5dad71ca6798e804dc1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2f2aaf95cf7e5dad71ca6798e804dc1">&#9670;&#160;</a></span>bfx_op_grin_sub()</h2>
+<a id="afe02a0a401acf3c7e81d1f81a4dff1a9" name="afe02a0a401acf3c7e81d1f81a4dff1a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe02a0a401acf3c7e81d1f81a4dff1a9">&#9670;&#160;</a></span>bfx_op_grin_sub()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_sub </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_sub </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1575,14 +1577,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac0eefd744c1d0a2b551ac11b33f175d0" name="ac0eefd744c1d0a2b551ac11b33f175d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0eefd744c1d0a2b551ac11b33f175d0">&#9670;&#160;</a></span>bfx_op_grin_swap()</h2>
+<a id="a198dabbb2be3d8271a59b83f7609aa28" name="a198dabbb2be3d8271a59b83f7609aa28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a198dabbb2be3d8271a59b83f7609aa28">&#9670;&#160;</a></span>bfx_op_grin_swap()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_swap </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_swap </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1605,14 +1607,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6f2d32ffbfa7e8b6bbdea3ed509b610a" name="a6f2d32ffbfa7e8b6bbdea3ed509b610a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f2d32ffbfa7e8b6bbdea3ed509b610a">&#9670;&#160;</a></span>bfx_op_grin_tan()</h2>
+<a id="a881ee2a4d866dbf0d171d9beb0de9dc1" name="a881ee2a4d866dbf0d171d9beb0de9dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a881ee2a4d866dbf0d171d9beb0de9dc1">&#9670;&#160;</a></span>bfx_op_grin_tan()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_tan </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_tan </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1635,14 +1637,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0591cfe267a525a0a800e59ab2e43121" name="a0591cfe267a525a0a800e59ab2e43121"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0591cfe267a525a0a800e59ab2e43121">&#9670;&#160;</a></span>bfx_op_grin_toggle_deg_rad()</h2>
+<a id="a534aa973d13c2092312827b317035897" name="a534aa973d13c2092312827b317035897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a534aa973d13c2092312827b317035897">&#9670;&#160;</a></span>bfx_op_grin_toggle_deg_rad()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_toggle_deg_rad </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_toggle_deg_rad </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1665,14 +1667,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a349790f8946aceb216d705a5f7121990" name="a349790f8946aceb216d705a5f7121990"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a349790f8946aceb216d705a5f7121990">&#9670;&#160;</a></span>bfx_op_grin_zero()</h2>
+<a id="a59c6f130dd5a315e15d471cccc1454b6" name="a59c6f130dd5a315e15d471cccc1454b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59c6f130dd5a315e15d471cccc1454b6">&#9670;&#160;</a></span>bfx_op_grin_zero()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_zero </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_zero </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
@@ -1695,14 +1697,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a654ca1fd594c292e4fb9231d78c703ad" name="a654ca1fd594c292e4fb9231d78c703ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a654ca1fd594c292e4fb9231d78c703ad">&#9670;&#160;</a></span>bfx_op_grin_zero_ptr()</h2>
+<a id="afbd182f9a83b4513e6c4c52e50a48632" name="afbd182f9a83b4513e6c4c52e50a48632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbd182f9a83b4513e6c4c52e50a48632">&#9670;&#160;</a></span>bfx_op_grin_zero_ptr()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int bfx_op_grin_zero_ptr </td>
+          <td class="memname"><a class="el" href="bfx_8h.html#a61145585bc31fa07ef43caaabca078cd">BFX_Error</a> bfx_op_grin_zero_ptr </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structBFX.html">BFX</a> *&#160;</td>
           <td class="paramname"><em>bfx</em>, </td>
