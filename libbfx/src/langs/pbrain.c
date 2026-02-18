@@ -19,7 +19,6 @@ void bfx_pbrain_init(BFX* bfx) {
     bfx->lang_data       = calloc(1, sizeof(BFX_PBrainData));
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
     data->procedures_len = 0;
-    data->procedures     = malloc(sizeof(BFX_PBrainProcedure) * BFX_PBRAIN_MAX_PROCEDURES);
     data->stack          = malloc(sizeof(size_t) * BFX_INITIAL_LOOP_SIZE);
     bfx_build_loops(bfx);
 }
@@ -51,7 +50,6 @@ void bfx_pbrain_run(BFX* bfx) {
 
     // Free language-specific data
     BFX_PBrainData* data = (BFX_PBrainData*) bfx->lang_data;
-    free(data->procedures);
     free(data->stack);
     free(data);
 }
@@ -66,12 +64,12 @@ int bfx_op_pbrain_start_procedure(BFX* bfx, BFX_FileIndex* idx) {
     size_t          i;
     BFX_PBrainData* data                              = (BFX_PBrainData*) bfx->lang_data;
 
-    data->procedures[data->procedures_len].start_idx  = bfx->ip + 1;
+    data->procedures[data->procedures_len].start_idx  = bfx->ip;
     data->procedures[data->procedures_len].identifier = bfx->tape[bfx->tp];
     for (i = bfx->ip; i < bfx->program_len; i++) {
         if (bfx->program[i] == ')') {
             data->procedures[data->procedures_len].end_idx = i;
-            bfx->ip                                        = i + 1;
+            bfx->ip                                        = i;
             data->procedures_len++;
             return 0;
         }

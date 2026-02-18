@@ -34,10 +34,10 @@ typedef struct {
  * This populates the lang_data field in a BFX instance.
  */
 typedef struct {
-    BFX_PBrainProcedure* procedures; //!< Array of procedures
-    size_t               procedures_len; //!< Length of the procedures array
-    size_t*              stack; //!< Array of stack elements
-    size_t               stack_top; //!< Top index of the stack
+    BFX_PBrainProcedure procedures[BFX_PBRAIN_MAX_PROCEDURES]; //!< Array of procedures
+    size_t              procedures_len; //!< Length of the procedures array
+    size_t*             stack; //!< Array of stack elements
+    size_t              stack_top; //!< Top index of the stack
 } BFX_PBrainData;
 
 void bfx_pbrain_init(BFX* bfx);
