@@ -24,6 +24,7 @@
 BFX_Error bfx_grin_init(BFX* bfx) {
     if (bfx->tape) {
         free(bfx->tape);
+        bfx->tape = NULL;
     }
 
     if (!bfx->lang_data) {

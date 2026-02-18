@@ -183,8 +183,8 @@ typedef struct {
     void*        lang_data; //!< Pointer to language-specific data structure.
 } BFX;
 
-void bfx_free(BFX*);
-void bfx_run_file(const char*, BFX*);
-void bfx_run_repl(BFX*);
+void      bfx_free(BFX*);
+BFX_Error bfx_run_file(const char*, BFX*);
+BFX_Error bfx_run_repl(BFX*);
 
 #endif
