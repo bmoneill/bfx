@@ -31,7 +31,7 @@ bfx [options...] [file]
   "zero" (the default, sets the current cell to zero),
   "decrement" (subtract one from the current cell), and
   "unchanged" (do not change the current cell).
-- `-i`: Separate code from input using `!`.
+- `-i`: Separate code from input using `!` (Note: Grin is not supported here).
 - `-l language`: Specify the language to use (Default: brainfuck).
 - `-r`: Run in interactive REPL mode (Note: Weave is not supported here).
 - `-t tape_size`: Specify the size of the tape (default: 30000)

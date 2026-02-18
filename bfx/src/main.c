@@ -117,25 +117,33 @@ int main(int argc, char* argv[]) {
         path = argv[optind];
     }
 
+    /**** Error checking *****/
     if (bfx.lang == BFX_LANG_UNKNOWN) {
-        fprintf(stderr, "Unknown language specified.\n");
+        fprintf(stderr, "Error: Unknown language specified.\n");
         print_usage(argv[0]);
         return EXIT_FAILURE;
     }
 
+    if (bfx.lang == BFX_LANG_weave && bfx.flags & BFX_FLAG_REPL) {
+        fprintf(stderr, "Error: Weave language does not support REPL mode.\n");
+        return EXIT_FAILURE;
+    }
+
+    if (bfx.lang == BFX_LANG_grin && bfx.flags & BFX_FLAG_SEPARATE_INPUT_AND_SOURCE) {
+        fprintf(stderr, "Error: Grin language does not support separate input and source mode.\n");
+        return EXIT_FAILURE;
+    }
+
+    /*** Run ****/
     if (compile) {
         bfx_compile(path, output_path, &bfx);
         return EXIT_SUCCESS;
     }
 
-    if (bfx.lang == BFX_LANG_weave && bfx.flags & BFX_FLAG_REPL) {
-        fprintf(stderr, "Weave language does not support REPL mode.\n");
-        return EXIT_FAILURE;
-    }
-
     if (bfx.lang != BFX_LANG_grin) {
         bfx.tape = calloc(bfx.tape_size, sizeof(uint8_t));
     }
+
     if (!(bfx.flags & BFX_FLAG_REPL) && path) {
         bfx_run_file(path, &bfx);
     } else if ((bfx.flags & BFX_FLAG_REPL) && !path) {
