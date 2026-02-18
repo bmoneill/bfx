@@ -88,10 +88,10 @@ int bfx_op_brainfuck_loop_start(BFX* bfx, BFX_FileIndex* index) {
                 return 0;
             }
         }
+        BFX_ERROR("Unmatched '[' encountered.");
+        return 1;
     }
-
-    BFX_ERROR("Unmatched '[' encountered.");
-    return 1;
+    return 0;
 }
 
 /**
@@ -107,10 +107,10 @@ int bfx_op_brainfuck_loop_end(BFX* bfx, BFX_FileIndex* index) {
                 return 0;
             }
         }
+        BFX_ERROR("Unmatched ']' encountered.");
+        return 1;
     }
-
-    BFX_ERROR("Unmatched ']' encountered.");
-    return 1;
+    return 0;
 }
 
 /**

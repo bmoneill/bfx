@@ -100,7 +100,7 @@ void bfx_grin_run(BFX* bfx) {
  * @brief Increment value at tape pointer (Grin).
  */
 int bfx_op_grin_inc_t(BFX* bfx, BFX_FileIndex* index) {
-    BFX_GRIN_DATA->tape[bfx->tp]--;
+    BFX_GRIN_DATA->tape[bfx->tp]++;
     return 0;
 }
 
@@ -125,9 +125,10 @@ int bfx_op_grin_loop_start(BFX* bfx, BFX_FileIndex* index) {
                 return 0;
             }
         }
+        BFX_ERROR("Unmatched loop end.");
+        return 1;
     }
-    BFX_ERROR("Unmatched loop end.");
-    return 1;
+    return 0;
 }
 
 /**
@@ -143,9 +144,10 @@ int bfx_op_grin_loop_end(BFX* bfx, BFX_FileIndex* index) {
                 return 0;
             }
         }
+        BFX_ERROR("Unmatched loop end.");
+        return 1;
     }
-    BFX_ERROR("Unmatched loop end.");
-    return 1;
+    return 0;
 }
 
 /**
