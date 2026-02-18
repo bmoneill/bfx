@@ -1,4 +1,4 @@
-# bfx: an interpreter, compiler, and REPL for brainfuck-like languages
+# bfx: an extensible interpreter, compiler, and REPL for brainfuck-like languages
 
 [![CI status](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml).
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
