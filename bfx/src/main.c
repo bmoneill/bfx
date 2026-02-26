@@ -38,7 +38,6 @@ static void         print_version(const char*);
  * @brief Entry point.
  */
 int main(int argc, char* argv[]) {
-    int   opt;
     BFX   bfx;
     char* path        = NULL;
     char* output_path = NULL;
@@ -52,6 +51,7 @@ int main(int argc, char* argv[]) {
     bfx.eof_behavior = BFX_DEFAULT_EOF_BEHAVIOR;
     bfx.lang         = BFX_LANG_brainfuck;
 
+    int opt;
     while ((opt = getopt(argc, argv, "cde:il:o:Prst:v")) != -1) {
         switch (opt) {
         case 'c':
@@ -149,44 +149,42 @@ int main(int argc, char* argv[]) {
     } else if ((bfx.flags & BFX_FLAG_REPL) && !path) {
         bfx_run_repl(&bfx);
     } else {
+        fprintf(stderr, "Error: Please provide a path or enable REPL mode.\n");
         print_usage(argv[0]);
         return EXIT_FAILURE;
     }
 
     bfx_free(&bfx);
-
     return EXIT_SUCCESS;
 }
 
 static BFX_Language get_language(const char* s) {
-    if (!strcmp(s, BRAINFORK_S)) {
-        return BFX_LANG_brainfork;
-    } else if (!strcmp(s, BRAINFUCK_S)) {
-        return BFX_LANG_brainfuck;
-    } else if (!strcmp(s, GRIN_S)) {
-        return BFX_LANG_grin;
-    } else if (!strcmp(s, PBRAIN_S)) {
-        return BFX_LANG_pbrain;
-    } else if (!strcmp(s, WEAVE_S)) {
-        return BFX_LANG_weave;
-    }
+    const char* langs[6] = {
+        [BFX_LANG_brainfork] = BRAINFORK_S, [BFX_LANG_brainfuck] = BRAINFUCK_S,
+        [BFX_LANG_grin] = GRIN_S,           [BFX_LANG_pbrain] = PBRAIN_S,
+        [BFX_LANG_weave] = WEAVE_S,
+    };
 
+    for (int i = 1; i < 6; i++) {
+        if (!strcmp(s, langs[i])) {
+            return i;
+        }
+    }
     return BFX_LANG_UNKNOWN;
 }
 
 static int get_eof_behavior(const char* s) {
-    int         i;
-    const char* eof_behavior[3];
-    eof_behavior[BFX_EOF_BEHAVIOR_ZERO]      = EOF_BEHAVIOR_ZERO_S;
-    eof_behavior[BFX_EOF_BEHAVIOR_DECREMENT] = EOF_BEHAVIOR_DECREMENT_S;
-    eof_behavior[BFX_EOF_BEHAVIOR_UNCHANGED] = EOF_BEHAVIOR_UNCHANGED_S;
+    const char* eof_behavior[3] = {
+        [BFX_EOF_BEHAVIOR_ZERO]      = EOF_BEHAVIOR_ZERO_S,
+        [BFX_EOF_BEHAVIOR_DECREMENT] = EOF_BEHAVIOR_DECREMENT_S,
+        [BFX_EOF_BEHAVIOR_UNCHANGED] = EOF_BEHAVIOR_UNCHANGED_S,
+    };
 
-    for (i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) {
         if (!strcmp(s, eof_behavior[i])) {
             return i;
         }
     }
-
     return -1;
 }
 
