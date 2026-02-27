@@ -39,8 +39,6 @@ BFX_Error bfx_op_brainfuck_inc_tp(BFX* bfx, BFX_FileIndex* index) {
                 index->line,
                 index->line_idx);
         bfx->tp = 0;
-    } else if (bfx->tp > bfx->tp_max) {
-        bfx->tp_max = bfx->tp;
     }
     return BFX_SUCCESS;
 }

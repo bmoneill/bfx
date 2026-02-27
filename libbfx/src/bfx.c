@@ -17,25 +17,27 @@ static int  bfx_load_file(BFX*, const char*);
 static void bfx_reset_loops(BFX*);
 
 /**
- * @brief Diagnoses the BFX instance.
+ * @brief Frees the memory allocated for the BFX instance.
  *
- * This function prints the current state of the BFX instance, including the line number,
- * tape pointer, instruction pointer, and memory map.
+ * This function frees the memory allocated for the BFX instance, including the program buffer,
+ * tape buffer, and loop buffer. It does not free the BFX instance itself.
  *
- * @param bfx The BFX instance to diagnose.
- * @param idx The file index to use for line information.
+ * @param bfx Pointer to the BFX instance.
  */
-void bfx_diagnose(BFX* bfx, BFX_FileIndex* idx) {
-    fprintf(stderr,
-            "Line: %d,%d\nTape pointer: %d\nInstruction pointer: %d\n",
-            idx->line,
-            idx->line_idx,
-            bfx->tp,
-            bfx->ip);
-
-    fprintf(stderr, "Memory map:\n");
-    for (int i = 0; i < bfx->tp_max; i++) {
-        fprintf(stderr, "%d: %d\n", i, bfx->tape[i]);
+void bfx_free(BFX* bfx) {
+    if (bfx) {
+        if (bfx->program) {
+            free(bfx->program);
+            bfx->program = NULL;
+        }
+        if (bfx->tape) {
+            free(bfx->tape);
+            bfx->tape = NULL;
+        }
+        if (bfx->loops) {
+            free(bfx->loops);
+            bfx->loops = NULL;
+        }
     }
 }
 
@@ -99,31 +101,6 @@ BFX_Error bfx_run_repl(BFX* bfx) {
     input = NULL;
     bfx_free(bfx);
     return ret;
-}
-
-/**
- * @brief Frees the memory allocated for the BFX instance.
- *
- * This function frees the memory allocated for the BFX instance, including the program buffer,
- * tape buffer, and loop buffer. It does not free the BFX instance itself.
- *
- * @param bfx Pointer to the BFX instance.
- */
-void bfx_free(BFX* bfx) {
-    if (bfx) {
-        if (bfx->program) {
-            free(bfx->program);
-            bfx->program = NULL;
-        }
-        if (bfx->tape) {
-            free(bfx->tape);
-            bfx->tape = NULL;
-        }
-        if (bfx->loops) {
-            free(bfx->loops);
-            bfx->loops = NULL;
-        }
-    }
 }
 
 /**

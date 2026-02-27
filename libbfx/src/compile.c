@@ -105,7 +105,6 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
     BFX_SET_PROPERTY_SIZE_T("tape_size", bfx->tape_size);
     BFX_SET_PROPERTY_INT("ip", bfx->ip);
     BFX_SET_PROPERTY_INT("tp", bfx->tp);
-    BFX_SET_PROPERTY_INT("tp_max", bfx->tp_max);
     BFX_SET_PROPERTY_SIZE_T("loops_len", bfx->loops_len);
     BFX_SET_PROPERTY_SIZE_T("loops_size", bfx->loops_size);
     BFX_SET_PROPERTY_SIZE_T("input_max", bfx->input_max);

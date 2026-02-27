@@ -159,7 +159,6 @@ typedef struct {
     size_t       tape_size; //!< Size of the tape array.
     int          ip; //!< Instruction pointer.
     int          tp; //!< Tape pointer.
-    int          tp_max; //!< Maximum tape pointer value since execution started.
     BFX_Block*   loops; //!< Pointer to the loop block array.
     size_t       loops_len; //!< Length of the loop array.
     size_t       loops_size; //!< Size of the loop array.
