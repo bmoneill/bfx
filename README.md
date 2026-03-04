@@ -3,6 +3,7 @@
 [![CI status](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml).
 [![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
 [![Doxygen status](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml)
+[![Coverage](https://oneill.sh/coverage/bfx)](https://oneill.sh/coverage/bfx)
 
 This is an interpreter, compiler, and REPL for the following Turing-complete esoteric
 programming languages:
