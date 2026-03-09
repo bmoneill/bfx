@@ -18,6 +18,5 @@ var structBFX =
     [ "receiving", "structBFX.html#a3264ca17406556a54abe56667f2c8611", null ],
     [ "tape", "structBFX.html#a091cde5ad19dbc06ffb9ac21812cbd3b", null ],
     [ "tape_size", "structBFX.html#adf0a478d19f3a8c2e62619ed3f2aaca7", null ],
-    [ "tp", "structBFX.html#a4f466cf6e42f999ca3cd72e6e7deab40", null ],
-    [ "tp_max", "structBFX.html#af96ae306ad2c5ed3b2f4a861fbbebc29", null ]
+    [ "tp", "structBFX.html#a4f466cf6e42f999ca3cd72e6e7deab40", null ]
 ];

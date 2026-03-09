@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"structBFX.html":[1,0,0],
 "structBFX.html#a091cde5ad19dbc06ffb9ac21812cbd3b":[1,0,0,16],
 "structBFX.html#a158fe1171e8c041fdb1fefd882032c24":[1,0,0,10],
 "structBFX.html#a168aaf70f797157e1e8c96519786e068":[1,0,0,2],
@@ -19,7 +18,6 @@ var NAVTREEINDEX1 =
 "structBFX.html#addd335afdb9230f431842ebb6cbbce62":[1,0,0,6],
 "structBFX.html#adf0a478d19f3a8c2e62619ed3f2aaca7":[1,0,0,17],
 "structBFX.html#aea651dbf8303831b397faae585787ca5":[1,0,0,11],
-"structBFX.html#af96ae306ad2c5ed3b2f4a861fbbebc29":[1,0,0,19],
 "structBFX.html#afbe51e32c3ecbbff8c432f804028aa7e":[1,0,0,3],
 "structBFX__Block.html":[1,0,1],
 "structBFX__Block.html#a28b0761c88c7cc8b5013fcad3aafc88a":[1,0,1,1],
