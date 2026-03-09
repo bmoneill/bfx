@@ -14,6 +14,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLIBBFX_VERSION='\"${GIT_COMMIT_HASH}\"'")
 
 function(Enable_Tests)
     set(TEST ON CACHE INTERNAL "")
+    set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+    include(CodeCoverage)
 endfunction()
 
 function(Build_Binary)
