@@ -74,6 +74,8 @@ set_target_properties(
 # Compiler definitions
 ADD_DEFINITIONS("-g")
 if(TEST)
+    target_compile_options(${LIBRARY_NAME} PRIVATE "-fprofile-arcs" "-ftest-coverage")
+    target_link_options(${LIBRARY_NAME} PRIVATE "-fprofile-arcs" "-ftest-coverage")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DTEST")
 endif()
 

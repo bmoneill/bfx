@@ -13,6 +13,7 @@ execute_process(
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLIBBFX_VERSION='\"${GIT_COMMIT_HASH}\"'")
 
 function(Enable_Tests)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg -fprofile-arcs -ftest-coverage -fsanitize=address -fno-omit-frame-pointer")
     set(TEST ON CACHE INTERNAL "")
     set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
     include(CodeCoverage)
