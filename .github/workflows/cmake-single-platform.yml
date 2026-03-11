@@ -71,4 +71,4 @@ jobs:
           passphrase: ${{ secrets.wwwpass }}
           port: 22
           script: |
-            update-coverage bfx ${{ steps.coverage.outputs.percentage }}
+            sudo update-coverage bfx ${{ steps.coverage.outputs.percentage }}
