@@ -12,9 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void bfx_init_tokens(void);
 static int  bfx_load_file(BFX*, const char*);
-static void bfx_reset_loops(BFX*);
 
 /**
  * @brief Frees the memory allocated for the BFX instance.
@@ -50,7 +48,7 @@ void bfx_free(BFX* bfx) {
  * @return BFX_Error The error code indicating the result of the operation.
  */
 BFX_Error bfx_run_file(const char* path, BFX* bfx) {
-    if (bfx_load_file(bfx, path)) {
+    if (!bfx || bfx_load_file(bfx, path)) {
         return BFX_RUNTIME_ERROR;
     }
     return bfx_interpret(bfx);
