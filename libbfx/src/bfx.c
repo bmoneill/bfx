@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int  bfx_load_file(BFX*, const char*);
+static int bfx_load_file(BFX*, const char*);
 
 /**
  * @brief Frees the memory allocated for the BFX instance.
