@@ -44,6 +44,10 @@ void test_bfx_run_file_WherePathIsValid_WhereBFXIsValid_WithSeparatedInputAndSou
     bfx.receiving = 1;
     bfx.tape = malloc(1);
     bfx.flags |= BFX_FLAG_SEPARATE_INPUT_AND_SOURCE;
+    REDIRECT_STDOUT;
     TEST_ASSERT_EQUAL_INT(0, bfx_run_file(get_path("brainfuck/cat-separated.b"), &bfx));
+    RESTORE_STDOUT;
+
+    TEST_ASSERT_EQUAL_STRING("Hello world\n", stdout_buffer);
     free(bfx.tape);
 }

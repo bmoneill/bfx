@@ -53,7 +53,6 @@ void               initialize(const char* program_str) {
 char* get_path(const char* filename) {
     for (int i = 0; i < 3; i++) {
         sprintf(path_buffer, "%s%s", paths[i], filename);
-        printf("%s\n", path_buffer);
         if (access(path_buffer, F_OK) == 0) {
             return path_buffer;
         }
