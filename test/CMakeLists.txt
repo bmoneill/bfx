@@ -19,8 +19,7 @@ function(add_bfx_test name)
 endfunction()
 
 add_bfx_test(bfx)
-#add_bfx_test(compile)
-#add_bfx_test(interpret)
+add_bfx_test(compile)
 add_bfx_test(util)
 
 add_bfx_test(brainfork)
