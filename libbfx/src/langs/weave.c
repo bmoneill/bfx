@@ -42,7 +42,7 @@ BFX_Error bfx_weave_init(BFX* bfx) {
 
     threadLengths[0] = 0;
     for (size_t i = 0; i < bfx->program_len; i++) {
-        if (bfx->program[i] == ';') {
+        if (bfx->program[i] == ';' && i < bfx->program_len - 1) {
             if (threadCount > BFX_MAX_THREADS) {
                 BFX_ERROR("Too many threads.");
             }

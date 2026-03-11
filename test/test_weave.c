@@ -1,7 +1,7 @@
 #include "unity.h"
 
 #include "interpret.h"
-#include "langs/weave.h"
+#include "langs/weave.c"
 #include "util.c"
 
 int  ret;
@@ -33,4 +33,11 @@ void test_bfx_op_weave_toggle(void) {
 
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(3, bfx.tape[0]);
+}
+
+void test_bfx_op_weave_exit(void) {
+    initialize("++;");
+    ret = bfx_op_weave_exit(&bfx, NULL);
+    TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
+    TEST_ASSERT_EQUAL_INT(bfx.program_len, bfx.ip);
 }
