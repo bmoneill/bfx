@@ -1,9 +1,34 @@
-# bfx: an extensible interpreter, compiler, and REPL for brainfuck-like languages
+<h1 align="center">
+  bfx
+</h1>
 
-[![CI status](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml).
-[![clang-format status](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml)
-[![Doxygen status](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main)](https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml)
-[![Coverage](https://oneill.sh/coverage/bfx)](https://oneill.sh/coverage/bfx)
+<h4 align="center">
+  An extensible interpreter, compiler, and REPL for brainfuck-like languages
+</h4>
+
+<div align="center">
+    <a href="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main" alt="CI status" /></a>.
+    <a href="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main" alt="clang-format status" /></a>
+    <a href="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main" alt="Doxygen status" /></a>
+    <a href="https://oneill.sh/coverage/bfx"><img src="https://oneill.sh/coverage/bfx" alt="Coverage" /></a>
+</div>
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Building](#building)
+- [Usage](#usage)
+  - [General Interpreter Options](#general-interpreter-options)
+  - [Compiler options](#compiler-options)
+  - [Other options](#other-options)
+  - [Supported Languages](#languages)
+- [Extending](#extending)
+- [Screenshots](#screenshots)
+- [Further Reading](#further-reading)
+- [Bugs](#bugs)
+- [License](#license)
+
+## Overview
 
 This is an interpreter, compiler, and REPL for the following Turing-complete esoteric
 programming languages:
