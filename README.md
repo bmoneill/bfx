@@ -1,12 +1,6 @@
-<h1 align="center">
-  bfx
-</h1>
-
-<h4 align="center">
-  An extensible interpreter, compiler, and REPL for brainfuck-like languages
-</h4>
-
 <div align="center">
+    <h1>bfx</h1>
+    <h4>An extensible interpreter, compiler, and REPL for brainfuck-like languages</h4>
     <a href="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main" alt="CI status" /></a>.
     <a href="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main" alt="clang-format status" /></a>
     <a href="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main" alt="Doxygen status" /></a>
