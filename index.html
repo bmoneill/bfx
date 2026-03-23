@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>bfx: bfx: an extensible interpreter, compiler, and REPL for brainfuck-like languages</title>
+<title>bfx: bfx</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,10 +90,31 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">bfx: an extensible interpreter, compiler, and REPL for brainfuck-like languages </div></div>
+  <div class="headertitle"><div class="title">bfx </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> <a href="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main" alt="CI status" style="pointer-events: none;" class="inline"/></a>. <a href="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main" alt="clang-format status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main" alt="Doxygen status" style="pointer-events: none;" class="inline"/></a> <a href="https://oneill.sh/coverage/bfx"><img src="https://oneill.sh/coverage/bfx" alt="Coverage" class="inline"/></a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> </p><h1 align="center">bfx </h1>
+<h4 align="center">An extensible interpreter, compiler, and REPL for brainfuck-like languages </h4>
+<div align="center"> <a href="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main" alt="CI status" style="pointer-events: none;" class="inline"/></a>. <a href="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/clang-format.yml/badge.svg?branch=main" alt="clang-format status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml"><img src="https://github.com/bmoneill/bfx/actions/workflows/doxygen.yml/badge.svg?branch=main" alt="Doxygen status" style="pointer-events: none;" class="inline"/></a> <a href="https://oneill.sh/coverage/bfx"><img src="https://oneill.sh/coverage/bfx" alt="Coverage" class="inline"/></a> </div><h2><a class="anchor" id="autotoc_md0"></a>
+Table of Contents</h2>
+<ul>
+<li>Overview</li>
+<li>Building</li>
+<li>Usage<ul>
+<li>General Interpreter Options</li>
+<li>Compiler options</li>
+<li>Other options</li>
+<li>Supported Languages</li>
+</ul>
+</li>
+<li>Extending</li>
+<li>Screenshots</li>
+<li>Further Reading</li>
+<li>Bugs</li>
+<li>License</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Overview</h2>
 <p>This is an interpreter, compiler, and REPL for the following Turing-complete esoteric programming languages:</p>
 <ul>
 <li><a href="https://esolangs.org/wiki/Brainfork">Brainfork</a></li>
@@ -103,18 +124,18 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <li><a href="https://esolangs.org/wiki/Weave">Weave</a></li>
 </ul>
 <p>Most tape-based single-character instruction languages can be incorporated into <code>libbfx</code> with relative ease (see Extending).</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Building</h1>
 <h2><a class="anchor" id="autotoc_md2"></a>
-Linux</h2>
+Building</h2>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Linux</h3>
 <div class="fragment"><div class="line">cmake . -B build</div>
 <div class="line">cmake --build build</div>
 <div class="line">sudo cmake --install build</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
-Usage</h1>
-<div class="fragment"><div class="line">bfx [options...] [file]</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
-General Interpreter Options</h2>
+Usage</h2>
+<div class="fragment"><div class="line">bfx [options...] [file]</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md5"></a>
+General Interpreter Options</h3>
 <ul>
 <li><code>-e eof_behavior</code>: Specify behavior when encountering EOF. Valid values are "zero" (the default, sets the current cell to zero), "decrement" (subtract one from the current cell), and "unchanged" (do not change the current cell).</li>
 <li><code>-i</code>: Separate code from input using <code>!</code> (Note: Grin is not supported here).</li>
@@ -122,22 +143,22 @@ General Interpreter Options</h2>
 <li><code>-r</code>: Run in interactive REPL mode (Note: Weave is not supported here).</li>
 <li><code>-t tape_size</code>: Specify the size of the tape (default: 30000).</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Compiler Options</h2>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Compiler Options</h3>
 <p>Note that the <code>bfx</code> library must be installed to your <code>PATH</code> in order to use these options. Compiled code may be run without the <code>bfx</code> library.</p>
 <ul>
 <li><code>-c</code>: Compile the given program to a native binary.</li>
 <li><code>-o output_file</code>: Specify the output file (default: '<code>./a.out</code>')</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Other Options</h2>
+<h3><a class="anchor" id="autotoc_md7"></a>
+Other Options</h3>
 <ul>
 <li><code>-D</code>: Default to degrees instead of radians (Grin).</li>
 <li><code>-P precision</code>: Specify the number of decimal places to print (Grin). Default is 4.</li>
 <li><code>-v</code>: Print version information.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Languages</h2>
+<h3><a class="anchor" id="autotoc_md8"></a>
+Languages</h3>
 <ul>
 <li><code>brainfork</code></li>
 <li><code>brainfuck</code> (Default)</li>
@@ -146,8 +167,8 @@ Languages</h2>
 <li><code>weave</code></li>
 </ul>
 <p>If <code>file</code> is not specified, <code>bfx</code> will read source code from standard input.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Extending</h1>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Extending</h2>
 <p>It is possible to add support for new languages pretty easily by following these steps:</p>
 <ol type="1">
 <li>Create a new source and header file for the language in <a href="libbfx/src/langs">libbfx/src/langs</a>.</li>
@@ -157,21 +178,21 @@ Extending</h1>
 <li>Add a <code><a class="el" href="interpret_8c.html#a5cf63d3c91e21979d39014e3d68c4245">BFX_LANG(NAME)</a></code> macro to the list in <a href="libbfx/src/interpret.c">libbfx/src/interpret.c</a>.</li>
 <li>Update <code>get_language()</code> in <a href="bfx/src/main.c">bfx/src/main.c</a>.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md9"></a>
-Screenshots</h1>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Screenshots</h2>
 <p><code>bfx</code> running <a href="https://brainfuck.org/sierpinski.b">sierpinski.b</a></p>
 <p><img src="https://oneill.sh/img/bfx-sierpinski.png" alt="bfx sierpinski" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md10"></a>
-Further Reading</h1>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Further Reading</h2>
 <ul>
 <li><a href="https://esolangs.org/wiki/Brainfuck">Esolang Wiki</a></li>
 <li><a href="https://brainfuck.org/">brainfuck.org</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md11"></a>
-Bugs</h1>
+<h2><a class="anchor" id="autotoc_md12"></a>
+Bugs</h2>
 <p>If you find a bug, submit an issue, PR, or email me with a description and/or patch.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
-License</h1>
+<h2><a class="anchor" id="autotoc_md13"></a>
+License</h2>
 <p>Copyright (c) 2022-2026 Ben O'Neill <a href="#" onclick="location.href='mai'+'lto:'+'ben'+'@o'+'nei'+'ll'+'.sh'; return false;">ben@o<span class="obfuscator">.nosp@m.</span>neil<span class="obfuscator">.nosp@m.</span>l.sh</a>. This work is released under the terms of the MIT License. See [LICENSE](LICENSE) for the license terms. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
