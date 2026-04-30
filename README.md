@@ -16,6 +16,7 @@
   - [Compiler options](#compiler-options)
   - [Other options](#other-options)
   - [Supported Languages](#languages)
+- [Testing](#testing)
 - [Extending](#extending)
 - [Screenshots](#screenshots)
 - [Further Reading](#further-reading)
@@ -38,10 +39,10 @@ Most tape-based single-character instruction languages can be incorporated into
 
 ## Building
 
-### Linux
+### Linux / macOS
 
 ```shell
-cmake . -B build
+cmake -S . -B build
 cmake --build build
 sudo cmake --install build
 ```
@@ -87,6 +88,16 @@ these options. Compiled code may be run without the `bfx` library.
 - `weave`
 
 If `file` is not specified, `bfx` will read source code from standard input.
+
+## Testing
+
+Tests can be run with:
+
+```shell
+cmake -S . -B build -DTEST=ON
+cmake --build build
+ctest --test-dir build
+```
 
 ## Extending
 
