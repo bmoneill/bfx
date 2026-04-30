@@ -107,6 +107,7 @@ Table of Contents</h2>
 <li>Supported Languages</li>
 </ul>
 </li>
+<li>Testing</li>
 <li>Extending</li>
 <li>Screenshots</li>
 <li>Further Reading</li>
@@ -127,8 +128,8 @@ Overview</h2>
 <h2><a class="anchor" id="autotoc_md2"></a>
 Building</h2>
 <h3><a class="anchor" id="autotoc_md3"></a>
-Linux</h3>
-<div class="fragment"><div class="line">cmake . -B build</div>
+Linux / macOS</h3>
+<div class="fragment"><div class="line">cmake -S . -B build</div>
 <div class="line">cmake --build build</div>
 <div class="line">sudo cmake --install build</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
@@ -168,6 +169,12 @@ Languages</h3>
 </ul>
 <p>If <code>file</code> is not specified, <code>bfx</code> will read source code from standard input.</p>
 <h2><a class="anchor" id="autotoc_md9"></a>
+Testing</h2>
+<p>Tests can be run with:</p>
+<div class="fragment"><div class="line">cmake -S . -B build -DTEST=ON</div>
+<div class="line">cmake --build build</div>
+<div class="line">ctest --test-dir build</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
 Extending</h2>
 <p>It is possible to add support for new languages pretty easily by following these steps:</p>
 <ol type="1">
@@ -178,20 +185,20 @@ Extending</h2>
 <li>Add a <code><a class="el" href="interpret_8c.html#a5cf63d3c91e21979d39014e3d68c4245">BFX_LANG(NAME)</a></code> macro to the list in <a href="libbfx/src/interpret.c">libbfx/src/interpret.c</a>.</li>
 <li>Update <code>get_language()</code> in <a href="bfx/src/main.c">bfx/src/main.c</a>.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Screenshots</h2>
 <p><code>bfx</code> running <a href="https://brainfuck.org/sierpinski.b">sierpinski.b</a></p>
 <p><img src="https://oneill.sh/img/bfx-sierpinski.png" alt="bfx sierpinski" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Further Reading</h2>
 <ul>
 <li><a href="https://esolangs.org/wiki/Brainfuck">Esolang Wiki</a></li>
 <li><a href="https://brainfuck.org/">brainfuck.org</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Bugs</h2>
 <p>If you find a bug, submit an issue, PR, or email me with a description and/or patch.</p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 License</h2>
 <p>Copyright (c) 2022-2026 Ben O'Neill <a href="#" onclick="location.href='mai'+'lto:'+'ben'+'@o'+'nei'+'ll'+'.sh'; return false;">ben@o<span class="obfuscator">.nosp@m.</span>neil<span class="obfuscator">.nosp@m.</span>l.sh</a>. This work is released under the terms of the MIT License. See [LICENSE](LICENSE) for the license terms. </p>
 </div></div><!-- PageDoc -->

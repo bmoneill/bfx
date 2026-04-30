@@ -29,7 +29,7 @@ var NAVTREE =
       [ "Table of Contents", "index.html#autotoc_md0", null ],
       [ "Overview", "index.html#autotoc_md1", null ],
       [ "Building", "index.html#autotoc_md2", [
-        [ "Linux", "index.html#autotoc_md3", null ]
+        [ "Linux / macOS", "index.html#autotoc_md3", null ]
       ] ],
       [ "Usage", "index.html#autotoc_md4", [
         [ "General Interpreter Options", "index.html#autotoc_md5", null ],
@@ -37,11 +37,12 @@ var NAVTREE =
         [ "Other Options", "index.html#autotoc_md7", null ],
         [ "Languages", "index.html#autotoc_md8", null ]
       ] ],
-      [ "Extending", "index.html#autotoc_md9", null ],
-      [ "Screenshots", "index.html#autotoc_md10", null ],
-      [ "Further Reading", "index.html#autotoc_md11", null ],
-      [ "Bugs", "index.html#autotoc_md12", null ],
-      [ "License", "index.html#autotoc_md13", null ],
+      [ "Testing", "index.html#autotoc_md9", null ],
+      [ "Extending", "index.html#autotoc_md10", null ],
+      [ "Screenshots", "index.html#autotoc_md11", null ],
+      [ "Further Reading", "index.html#autotoc_md12", null ],
+      [ "Bugs", "index.html#autotoc_md13", null ],
+      [ "License", "index.html#autotoc_md14", null ],
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
@@ -65,7 +66,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structBFX.html"
+"pbrain_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

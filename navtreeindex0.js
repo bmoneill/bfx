@@ -1,6 +1,6 @@
 var NAVTREEINDEX0 =
 {
-"annotated.html":[0,9],
+"annotated.html":[0,10],
 "bfx_8c.html":[1,0,0,0,1],
 "bfx_8c.html#a3842842410d2ede486005b738122606d":[1,0,0,0,1,1],
 "bfx_8c.html#a9a348c3d6a80a43158f759a780b40e65":[1,0,0,0,1,0],
@@ -80,7 +80,7 @@ var NAVTREEINDEX0 =
 "brainfuck_8h.html#af834eaa2dedbbde33d575fe180a407c9":[1,0,0,0,0,3,7],
 "brainfuck_8h.html#afe911bd765fa8d3e154a15385789f8d2":[1,0,0,0,0,3,2],
 "brainfuck_8h_source.html":[1,0,0,0,0,3],
-"classes.html":[0,10],
+"classes.html":[0,11],
 "compile_8c.html":[1,0,0,0,3],
 "compile_8c.html#a0092fe675ee327b0b5ebec94333abaef":[1,0,0,0,3,4],
 "compile_8c.html#a0a75d9b7be22eb676c56635e9ef60c3e":[1,0,0,0,3,1],
@@ -100,8 +100,8 @@ var NAVTREEINDEX0 =
 "dir_56849345e9c95c262f29216e0d2272b9.html":[1,0,0],
 "dir_73af84e4b3a0347e97466434e11db0c8.html":[1,0,0,0,0],
 "files.html":[1,0],
-"functions.html":[0,11,0],
-"functions_vars.html":[0,11,1],
+"functions.html":[0,12,0],
+"functions_vars.html":[0,12,1],
 "globals.html":[1,1,0],
 "globals.html":[1,1,0,0],
 "globals_defs.html":[1,1,4],
@@ -220,6 +220,7 @@ var NAVTREEINDEX0 =
 "index.html#autotoc_md11":[6],
 "index.html#autotoc_md12":[7],
 "index.html#autotoc_md13":[8],
+"index.html#autotoc_md14":[9],
 "index.html#autotoc_md2":[2],
 "index.html#autotoc_md3":[2,0],
 "index.html#autotoc_md4":[3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "pbrain_8h.html#a88d810e83737081711d1f1680ed69f11":[1,0,0,0,0,7,3],
 "pbrain_8h.html#a9e65b27108cfc6cc924b8fd4ae25bd80":[1,0,0,0,0,7,2],
 "pbrain_8h.html#ab290736f92f0dcab960931fdd444d2b4":[1,0,0,0,0,7,6],
-"pbrain_8h.html#ae0c765418f7dc47c3798f1b7e4664361":[1,0,0,0,0,7,8],
-"pbrain_8h_source.html":[1,0,0,0,0,7]
+"pbrain_8h.html#ae0c765418f7dc47c3798f1b7e4664361":[1,0,0,0,0,7,8]
 };
