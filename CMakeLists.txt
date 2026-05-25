@@ -13,7 +13,8 @@ execute_process(
 )
 
 # Version
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLIBBFX_VERSION='\"${GIT_COMMIT_HASH}\"'")
+add_compile_definitions("LIBBFX_VERSION=\"${GIT_COMMIT_HASH}\"")
+
 
 function(Enable_Tests)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg -fprofile-arcs -ftest-coverage -fsanitize=address -fno-omit-frame-pointer")
