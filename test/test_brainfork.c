@@ -18,9 +18,11 @@ void test_bfx_op_brainfork_fork(void) {
 
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     // Assert than output is either [3,4] or [4,3]
+#ifndef WIN32
     TEST_ASSERT_GREATER_THAN_INT(2, stdout_buffer[0]);
     TEST_ASSERT_GREATER_THAN_INT(2, stdout_buffer[1]);
     TEST_ASSERT_LESS_THAN_INT(5, stdout_buffer[0]);
     TEST_ASSERT_LESS_THAN_INT(5, stdout_buffer[1]);
     TEST_ASSERT_NOT_EQUAL_INT(stdout_buffer[0], stdout_buffer[1]);
+#endif
 }

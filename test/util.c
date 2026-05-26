@@ -10,6 +10,17 @@
 
 #define BUFFER_LENGTH 1024
 
+#ifdef WIN32
+#define REDIRECT_STDOUT                                                                            \
+    do {                                                                                           \
+    } while (0);
+#define RESTORE_STDOUT                                                                             \
+    do {                                                                                           \
+    } while (0);
+#define WRITE_TO_STDIN(s)                                                                          \
+    do {                                                                                           \
+    } while (0);
+#else
 #define REDIRECT_STDOUT                                                                            \
     freopen("/dev/null", "a", stdout);                                                             \
     setbuf(stdout, stdout_buffer);
@@ -22,6 +33,7 @@
     close(fds[1]);                                                                                 \
     dup2(fds[0], STDIN_FILENO);                                                                    \
     close(fds[0]);
+#endif
 
 BFX                bfx;
 char               program[BUFFER_LENGTH];

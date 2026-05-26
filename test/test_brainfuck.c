@@ -122,6 +122,7 @@ void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsFalse(void) {
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
 }
 
+#ifndef WIN32
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsTrue(void) {
     INITIALIZE(",");
     bfx.receiving = true;
@@ -169,6 +170,7 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithUnc
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(2, bfx.tape[bfx.tp]);
 }
+#endif
 
 void test_bfx_op_putchar(void) {
     INITIALIZE(".");
@@ -177,5 +179,7 @@ void test_bfx_op_putchar(void) {
     ret = bfx_interpret(&bfx);
     RESTORE_STDOUT;
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
+#ifndef WIN32
     TEST_ASSERT_EQUAL_STRING("A", stdout_buffer);
+#endif
 }

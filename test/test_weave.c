@@ -18,9 +18,11 @@ void test_weave(void) {
     RESTORE_STDOUT;
 
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
+#ifndef WIN32
     TEST_ASSERT_EQUAL_INT(1, stdout_buffer[0]);
     TEST_ASSERT_EQUAL_INT(1, stdout_buffer[1]);
     TEST_ASSERT_EQUAL_INT(1, stdout_buffer[2]);
+#endif
 }
 
 void test_bfx_op_weave_toggle(void) {

@@ -21,8 +21,10 @@ void test_bfx_op_pbrain_procedures(void) {
     ret = bfx_interpret(&bfx);
     RESTORE_STDOUT;
     TEST_ASSERT_EQUAL_INT(0, ret);
+#ifndef WIN32
     TEST_ASSERT_EQUAL_INT(10, stdout_buffer[0]);
     TEST_ASSERT_EQUAL_INT(12, stdout_buffer[1]);
+#endif
 }
 
 void test_bfx_op_pbrain_procedures_nested(void) {
@@ -36,8 +38,10 @@ void test_bfx_op_pbrain_procedures_nested(void) {
     ret = bfx_interpret(&bfx);
     RESTORE_STDOUT;
     TEST_ASSERT_EQUAL_INT(0, ret);
+#ifndef WIN32
     TEST_ASSERT_EQUAL_INT(10, stdout_buffer[0]);
     TEST_ASSERT_EQUAL_INT(11, stdout_buffer[1]);
+#endif
 }
 
 void test_bfx_op_pbrain_procedures_stack_overflow(void) {
