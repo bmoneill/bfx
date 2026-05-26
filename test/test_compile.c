@@ -9,7 +9,8 @@ void setUp(void) { memset(&bfx, 0, sizeof(BFX)); }
 void tearDown(void) {}
 
 void test_bfx_compile(void) {
-    // Find BFX library and add to LIBRARY_PATH
+// Find BFX library and add to LIBRARY_PATH
+#ifndef WIN32
     const char* possible_paths[] = { "libbfx/", "build/libbfx", "bfx/build/libbfx", "../libbfx" };
     int         success          = 0;
     char        pwdbuf[1024];
@@ -24,6 +25,7 @@ void test_bfx_compile(void) {
     }
 
     TEST_ASSERT_EQUAL_INT_MESSAGE(1, success, "Failed to find BFX library");
+#endif
 
     REDIRECT_STDOUT;
     bfx_compile(get_path("brainfuck/cat.b"), "a.out", &bfx);
