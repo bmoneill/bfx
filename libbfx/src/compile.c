@@ -92,7 +92,12 @@ void bfx_compile(const char* input_path, const char* output_path, BFX* bfx) {
 
     /*** Actual compilation ***/
     fprintf(output, BFX_COMPILE_HEAD);
+
+#ifdef WIN32
+    fprintf(output, "bfx.tape = malloc(%lld * sizeof(char));\n", bfx->tape_size);
+#else
     fprintf(output, "bfx.tape = malloc(%ld * sizeof(char));\n", bfx->tape_size);
+#endif
 
     if (bfx->lang == BFX_LANG_grin && bfx->flags & BFX_FLAG_LANG_DATA_FLAGS) {
         fprintf(output,
