@@ -122,8 +122,11 @@ void test_bfx_op_getchar_WhereInputIsIntegrated_WhereReceivingIsFalse(void) {
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
 }
 
-#ifndef WIN32
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsTrue(void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdin");
+#else
     INITIALIZE(",");
     bfx.receiving = true;
 
@@ -131,9 +134,14 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsTrue(void) {
     ret = bfx_interpret(&bfx);
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT('A', bfx.tape[bfx.tp]);
+#endif
 }
 
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithZeroEOFBehavior(void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdin");
+#else
     INITIALIZE(",");
     bfx.eof_behavior = BFX_EOF_BEHAVIOR_ZERO;
     bfx.receiving    = false;
@@ -143,10 +151,15 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithZer
     ret              = bfx_interpret(&bfx);
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(0, bfx.tape[bfx.tp]);
+#endif
 }
 
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithDecrementEOFBehavior(
     void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdin");
+#else
     INITIALIZE(",");
     bfx.eof_behavior = BFX_EOF_BEHAVIOR_DECREMENT;
     bfx.receiving    = false;
@@ -156,10 +169,15 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithDec
     ret              = bfx_interpret(&bfx);
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(1, bfx.tape[bfx.tp]);
+#endif
 }
 
 void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithUnchangedEOFBehavior(
     void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdin");
+#else
     INITIALIZE(",");
     bfx.eof_behavior = BFX_EOF_BEHAVIOR_UNCHANGED;
     bfx.receiving    = false;
@@ -169,8 +187,8 @@ void test_bfx_op_getchar_WhereInputIsNotIntegrated_WhereReceivingIsFalse_WithUnc
     ret              = bfx_interpret(&bfx);
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(2, bfx.tape[bfx.tp]);
-}
 #endif
+}
 
 void test_bfx_op_putchar(void) {
     INITIALIZE(".");
