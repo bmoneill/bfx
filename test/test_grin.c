@@ -51,19 +51,29 @@ void test_bfx_op_grin_putchar_number(void) {
 }
 
 void test_bfx_op_grin_getchar_ascii(void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdin");
+#else
     INITIALIZE(",");
     WRITE_TO_STDIN("A");
     ret = bfx_grin_run(&bfx);
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT('A', GRIN_DATA->tape[0]);
+#endif
 }
 
 void test_bfx_op_grin_getchar_number(void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdin");
+#else
     INITIALIZE(";");
     WRITE_TO_STDIN("42.5");
     ret = bfx_grin_run(&bfx);
     TEST_ASSERT_EQUAL_INT(BFX_SUCCESS, ret);
     TEST_ASSERT_EQUAL_INT(42.5, GRIN_DATA->tape[0]);
+#endif
 }
 
 void test_bfx_op_grin_putchar_register_ascii(void) {

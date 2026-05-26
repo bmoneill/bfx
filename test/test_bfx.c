@@ -43,6 +43,10 @@ void test_bfx_run_file_WherePathIsValid_WhereBFXIsValid(void) {
 }
 
 void test_bfx_run_file_WherePathIsValid_WhereBFXIsValid_WithSeparatedInputAndSource(void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdio");
+#else
     bfx.lang      = BFX_LANG_brainfuck;
     bfx.receiving = 1;
     bfx.tape      = malloc(1);
@@ -53,9 +57,14 @@ void test_bfx_run_file_WherePathIsValid_WhereBFXIsValid_WithSeparatedInputAndSou
 
     TEST_ASSERT_EQUAL_STRING("Hello world\n", stdout_buffer);
     free(bfx.tape);
+#endif
 }
 
 void test_bfx_run_repl(void) {
+#ifdef WIN32
+    TEST_IGNORE_MESSAGE(
+        "Test not supported on Windows due to lack of support for redirecting stdin");
+#else
     bfx.lang      = BFX_LANG_grin;
     bfx.input_max = 50;
     bfx.receiving = 1;
@@ -64,4 +73,5 @@ void test_bfx_run_repl(void) {
     TEST_ASSERT_EQUAL_INT(0, bfx_run_repl(&bfx));
     RESTORE_STDOUT;
     TEST_ASSERT_EQUAL_STRING("> HELLO\n> ", stdout_buffer);
+#endif
 }
