@@ -15,6 +15,9 @@ execute_process(
 # Version
 add_compile_definitions("LIBBFX_VERSION=\"${GIT_COMMIT_HASH}\"")
 
+if(WIN32)
+  add_compile_definitions("WIN32=1")
+endif()
 
 function(Enable_Tests)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg -fprofile-arcs -ftest-coverage -fsanitize=address -fno-omit-frame-pointer")

@@ -17,8 +17,14 @@
     } else {                                                                                       \
         fprintf(output, "bfx.%s = false;", property);                                              \
     }
-#define BFX_SET_PROPERTY_INT(property, value)      fprintf(output, "bfx.%s = %d;", property, value)
-#define BFX_SET_PROPERTY_SIZE_T(property, value)   fprintf(output, "bfx.%s = %ld;", property, value)
+#define BFX_SET_PROPERTY_INT(property, value) fprintf(output, "bfx.%s = %d;", property, value)
+
+#ifdef WIN32
+#define BFX_SET_PROPERTY_SIZE_T(property, value) fprintf(output, "bfx.%s = %lld;", property, value)
+#else
+#define BFX_SET_PROPERTY_SIZE_T(property, value) fprintf(output, "bfx.%s = %ld;", property, value)
+#endif
+
 #define BFX_SET_PROPERTY_UINT16_T(property, value) fprintf(output, "bfx.%s = %d;", property, value)
 #define BFX_SET_PROPERTY_CONST_CHAR(property, value)                                               \
     fprintf(output, "bfx.%s = \"%s\";", property, value)
